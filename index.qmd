@@ -3,7 +3,6 @@ title: "Learning R"
 author: "Patrick Spauster"
 format:
   html: default
-  pdf: default
 editor: visual
 ---
 
