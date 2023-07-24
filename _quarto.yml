@@ -11,3 +11,4 @@ website:
       - section: "Basics"
         contents:
           - installing_r.qmd
+          - r_projects.qmd

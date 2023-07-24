@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Learning R",
     "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "text": "In this directory, we’re going to learn the basics of R and how to use it to read in, analyze, and visualize data so you can use it in data stories."
   },
   {
-    "objectID": "index.html#running-code",
-    "href": "index.html#running-code",
+    "objectID": "index.html#urpl-1620",
+    "href": "index.html#urpl-1620",
     "title": "Learning R",
-    "section": "Running Code",
-    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+    "section": "URPL-1620",
+    "text": "URPL-1620\nThis page was created as a guide to help students at NYU Wagner’s Data Analysis, Mapping, and Storytelling course.\nHere are links to the Brightspace, Slack, and Google Drive"
   },
   {
     "objectID": "installing_r.html",
@@ -21,17 +21,38 @@
     "text": "To use R, we need R, the underlying language that runs our code, as well as R studio, an integrated development environment (IDE) that allows us to save files and edit and run code.\nTo get started, we’ll visit RStudio’s homepage to install R.\nFirst, Install R for your operating system from CRAN.\nThen download the latest version of RStudio and open it."
   },
   {
-    "objectID": "installing_r.html#opening-rstudio",
-    "href": "installing_r.html#opening-rstudio",
-    "title": "1. Installing R",
-    "section": "Opening RStudio",
-    "text": "Opening RStudio\nWhen you open R Studio, It will find the version of R you just installed, and load it. Here I’ve loaded R version 4.3.1.\nWhen you load RStudio, the screen will be split in three. This is some important vocabulary to direct yourself around RStudio and get help when you need it.\n\nThe CONSOLE is where all your code is run. Here you will see the output from the code you run. The COMMAND LINE is where you can type in code and execute it to the console. Code you run in the console is not saved. Try typing 1+1 into the console, and you’ll see that R spits back 2.\nThe ENVIRONMENT is where all your data will be stored. R is an object oriented programming language. Think of it like having a bunch of spreadsheets open at once. The environment shows you all the data you have loaded, and what each dataset, list, or other object is called.\nThe DIRECTORY is in the bottom right. This links to all the files in your current folder, called your working directory. If you are ever in the wrong working directory, you can set it by running the setwd() function or going to “Session” -> “Set Working Directory.” We will keep files organized by using an R Project.\n\n1+1\n\n[1] 2"
-  },
-  {
     "objectID": "installing_r.html#video-tutorial",
     "href": "installing_r.html#video-tutorial",
     "title": "1. Installing R",
     "section": "Video Tutorial",
     "text": "Video Tutorial\nTo get started with this tutorial visit the RStudio download page"
+  },
+  {
+    "objectID": "r_projects.html",
+    "href": "r_projects.html",
+    "title": "2. Creating R Projects",
+    "section": "",
+    "text": "When you load RStudio, the screen will be split in three. This is some important vocabulary to direct yourself around RStudio and get help when you need it.\n\nThe CONSOLE is where all your code is run. Here you will see the output from the code you run. The COMMAND LINE is where you can type in code and execute it to the console. Code you run in the console is not saved. Try typing 1+1 into the console, and you’ll see that R spits back 2.\nThe ENVIRONMENT is where all your data will be stored. R is an object oriented programming language. Think of it like having a bunch of spreadsheets open at once. The environment shows you all the data you have loaded, and what each dataset, list, or other object is called.\nThe DIRECTORY is in the bottom right. This links to all the files in your current folder, called your working directory. If you are ever in the wrong working directory, you can set it by running the setwd() function or going to “Session” -\\> “Set Working Directory.” We will keep files organized by using an R Project."
+  },
+  {
+    "objectID": "r_projects.html#creating-a-project",
+    "href": "r_projects.html#creating-a-project",
+    "title": "2. Creating R Projects",
+    "section": "Creating a Project",
+    "text": "Creating a Project\nAn R Project is basically a folder that will hold all your files together in one place - including your code, raw data, and any output you may produce.\nCreate your first R Project by clicking on the projects icon in the top right. You can create a project from a new or existing directory.\nWhen you return to RStudio to work on a saved project, open the project again by using the Project menu in RStudio, or double clicking the .Rproj file in the project directory."
+  },
+  {
+    "objectID": "r_projects.html#creating-your-first-script",
+    "href": "r_projects.html#creating-your-first-script",
+    "title": "2. Creating R Projects",
+    "section": "Creating Your First Script",
+    "text": "Creating Your First Script\nGo to File -> New Script and save it to your project folder\nUse the assignment operator <- to save values, dataframes, and other objects to the environment for future use.\nUse command+enter (Mac) or ctrl + enter (Windows) to run your code. Or select all and then run the shortcut to run the whole script at once."
+  },
+  {
+    "objectID": "r_projects.html#video-tutorial",
+    "href": "r_projects.html#video-tutorial",
+    "title": "2. Creating R Projects",
+    "section": "Video Tutorial",
+    "text": "Video Tutorial"
   }
 ]

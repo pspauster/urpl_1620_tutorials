@@ -7,23 +7,12 @@ format:
 editor: visual
 ---
 
-## Quarto
+## Welcome to R
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+In this directory, we're going to learn the basics of R and how to use it to read in, analyze, and visualize data so you can use it in data stories.
 
-## Running Code
+## URPL-1620
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+This page was created as a guide to help students at NYU Wagner's Data Analysis, Mapping, and Storytelling course.
 
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
+Here are links to the Brightspace, Slack, and Google Drive

@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Patrick Spauster">
 
-<title>Learning R</title>
+<title>Learning R - 2. Creating R Projects</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -63,13 +62,13 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked fullcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Learning R</h1>
+      <h1 class="quarto-secondary-nav-title">2. Creating R Projects</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -94,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Learning R</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Learning R</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -112,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./r_projects.html" class="sidebar-item-text sidebar-link">2. Creating R Projects</a>
+  <a href="./r_projects.html" class="sidebar-item-text sidebar-link active">2. Creating R Projects</a>
   </div>
 </li>
       </ul>
@@ -121,25 +120,30 @@ ul.task-list li input[type="checkbox"] {
     </div>
 </nav>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#opening-r-studio" id="toc-opening-r-studio" class="nav-link active" data-scroll-target="#opening-r-studio">Opening R Studio</a></li>
+  <li><a href="#creating-a-project" id="toc-creating-a-project" class="nav-link" data-scroll-target="#creating-a-project">Creating a Project</a></li>
+  <li><a href="#creating-your-first-script" id="toc-creating-your-first-script" class="nav-link" data-scroll-target="#creating-your-first-script">Creating Your First Script</a></li>
+  <li><a href="#video-tutorial" id="toc-video-tutorial" class="nav-link" data-scroll-target="#video-tutorial">Video Tutorial</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Learning R</h1>
+<h1 class="title d-none d-lg-block">2. Creating R Projects</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Patrick Spauster </p>
-          </div>
-  </div>
     
   
     
@@ -148,14 +152,29 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="welcome-to-r" class="level2">
-<h2 class="anchored" data-anchor-id="welcome-to-r">Welcome to R</h2>
-<p>In this directory, we’re going to learn the basics of R and how to use it to read in, analyze, and visualize data so you can use it in data stories.</p>
+<section id="opening-r-studio" class="level2">
+<h2 class="anchored" data-anchor-id="opening-r-studio">Opening R Studio</h2>
+<p>When you load RStudio, the screen will be split in three. This is some important vocabulary to direct yourself around RStudio and get help when you need it.</p>
+<p><img src="images/1.1 R Studio.png" class="img-fluid"></p>
+<p>The <strong>CONSOLE</strong> is where all your code is run. Here you will see the output from the code you run. The COMMAND LINE is where you can type in code and execute it to the console. Code you run in the console is not saved. Try typing <code>1+1</code> into the console, and you’ll see that R spits back 2.</p>
+<p>The <strong>ENVIRONMENT</strong> is where all your data will be stored. R is an object oriented programming language. Think of it like having a bunch of spreadsheets open at once. The environment shows you all the data you have loaded, and what each dataset, list, or other object is called.</p>
+<p>The <strong>DIRECTORY</strong> is in the bottom right. This links to all the files in your current folder, called your <strong>working directory</strong>. If you are ever in the wrong working directory, you can set it by running the <code>setwd()</code> function or going to “Session” -\&gt; “Set Working Directory.” We will keep files organized by using an R Project.</p>
 </section>
-<section id="urpl-1620" class="level2">
-<h2 class="anchored" data-anchor-id="urpl-1620">URPL-1620</h2>
-<p>This page was created as a guide to help students at NYU Wagner’s Data Analysis, Mapping, and Storytelling course.</p>
-<p>Here are links to the Brightspace, Slack, and Google Drive</p>
+<section id="creating-a-project" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-project">Creating a Project</h2>
+<p>An R Project is basically a folder that will hold all your files together in one place - including your code, raw data, and any output you may produce.</p>
+<p>Create your first R Project by clicking on the projects icon in the top right. You can create a project from a new or existing directory.</p>
+<p>When you return to RStudio to work on a saved project, open the project again by using the Project menu in RStudio, or double clicking the <code>.Rproj</code> file in the project directory.</p>
+</section>
+<section id="creating-your-first-script" class="level2">
+<h2 class="anchored" data-anchor-id="creating-your-first-script">Creating Your First Script</h2>
+<p>Go to File -&gt; New Script and save it to your project folder</p>
+<p>Use the assignment operator <code>&lt;-</code> to save values, dataframes, and other objects to the environment for future use.</p>
+<p>Use <code>command+enter</code> (Mac) or <code>ctrl + enter</code> (Windows) to run your code. Or select all and then run the shortcut to run the whole script at once.</p>
+</section>
+<section id="video-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
+<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_c7ns14hu&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_6435uagw" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="2_r_projects" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 
 
 </section>

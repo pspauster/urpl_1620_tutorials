@@ -3,7 +3,7 @@ title: "1. Installing R"
 format:
   html:
     code-copy: true
-  pdf: default
+    toc-location: right
 editor: visual
 ---
 
@@ -16,24 +16,6 @@ To get started, we'll visit [RStudio's homepage](https://posit.co/download/rstud
 First, Install R for your operating system from [CRAN](https://cran.rstudio.com/).
 
 Then download the [latest version](https://download1.rstudio.org/electron/macos/RStudio-2023.06.1-524.dmg) of RStudio and open it.
-
-## Opening RStudio
-
-When you open R Studio, It will find the version of R you just installed, and load it. Here I've loaded R version 4.3.1.
-
-When you load RStudio, the screen will be split in three. This is some important vocabulary to direct yourself around RStudio and get help when you need it.
-
-![](images/1.1%20R%20Studio.png)
-
-The **CONSOLE** is where all your code is run. Here you will see the output from the code you run. The **COMMAND LINE** is where you can type in code and execute it to the console. Code you run in the console is not saved. Try typing `1+1` into the console, and you'll see that R spits back 2.
-
-The **ENVIRONMENT** is where all your data will be stored. R is an **object oriented programming language**. Think of it like having a bunch of spreadsheets open at once. The environment shows you all the data you have loaded, and what each dataset, list, or other object is called.
-
-The **DIRECTORY** is in the bottom right. This links to all the files in your current folder, called your **working directory**. If you are ever in the wrong working directory, you can set it by running the `setwd()` function or going to "Session" -\> "Set Working Directory." We will keep files organized by using an R Project.
-
-```{r}
-1+1
-```
 
 ## Video Tutorial
 
