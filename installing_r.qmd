@@ -1,5 +1,5 @@
 ---
-title: "Installing R.qmd"
+title: "1. Installing R"
 format:
   html:
     code-copy: true

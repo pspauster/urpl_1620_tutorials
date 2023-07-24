@@ -3,7 +3,11 @@ project:
   
 website:
   title: "Learning R"
-  navbar:
-    left: 
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
       - index.qmd
-      - installing_r.qmd
+      - section: "Basics"
+        contents:
+          - installing_r.qmd
