@@ -11,5 +11,7 @@ website:
       - index.qmd
       - section: "Basics"
         contents:
-          - installing_r.qmd
-          - r_projects.qmd
+          - 1.installing_r.qmd
+          - 2.r_projects.qmd
+          - 3.packages_functions.qmd
+          - 4.readingdata_datatypes.qmd

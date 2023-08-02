@@ -1,0 +1,66 @@
+---
+title: "3. Packages and Functions"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+---
+
+## Packages
+
+R is a base programming language. We access R through a library of different **packages**. Packages are downloadable content that we use in R to modify data. Packages are made up of **functions**, which we use to modify and analyze data.
+
+Base R has a number of functions, packages, and data already installed, which we can preview by putting code in our **console.**
+
+Take the iris dataset for example, which we can access by simply typing `iris`
+
+```{r}
+iris
+```
+
+To get started with R, we need to install packages beyond the preinstalled.
+
+We install packages with a **console** command, using a function called `install.packages()`. We can get our first, and most crucial package, the tidyverse, using this function. Copy this into your console. Make sure to put the package name in quotes.
+
+![](images/install_tidyverse.png)
+
+We can install multiple packages at once by putting them into a **list** (also called a **vector**), like so. More on lists later.
+
+![](images/double_install.png)
+
+Finally we need to load packages at the beginning of our `.R` **script** in order to use them. The `library()` function loads functions that we have installed. Note that we only need to install packages once, so we use the **command** line. But we need to **load** packages with library each time we use them, so we put that in our `.R` **script**.
+
+```{r}
+library(tidyverse)
+```
+
+## Functions
+
+So how do these functions we've been using work?
+
+Each function has a **name** and **arguments**. The **name** of a function tells R the operation we want to do. The **arguments** are the inputs for the function, or what we want to transform.
+
+You can look up any R function by typing the function name into the console, preceded by a `?`.
+
+```{r}
+?install.packages()
+```
+
+When we look at the first function we used, `install.packages()` the help menu pops up in the bottom right, describing the function, the arguments, and giving us examples. The first argument is called `pkgs` and it's defined as "character vector of the names of the packages whose current versions should be downloaded from the repositories." That first argument is required. Without it install.packages() won't know which package to install.
+
+Note that the argument here, the name of the package, is in quotes. In programming, quotes define character objects. In this case the function requires a character input, so we use quotes. More on this later when we talk about data types.
+
+**Arguments** in R can be **named** or **ordered**. Naming an argument means adding the name of the argument, followed by `=` and then the value of the argument. Unnamed arguments rely on the programmer to put each argument in the proper order, separated by commas. In this case, `pkgs` is the first argument. So `install.packages(pkgs = "tidyverse")` and `install.packages("tidyverse")` do the same thing. When you are getting started programming, it's good practice to name your arguments.
+
+## Tidy Data
+
+Our first package, the `tidyverse` features a number of **functions** that help keep our data organized in a way that a computer can read, understand, and transform it. The tidyverse uses a principle of [**tidy data**](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html#:~:text=Tidy%20data%20is%20a%20standard,with%20observations%2C%20variables%20and%20types.), a standard way of mapping the meaning of a dataset to its structure. In tidy data...
+
+1.  Every column is a **variable**.
+
+2.  Every row is an **observation**.
+
+3.  Every cell is a single **value**.
+
+Next time we'll learn how to read in data, keep it tidy, and get our observations in the right data types.
