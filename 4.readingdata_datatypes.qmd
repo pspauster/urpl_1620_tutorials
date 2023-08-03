@@ -6,3 +6,11 @@ format:
     toc-location: right
 editor: visual
 ---
+
+## Reading Data
+
+We can use R to read in a number of different types of data, manipulate it, and output it in different ways.
+
+## Data Types
+
+## Video Tutorial
