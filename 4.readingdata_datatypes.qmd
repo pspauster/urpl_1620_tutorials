@@ -11,6 +11,102 @@ editor: visual
 
 We can use R to read in a number of different types of data, manipulate it, and output it in different ways.
 
+The core type of data we will be using in this class is the `.csv` or a comma separated values file. A `.csv` is a text file where each observation is in its own row and each variable or value is, you guessed it, separated by a comma. R can read these types of files in super easily. Let's download our first comma separated file from the NYC Open Data Portal.
+
+Let's download the data on parking violations and read it into R.
+
+![](images/csv.png)
+
+If we open a csv in a text editor it looks like this, but R will read it into something called a `dataframe` which is the tidy format for **tabular data** (data that has rows and columns).
+
+To read data into R, we are going to need the function `read_csv()` and need to learn about **file paths**.
+
+In order for R to read in the file, we need to tell R where the file is. We can do that with an **absolute** or a **local** path. An **absolute** path is the exact location of the file on your computer. For me, when I downloaded this file it went to my downloads folder - a path that looks something like this: `/Users/patrickspauster/Downloads/parking-violations-small.csv`. You can look up the path to a file by navigating to the file in finder or windows explorer and right clicking to "Get Info". I could read it in by using `read_csv("``/Users/patrickspauster/Downloads/parking-violations-small.csv")`.
+
+But, not everyone who views my work or wants to run my code will have the same file structure on their computer. If i sent this code to someone and they tried to run it, they would get an error. That's where the R project and a local path comes in handy.
+
+Now, save a copy of `parking-violations-small.csv` to your project folder. When you do, you should see it appear in the file explorer in the bottom right of your R Studio window. Now we can access the `.csv` using a **local** path. Because we have the R project open, R will start looking in the project folder. Now we can run read_csv on our file without having to look up the path.
+
+(remember to load the tidyverse first! If you get an error like "the function `function_name` can't be found", you probably forgot to load the proper package with `library()`!)
+
+```{r}
+library(tidyverse)
+read_csv("parking-violations-small.csv")
+```
+
+Let's take a closer look at what `read_csv()` is doing.
+
+```{r}
+?read_csv()
+```
+
+The function has one required argument, "file" and several optional arguments that we can change. The "file" argument asks for a path to a file as a "string" - remember if you see the words "character" or "string" think **quotes**. So let's feed read_csv() the name of the file we want to read in in quotes, and **assign** it to something using our assignment operator `<-` so we can further modify it.
+
+```{r}
+parking_violations <- read_csv(file = "parking-violations-small.csv")
+```
+
+(Aside - naming things is hard, and you will have to name a lot of different objects. Some general rules - don't use spaces, and try to keep the names simple but informative, and be careful about overwriting the same name)
+
+Now, `parking_violations` is an **object** in our **environment**. R gives us some helpful details about the object in the environment menu and the dropdown arrow on the object itself.
+
+![](images/Screen Shot 2023-08-04 at 7.37.38 PM.png)
+
+R tells us how many **observations** (rows) and **variables** (columns) this object has - note how this is a "tidy" dataset. If you hover over the object itself, it will tell you the type of object and its size. In this case we have a `dataframe`, the tidy format for data in R, often abbreviated `df`. You can confirm this by running the function `is.data.frame()` which identifies if an object is of a certain type.
+
+```{r}
+is.data.frame(parking_violations)
+```
+
 ## Data Types
+
+`read_csv()` is smart, but not perfect. You'll notice that it has tried to identify the **types** of data in this dataframe. The summons_number is read in as a `num` because it is made up of all digits. It correctly identified that issue_date is a `Date`. And the violation county is a `chr` (character), because it is a **categorical** **string** variable.
+
+**Numbers, characters, and dates**, are three fundamental types of data that we will be using in R. We can use some of the other arguments of `read_csv()` to make sure that we get columns in the correct format.
+
+```{r}
+parking_violations <- read_csv(file = "parking-violations-small.csv",
+                               col_types = cols(summons_number = col_character())
+                               )
+```
+
+Here I've replaced the `summons_number` column, which was a number, to a character using the `col_types` argument. A summons number is not a **continuous variable** but rather an **identifier**. We wouldn't for example, take the mean of the summons number, it would be meaningless. In cases like that, it might make sense to read identifier variables in as characters instead of numbers. It also helps with messy data that may have to be matched to another dataset.
+
+Numeric data types will drop **leading zeroes** (think of a zip code like "06810" which starts with a 0 would get read in as an integer 6,810). If you wanted to match to another dataset with a zipcode you wouldn't be able to! Another helpful note: you can change the default col_type using `col_type = cols(.default = col_character())`. You can always change the types of columns back to numbers later.
+
+You'll also notice an important type of data - **missing data** - noted in R as `NA`. In this dataset the violation description is missing for the first few observations. This means that there is no **value** for that **observation** and **variable**. `NA` values in R are **sticky**, meaning that unless you tell R to ignore them, R will carry them through all your operations and maybe mess up some of your calculations. For example...
+
+```{r}
+1 + 2 + NA
+
+sum(1,2,NA) #you should be able to figure this out based on what we've learned about functions so far!
+
+sum(1,2,NA, na.rm = TRUE) #the na.rm = T argument removes NAs from a calculation.
+```
+
+Here's a brief look at some other object types you might find in R.
+
+A **value** is just one number, stored in an object.
+
+```{r}
+my_value <- 42
+my_value
+```
+
+A **list** is a group of values put together, separated by commas. In R the **syntax** to create a list starts with `c()`. They are also called **vectors** in R.
+
+```{r}
+my_character_vector <- c("Patrick", "Lucy", "Henry", "Ceinna")
+my_numeric_vector <- c(1, 3, 5, 7, 9, 11, 13, 17)
+
+my_character_vector
+my_numeric_vector
+```
+
+You can get a **vector** of a particular variable in a dataframe by using `$` with the dataframe name and the variable name.
+
+```{r}
+parking_violations$violation_county
+```
 
 ## Video Tutorial
