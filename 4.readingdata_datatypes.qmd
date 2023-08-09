@@ -60,7 +60,7 @@ R tells us how many **observations** (rows) and **variables** (columns) this obj
 is.data.frame(fhv)
 ```
 
-## Data Types
+## Reading different types of data
 
 `read_csv()` is smart, but not perfect. You'll notice that it has tried to identify the **types** of data in this dataframe. The `Vehicle Year` is read in as a `num` because it is made up of all digits. It correctly identified that `Last Time Updated` is a `Date` in the format `hms` (hours:minutes:seconds). And the `DMV License Plate Number` is a `chr` (character), because it is a **categorical** **string** variable.
 
@@ -76,15 +76,7 @@ fhv <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv",
 
 Be careful with numeric data types that aren't actually numbers that will drop **leading zeroes** (think of a zip code like "06810" which starts with a 0 would get read in as an integer 6,810). If you wanted to match to another dataset with a zipcode you wouldn't be able to! Another helpful note: you can change the default col_type using `col_type = cols(.default = col_character())`. You can always change the types of columns back to numbers later.
 
-You'll also notice an important type of data - **missing data** - noted in R as `NA`. In this dataset the `Wheelchair Accessible` column is missing for the first few observations. This means that there is no **value** for that **observation** and **variable**. `NA` values in R are **sticky**, meaning that unless you tell R to ignore them, R will carry them through all your operations and maybe mess up some of your calculations. For example...
-
-```{r}
-1 + 2 + NA
-
-sum(1,2,NA) #you should be able to figure this out based on what we've learned about functions so far!
-
-sum(1,2,NA, na.rm = TRUE) #the na.rm = T argument removes NAs from a calculation.
-```
+## More data types
 
 Here's a brief look at some other object types you might find in R.
 
@@ -105,6 +97,14 @@ my_character_vector
 my_numeric_vector
 ```
 
+Vectors can be named or unnamed
+
+```{r}
+named_vector <- c("Patrick" = 42, "Lucy" = 12, "Ceinna" = 56, "Henry" = 44)
+
+named_vector
+```
+
 You can get a **vector** of a particular variable in a dataframe by using `$` with the dataframe name and the variable name.
 
 ```{r}
@@ -113,6 +113,16 @@ printme <- head(fhv)
 printme$`Base Name`
 
 #head() only keeps the first few rows of a dataframe
+```
+
+You'll also notice an important type of data - **missing data** - noted in R as `NA`. In this dataset the `Wheelchair Accessible` column is missing for the first few observations. This means that there is no **value** for that **observation** and **variable**. `NA` values in R are **sticky**, meaning that unless you tell R to ignore them, R will carry them through all your operations and maybe mess up some of your calculations. For example...
+
+```{r}
+1 + 2 + NA
+
+sum(1,2,NA) #you should be able to figure this out based on what we've learned about functions so far!
+
+sum(1,2,NA, na.rm = TRUE) #the na.rm = T argument removes NAs from a calculation.
 ```
 
 ## Video Tutorial

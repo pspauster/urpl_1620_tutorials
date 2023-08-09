@@ -39,7 +39,7 @@ library(tidyverse)
 
 So how do these functions we've been using work?
 
-Each function has a **name** and **arguments**. The **name** of a function tells R the operation we want to do. The **arguments** are the inputs for the function, or what we want to transform.
+Each function has a **name** and **arguments**. The **name** of a function tells R the operation we want to do. The **arguments** are the inputs for the function, or what we want to transform, separated by commas.
 
 You can look up any R function by typing the function name into the console, preceded by a `?`.
 

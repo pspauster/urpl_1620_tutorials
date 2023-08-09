@@ -31,7 +31,7 @@ But instead of assigning a new dataframe each time we want to apply a function, 
 
 ## The Pipe
 
-Let's say we also wanted to change the name of a variable. Using the pipe `%>%` we can apply multiple functions to the same dataframe.
+Let's say we also wanted to change the name of a variable. Using the pipe `%>%` we can apply multiple functions to the same dataframe. Use the shortcut `shift+command+m` on mac or `shift+ctrl+m on windows`
 
 Let's try `rename()` a function to change the names of columns. I don't know what the "veh" column means so I'm going to look it up in the [data dictionary](https://data.cityofnewyork.us/api/views/8wbx-tsch/files/a33b2ee3-d844-4add-9785-3cd89a61b6b6?download=true&filename=MDTLCForHireVehiclesActive.xlsx) on the open data [page](https://data.cityofnewyork.us/Transportation/For-Hire-Vehicles-FHV-Active/8wbx-tsch).
 
@@ -40,7 +40,7 @@ It's an indicator for whether the vehicle is hybrid, so i'm going to rename it "
 To use the pipe, start with the name of the data frame you want to edit, and then chain the pipes after each function using some indenting to organize your code.
 
 ```{r}
-
+%>% 
 fhv_clean <- fhv %>% 
   clean_names() %>% 
   rename(hybrid = veh)

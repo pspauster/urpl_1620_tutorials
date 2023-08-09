@@ -18,3 +18,5 @@ website:
       - section: "Basics"
         contents:
           - 5.datacleaning_pipe.qmd
+          - 6.select_filter.qmd
+          - 7.mutate.qmd

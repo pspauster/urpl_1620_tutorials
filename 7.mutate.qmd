@@ -1,0 +1,85 @@
+---
+title: "7. Mutate"
+author: "Patrick Spauster"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+---
+
+## Video Tutorial
+
+```{=html}
+```
+## Mutate
+
+Mutate is an incredibly powerful tool to create new columns and new variables.
+
+```{r}
+?mutate()
+```
+
+Let's grab our code to read in the clean dataframe
+
+```{r}
+fhv_clean <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv") %>% 
+  clean_names() %>% 
+  rename(hybrid = veh)
+```
+
+We create a new column with mutate by setting the name of our new column and a new value
+
+```{r}
+fhv_clean %>% 
+  mutate(city = "New York City")
+```
+
+You can create multiple new columns (`...)` at once
+
+```{r}
+fhv_clean %>% 
+  mutate(city = "New York City",
+         active = TRUE) #I can overwrite column names too. I've made this active column boolean (true or false)
+```
+
+## Mutate with logical expressions
+
+Where mutate gets powerful is when you use it with logical expressions. Here we use `if_else()`
+
+```{r}
+fhv_rideshare <- fhv_clean %>% 
+  mutate(rideshare = if_else(
+    condition = base_name == "UBER USA, LLC",
+    true = "rideshare",
+    false = "limo"
+  )) #if it's an uber call it rideshare, if its a limo call it something else
+#notice I named the arguments here! A good practice when the argument is not ...
+```
+
+Tabulate the variable we made with the `count`() funtion
+
+```{r}
+fhv_rideshare %>% 
+  count(rideshare)
+```
+
+What if we have more than one logical expression we care about? Check out `case_when`.
+
+```{r}
+fhv_blackcar <- fhv_clean %>% 
+  mutate(
+    ride_type = case_when(
+      base_name == "UBER USA, LLC" & base_type == "BLACK-CAR" ~ "BLACK CAR RIDESHARE",
+      base_name != "UBER USA, LLC" & base_type == "BLACK-CAR" ~ "BLACK CAR NON-RIDESHARE",
+      TRUE ~ base_type #if it doesn't meet either condition, return the base_type
+    ))
+```
+
+Use `&` and `|` for **and** and **or** logical expressions with multiple conditions
+
+```{r}
+fhv_blackcar %>% 
+  count(ride_type)
+#now we have four categories!
+```
