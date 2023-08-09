@@ -9,9 +9,12 @@ website:
     search: true
     contents:
       - index.qmd
-      - section: "Basics"
+      - section: "Getting Started"
         contents:
           - 1.installing_r.qmd
           - 2.r_projects.qmd
           - 3.packages_functions.qmd
           - 4.readingdata_datatypes.qmd
+      - section: "Basics"
+        contents:
+          - 5.datacleaning_pipe.qmd
