@@ -10,12 +10,53 @@ editor: visual
 
 ## Cleaning Data
 
-Let's read in data like we did last time.
+Let's read in data like we did last time. We're going to "clean" it, which just means making it easier to use and getting it into tidy format.
 
 ```{r}
 fhv <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv")
 ```
 
+When we read this in, we have some unfriendly names of variables with spaces in them. To access those variables we have to use `` `backticks` `` which are clunky. The **janitor** package has helpful data cleaning functions. Install it and take a look at the `clean_names()` function.
+
+For many functions, the first **argument** is always the name of a dataframe. In this case we want to clean the names of our `fhv` dataframe.
+
+```{r}
+library(janitor)
+fhv_clean <- clean_names(fhv)
+```
+
+Now our names are clean - they are all lowercase, and have replaced all spaces with underscores. This will make it easier to refer to our column names as we transform data going forward.
+
+But instead of assigning a new dataframe each time we want to apply a function, we should apply more than one function at once.
+
 ## The Pipe
 
+Let's say we also wanted to change the name of a variable. Using the pipe `%>%` we can apply multiple functions to the same dataframe.
+
+Let's try `rename()` a function to change the names of columns. I don't know what the "veh" column means so I'm going to look it up in the [data dictionary](https://data.cityofnewyork.us/api/views/8wbx-tsch/files/a33b2ee3-d844-4add-9785-3cd89a61b6b6?download=true&filename=MDTLCForHireVehiclesActive.xlsx) on the open data [page](https://data.cityofnewyork.us/Transportation/For-Hire-Vehicles-FHV-Active/8wbx-tsch).
+
+It's an indicator for whether the vehicle is hybrid, so i'm going to rename it "hybrid". Use the documentation for `rename()` to figure out the right syntax.
+
+To use the pipe, start with the name of the data frame you want to edit, and then chain the pipes after each function using some indenting to organize your code.
+
+```{r}
+
+fhv_clean <- fhv %>% 
+  clean_names() %>% 
+  rename(hybrid = veh)
+
+#clean_names() is empty because the first argument is just the name of the dataframe, which has been piped in for us
+```
+
+Now we have a dataset with clean names and a renamed column "hybrid"
+
+As we learn more and more functions, we'll have longer chains of pipes to clean and construct datasets.
+
+```{r}
+fhv_clean
+```
+
 ## Video Tutorial
+
+```{=html}
+```
