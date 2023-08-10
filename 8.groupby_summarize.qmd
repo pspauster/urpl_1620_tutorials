@@ -1,0 +1,133 @@
+---
+title: "8. Group By and Summarize"
+author: "Patrick Spauster"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+---
+
+## Video Tutorial
+
+```{=html}
+```
+## Why summarize data?
+
+Having clean data is great, but when working with large datasets we are often looking for summary statistics to let us compare different groups. `group_by` and `summarize`, often used together in a pipe, are a powerful combo for generating statistics at the group level.
+
+Summarizing allows us to compare means, medians, or top values based on different categories. It can also be a helpful data cleaning tool, depending on the level of observations in the data.
+
+## Summarize
+
+Summarize takes a data frame and a `...` list of new variables to generate.
+
+```{r}
+?summarize()
+```
+
+Let's grab our code to read in the clean dataframe again.
+
+```{r}
+fhv_clean <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv") %>% 
+  clean_names() %>% 
+  rename(hybrid = veh)
+```
+
+*Note - `summarize` is different than `summary` a helpful function that provides the basic stats of all variables* *- a good first step when looking at a new data set*
+
+```{r}
+summary(fhv_clean)
+```
+
+With a basic application of `summarize`, we take all the rows of the dataframe and turn them into one row of data. Here we use mean() to get the average
+
+```{r}
+fhv_clean %>% 
+  summarize(average_year = mean(vehicle_year))
+
+#careful - NAs are sticky so mean() will return NA if there are any missing values. Use na.rm = T to exclude missing in calculating the average
+
+fhv_clean %>% 
+  summarize(average_year = mean(vehicle_year, na.rm = TRUE))
+```
+
+You can summarize multiple variables (`...)` at once. Look at summarize documentation for the full list of operations you can summarize with.
+
+```{r}
+fhv_clean %>% 
+  summarize(total_cars = n(), #n() just counts the number of rows in the group
+            average_year = mean(vehicle_year, na.rm = TRUE),
+            median_year = median(vehicle_year, na.rm = T))
+```
+
+When using summarize it defaults to one big group - all the data is summarized. To summarize by group we can add `group_by()`
+
+## Group_by
+
+Where summarize becomes really powerful is pairing it with group_by
+
+```{r}
+fhv_clean %>% 
+  group_by(hybrid) %>% 
+  summarize(number_cars = n(),
+            mean_year = mean(vehicle_year, na.rm = T))
+```
+
+Often we are grouping on variables of interest and summarizing across that variable. Take the variable we made last time, for example
+
+```{r}
+fhv_type_summary <- fhv_clean %>% 
+  mutate(
+    ride_type = case_when(
+      base_name == "UBER USA, LLC" & base_type == "BLACK-CAR" ~ "BLACK CAR RIDESHARE",
+      base_name != "UBER USA, LLC" & base_type == "BLACK-CAR" ~ "BLACK CAR NON-RIDESHARE",
+      TRUE ~ base_type #if it doesn't meet either condition, return the base_type
+    )) %>% 
+  group_by(ride_type) %>% #group by the variable we just created!
+  summarize(no_cars = n(),
+            average_year = mean(vehicle_year, na.rm = T))
+
+fhv_type_summary
+  
+```
+
+Here we can see some interesting trends start to emerge, like how the livery cars tend to be the oldest and the luxury cars tend to be newer.
+
+We can also group_by multiple variables, or group by logical expressions.
+
+```{r}
+fhv_clean %>% 
+  group_by(hybrid, base_type) %>% 
+  summarize(total_cars = n())
+
+fhv_clean %>% 
+  group_by(base_type, vehicle_year >= 2000) %>% 
+  summarize(total_cars = n())
+```
+
+## Group_by with mutate
+
+Pair group_by with mutate to create helpful summary level variables without reducing the number of rows in the dataset.
+
+```{r}
+fhv_clean %>% 
+  group_by(base_name) %>% 
+  mutate(total_by_name = n()) #variable with the total # of cars for each company name
+```
+
+Use ungroup() to return to normal mutation operations
+
+```{r}
+fhv_clean %>% 
+  group_by(base_type) %>% 
+  mutate(mean_by_type = mean(vehicle_year, na.rm =T)) %>% 
+  ungroup() %>% 
+  mutate(above_below_mean = if_else(
+    condition = vehicle_year > mean_by_type,
+    true = "above mean",
+    false = "below mean"
+  ))
+
+#this creates a variable to show if this car is above or below the average year for the group
+```

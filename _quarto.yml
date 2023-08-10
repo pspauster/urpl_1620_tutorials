@@ -20,3 +20,4 @@ website:
           - 5.datacleaning_pipe.qmd
           - 6.select_filter.qmd
           - 7.mutate.qmd
+          - 8.groupby_summarize.qmd
