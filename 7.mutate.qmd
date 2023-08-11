@@ -11,12 +11,15 @@ editor: visual
 ## Video Tutorial
 
 ```{=html}
+<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&playerId=kaltura_player&entry_id=1_zcp7gcg8&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_wy3hyyla" width="608" height="402" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="7. mutate" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 ```
 ## Mutate
 
 Mutate is an incredibly powerful tool to create new columns and new variables.
 
 ```{r}
+library(tidyverse)
+library(janitor)
 ?mutate()
 ```
 
@@ -82,4 +85,15 @@ Use `&` and `|` for **and** and **or** logical expressions with multiple conditi
 fhv_blackcar %>% 
   count(ride_type)
 #now we have four categories!
+```
+
+## Normalizing with Mutate
+
+You can use statistical functions like mean to normalize data with mutate. mean will return the average of all the vehicle years. You can use mutate to generate a new variable that takes the distance from each observation to the mean.
+
+```{r}
+fhv_clean %>% 
+  mutate(year_norm = vehicle_year/mean(vehicle_year, na.rm = T),
+         year_pct = percent_rank(vehicle_year)) %>% 
+  select(vehicle_license_number, vehicle_year, year_norm, year_pct)
 ```
