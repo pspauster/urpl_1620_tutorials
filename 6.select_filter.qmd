@@ -18,6 +18,9 @@ editor: visual
 Let's read in our data and do some cleaning up of the names with the pipe
 
 ```{r}
+library(tidyverse)
+library(janitor)
+
 fhv_clean <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv") %>% 
   clean_names() %>% 
   rename(hybrid = veh)

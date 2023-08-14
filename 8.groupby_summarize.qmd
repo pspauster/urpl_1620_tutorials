@@ -24,6 +24,8 @@ Summarizing allows us to compare means, medians, or top values based on differen
 Summarize takes a data frame and a `...` list of new variables to generate.
 
 ```{r}
+library(tidyverse)
+library(janitor)
 ?summarize()
 ```
 

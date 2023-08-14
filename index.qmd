@@ -1,0 +1,17 @@
+---
+title: "Learning R"
+author: "Patrick Spauster"
+format:
+  html: default
+editor: visual
+---
+
+## Welcome to R
+
+In this directory, we're going to learn the basics of R and how to use it to read in, analyze, and visualize data so you can use it in data stories.
+
+## URPL-1620
+
+This page was created as a guide to help students at NYU Wagner's Data Analysis, Mapping, and Storytelling course.
+
+Here are links to the Brightspace, Slack, and Google Drive
