@@ -21,3 +21,13 @@ website:
           - 6.select_filter.qmd
           - 7.mutate.qmd
           - 8.groupby_summarize.qmd
+          - 9.arrange_writecsv.qmd
+      - section: "Intermediates"
+        contents:
+          - 10.stringr.qmd
+          - 11.lubridate.qmd
+          - 12.joins.qmd
+          - 13.pivoting.qmd
+          - 14.ggplot.qmd
+      - section: "Advanced"
+        contents:

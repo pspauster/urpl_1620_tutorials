@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Patrick Spauster">
 
-<title>Learning R - 3. Packages and Functions</title>
+<title>Learning R - 12. Joins</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">3. Packages and Functions</h1>
+      <h1 class="quarto-secondary-nav-title">12. Joins</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -179,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3.packages_functions.html" class="sidebar-item-text sidebar-link active">3. Packages and Functions</a>
+  <a href="./3.packages_functions.html" class="sidebar-item-text sidebar-link">3. Packages and Functions</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -244,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12.joins.html" class="sidebar-item-text sidebar-link">12. Joins</a>
+  <a href="./12.joins.html" class="sidebar-item-text sidebar-link active">12. Joins</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -272,10 +273,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#video-tutorial" id="toc-video-tutorial" class="nav-link active" data-scroll-target="#video-tutorial">Video Tutorial</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
-  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data">Tidy Data</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#how-do-we-get-data-out-of-r" id="toc-how-do-we-get-data-out-of-r" class="nav-link" data-scroll-target="#how-do-we-get-data-out-of-r">How do we get data out of R?</a></li>
+  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange">Arrange</a></li>
+  <li><a href="#write-out-data" id="toc-write-out-data" class="nav-link" data-scroll-target="#write-out-data">Write out data</a></li>
   </ul>
 </nav>
     </div>
@@ -284,13 +284,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">3. Packages and Functions</h1>
+<h1 class="title d-none d-lg-block">12. Joins</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Patrick Spauster </p>
+          </div>
+  </div>
     
   
     
@@ -301,177 +307,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="video-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
-<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_0k6sq7kt&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_m73ok3of" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="3_packages_and_functions" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
+<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_0c9gmqct&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_9o78atzo" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="8. group by summarize" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 </section>
-<section id="packages" class="level2">
-<h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p>R is a base programming language. We access R through a library of different <strong>packages</strong>. Packages are downloadable content that we use in R to modify data. Packages are made up of <strong>functions</strong>, which we use to modify and analyze data.</p>
-<p>Base R has a number of functions, packages, and data already installed, which we can preview by putting code in our <strong>console.</strong></p>
-<p>Take the iris dataset for example, which we can access by simply typing <code>iris</code></p>
+<section id="how-do-we-get-data-out-of-r" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-we-get-data-out-of-r">How do we get data out of R?</h2>
+<p>Often, we will want to take data that we clean, mutate, summarize, filter, or select with, and output it for use in another software. Think about how you might want to process a million-row data set to get some summary statistics, then create a nice table in excel. Or take some data that you need to make a chart or graphic, and export it so that you can read it into DataWrapper or some other visualization tool. Maybe you need to send your boss a list of items that are buried in a big R dataset.</p>
+<p>Writing data will let you take data out of R and use it other places. But first we might want to use some other functions to get it looking nice and orderly.</p>
+</section>
+<section id="arrange" class="level2">
+<h2 class="anchored" data-anchor-id="arrange">Arrange</h2>
+<p><code>arrange()</code> takes data and sorts it based on certain criteria. Like many of our basic functions, it takes a list <code>...</code> of inputs to sort on. Let’s take a look at an example of something we summarized.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>iris</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-1            5.1         3.5          1.4         0.2     setosa
-2            4.9         3.0          1.4         0.2     setosa
-3            4.7         3.2          1.3         0.2     setosa
-4            4.6         3.1          1.5         0.2     setosa
-5            5.0         3.6          1.4         0.2     setosa
-6            5.4         3.9          1.7         0.4     setosa
-7            4.6         3.4          1.4         0.3     setosa
-8            5.0         3.4          1.5         0.2     setosa
-9            4.4         2.9          1.4         0.2     setosa
-10           4.9         3.1          1.5         0.1     setosa
-11           5.4         3.7          1.5         0.2     setosa
-12           4.8         3.4          1.6         0.2     setosa
-13           4.8         3.0          1.4         0.1     setosa
-14           4.3         3.0          1.1         0.1     setosa
-15           5.8         4.0          1.2         0.2     setosa
-16           5.7         4.4          1.5         0.4     setosa
-17           5.4         3.9          1.3         0.4     setosa
-18           5.1         3.5          1.4         0.3     setosa
-19           5.7         3.8          1.7         0.3     setosa
-20           5.1         3.8          1.5         0.3     setosa
-21           5.4         3.4          1.7         0.2     setosa
-22           5.1         3.7          1.5         0.4     setosa
-23           4.6         3.6          1.0         0.2     setosa
-24           5.1         3.3          1.7         0.5     setosa
-25           4.8         3.4          1.9         0.2     setosa
-26           5.0         3.0          1.6         0.2     setosa
-27           5.0         3.4          1.6         0.4     setosa
-28           5.2         3.5          1.5         0.2     setosa
-29           5.2         3.4          1.4         0.2     setosa
-30           4.7         3.2          1.6         0.2     setosa
-31           4.8         3.1          1.6         0.2     setosa
-32           5.4         3.4          1.5         0.4     setosa
-33           5.2         4.1          1.5         0.1     setosa
-34           5.5         4.2          1.4         0.2     setosa
-35           4.9         3.1          1.5         0.2     setosa
-36           5.0         3.2          1.2         0.2     setosa
-37           5.5         3.5          1.3         0.2     setosa
-38           4.9         3.6          1.4         0.1     setosa
-39           4.4         3.0          1.3         0.2     setosa
-40           5.1         3.4          1.5         0.2     setosa
-41           5.0         3.5          1.3         0.3     setosa
-42           4.5         2.3          1.3         0.3     setosa
-43           4.4         3.2          1.3         0.2     setosa
-44           5.0         3.5          1.6         0.6     setosa
-45           5.1         3.8          1.9         0.4     setosa
-46           4.8         3.0          1.4         0.3     setosa
-47           5.1         3.8          1.6         0.2     setosa
-48           4.6         3.2          1.4         0.2     setosa
-49           5.3         3.7          1.5         0.2     setosa
-50           5.0         3.3          1.4         0.2     setosa
-51           7.0         3.2          4.7         1.4 versicolor
-52           6.4         3.2          4.5         1.5 versicolor
-53           6.9         3.1          4.9         1.5 versicolor
-54           5.5         2.3          4.0         1.3 versicolor
-55           6.5         2.8          4.6         1.5 versicolor
-56           5.7         2.8          4.5         1.3 versicolor
-57           6.3         3.3          4.7         1.6 versicolor
-58           4.9         2.4          3.3         1.0 versicolor
-59           6.6         2.9          4.6         1.3 versicolor
-60           5.2         2.7          3.9         1.4 versicolor
-61           5.0         2.0          3.5         1.0 versicolor
-62           5.9         3.0          4.2         1.5 versicolor
-63           6.0         2.2          4.0         1.0 versicolor
-64           6.1         2.9          4.7         1.4 versicolor
-65           5.6         2.9          3.6         1.3 versicolor
-66           6.7         3.1          4.4         1.4 versicolor
-67           5.6         3.0          4.5         1.5 versicolor
-68           5.8         2.7          4.1         1.0 versicolor
-69           6.2         2.2          4.5         1.5 versicolor
-70           5.6         2.5          3.9         1.1 versicolor
-71           5.9         3.2          4.8         1.8 versicolor
-72           6.1         2.8          4.0         1.3 versicolor
-73           6.3         2.5          4.9         1.5 versicolor
-74           6.1         2.8          4.7         1.2 versicolor
-75           6.4         2.9          4.3         1.3 versicolor
-76           6.6         3.0          4.4         1.4 versicolor
-77           6.8         2.8          4.8         1.4 versicolor
-78           6.7         3.0          5.0         1.7 versicolor
-79           6.0         2.9          4.5         1.5 versicolor
-80           5.7         2.6          3.5         1.0 versicolor
-81           5.5         2.4          3.8         1.1 versicolor
-82           5.5         2.4          3.7         1.0 versicolor
-83           5.8         2.7          3.9         1.2 versicolor
-84           6.0         2.7          5.1         1.6 versicolor
-85           5.4         3.0          4.5         1.5 versicolor
-86           6.0         3.4          4.5         1.6 versicolor
-87           6.7         3.1          4.7         1.5 versicolor
-88           6.3         2.3          4.4         1.3 versicolor
-89           5.6         3.0          4.1         1.3 versicolor
-90           5.5         2.5          4.0         1.3 versicolor
-91           5.5         2.6          4.4         1.2 versicolor
-92           6.1         3.0          4.6         1.4 versicolor
-93           5.8         2.6          4.0         1.2 versicolor
-94           5.0         2.3          3.3         1.0 versicolor
-95           5.6         2.7          4.2         1.3 versicolor
-96           5.7         3.0          4.2         1.2 versicolor
-97           5.7         2.9          4.2         1.3 versicolor
-98           6.2         2.9          4.3         1.3 versicolor
-99           5.1         2.5          3.0         1.1 versicolor
-100          5.7         2.8          4.1         1.3 versicolor
-101          6.3         3.3          6.0         2.5  virginica
-102          5.8         2.7          5.1         1.9  virginica
-103          7.1         3.0          5.9         2.1  virginica
-104          6.3         2.9          5.6         1.8  virginica
-105          6.5         3.0          5.8         2.2  virginica
-106          7.6         3.0          6.6         2.1  virginica
-107          4.9         2.5          4.5         1.7  virginica
-108          7.3         2.9          6.3         1.8  virginica
-109          6.7         2.5          5.8         1.8  virginica
-110          7.2         3.6          6.1         2.5  virginica
-111          6.5         3.2          5.1         2.0  virginica
-112          6.4         2.7          5.3         1.9  virginica
-113          6.8         3.0          5.5         2.1  virginica
-114          5.7         2.5          5.0         2.0  virginica
-115          5.8         2.8          5.1         2.4  virginica
-116          6.4         3.2          5.3         2.3  virginica
-117          6.5         3.0          5.5         1.8  virginica
-118          7.7         3.8          6.7         2.2  virginica
-119          7.7         2.6          6.9         2.3  virginica
-120          6.0         2.2          5.0         1.5  virginica
-121          6.9         3.2          5.7         2.3  virginica
-122          5.6         2.8          4.9         2.0  virginica
-123          7.7         2.8          6.7         2.0  virginica
-124          6.3         2.7          4.9         1.8  virginica
-125          6.7         3.3          5.7         2.1  virginica
-126          7.2         3.2          6.0         1.8  virginica
-127          6.2         2.8          4.8         1.8  virginica
-128          6.1         3.0          4.9         1.8  virginica
-129          6.4         2.8          5.6         2.1  virginica
-130          7.2         3.0          5.8         1.6  virginica
-131          7.4         2.8          6.1         1.9  virginica
-132          7.9         3.8          6.4         2.0  virginica
-133          6.4         2.8          5.6         2.2  virginica
-134          6.3         2.8          5.1         1.5  virginica
-135          6.1         2.6          5.6         1.4  virginica
-136          7.7         3.0          6.1         2.3  virginica
-137          6.3         3.4          5.6         2.4  virginica
-138          6.4         3.1          5.5         1.8  virginica
-139          6.0         3.0          4.8         1.8  virginica
-140          6.9         3.1          5.4         2.1  virginica
-141          6.7         3.1          5.6         2.4  virginica
-142          6.9         3.1          5.1         2.3  virginica
-143          5.8         2.7          5.1         1.9  virginica
-144          6.8         3.2          5.9         2.3  virginica
-145          6.7         3.3          5.7         2.5  virginica
-146          6.7         3.0          5.2         2.3  virginica
-147          6.3         2.5          5.0         1.9  virginica
-148          6.5         3.0          5.2         2.0  virginica
-149          6.2         3.4          5.4         2.3  virginica
-150          5.9         3.0          5.1         1.8  virginica</code></pre>
+
 </div>
-</div>
-<p>To get started with R, we need to install packages beyond the preinstalled.</p>
-<p>We install packages with a <strong>console</strong> command, using a function called <code>install.packages()</code>. We can get our first, and most crucial package, the tidyverse, using this function. Copy this into your console. Make sure to put the package name in quotes.</p>
-<p><img src="images/install_tidyverse.png" class="img-fluid"></p>
-<p>We can install multiple packages at once by putting them into a <strong>list</strong> (also called a <strong>vector</strong>), like so. More on lists later.</p>
-<p><img src="images/double_install.png" class="img-fluid"></p>
-<p>Finally we need to load packages at the beginning of our <code>.R</code> <strong>script</strong> in order to use them. The <code>library()</code> function loads functions that we have installed. Note that we only need to install packages once, so we use the <strong>command</strong> line. But we need to <strong>load</strong> packages with library each time we use them, so we put that in our <code>.R</code> <strong>script</strong>.</p>
+<p>Let’s grab our code to read in the clean dataframe again. This time I’m just going to use a big pipe to go right to the summary.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'tidyverse' was built under R version 4.1.3</code></pre>
 </div>
@@ -514,36 +365,84 @@ x dplyr::filter() masks stats::filter()
 x dplyr::lag()    masks stats::lag()
 i Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-</div>
-</section>
-<section id="functions" class="level2">
-<h2 class="anchored" data-anchor-id="functions">Functions</h2>
-<p>So how do these functions we’ve been using work?</p>
-<p>Each function has a <strong>name</strong> and <strong>arguments</strong>. The <strong>name</strong> of a function tells R the operation we want to do. The <strong>arguments</strong> are the inputs for the function, or what we want to transform, separated by commas.</p>
-<p>You can look up any R function by typing the function name into the console, preceded by a <code>?</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">install.packages</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>starting httpd help server ... done</code></pre>
+<pre><code>Warning: package 'janitor' was built under R version 4.1.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fhv_summary <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"For_Hire_Vehicles__FHV__-_Active.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">hybrid =</span> veh) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ride_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>      base_name <span class="sc">==</span> <span class="st">"UBER USA, LLC"</span> <span class="sc">&amp;</span> base_type <span class="sc">==</span> <span class="st">"BLACK-CAR"</span> <span class="sc">~</span> <span class="st">"BLACK CAR RIDESHARE"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>      base_name <span class="sc">!=</span> <span class="st">"UBER USA, LLC"</span> <span class="sc">&amp;</span> base_type <span class="sc">==</span> <span class="st">"BLACK-CAR"</span> <span class="sc">~</span> <span class="st">"BLACK CAR NON-RIDESHARE"</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> base_type <span class="co">#if it doesn't meet either condition, return the base_type</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ride_type) <span class="sc">%&gt;%</span> <span class="co">#group by the variable we just created!</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">no_cars =</span> <span class="fu">n</span>(),</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">average_year =</span> <span class="fu">mean</span>(vehicle_year, <span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 98318 Columns: 23
+-- Column specification --------------------------------------------------------
+Delimiter: ","
+chr  (20): Active, Vehicle License Number, Name, License Type, Expiration Da...
+dbl   (1): Vehicle Year
+lgl   (1): Order Date
+time  (1): Last Time Updated
+
+i Use `spec()` to retrieve the full column specification for this data.
+i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fhv_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 3
+  ride_type               no_cars average_year
+  &lt;chr&gt;                     &lt;int&gt;        &lt;dbl&gt;
+1 BLACK CAR NON-RIDESHARE   16225        2018.
+2 BLACK CAR RIDESHARE       76710        2018.
+3 LIVERY                     3652        2015.
+4 LUXURY                     1731        2020.</code></pre>
 </div>
 </div>
-<p>When we look at the first function we used, <code>install.packages()</code> the help menu pops up in the bottom right, describing the function, the arguments, and giving us examples. The first argument is called <code>pkgs</code> and it’s defined as “character vector of the names of the packages whose current versions should be downloaded from the repositories.” That first argument is required. Without it install.packages() won’t know which package to install.</p>
-<p>Note that the argument here, the name of the package, is in quotes. In programming, quotes define character objects. In this case the function requires a character input, so we use quotes. More on this later when we talk about data types.</p>
-<p><strong>Arguments</strong> in R can be <strong>named</strong> or <strong>ordered</strong>. Naming an argument means adding the name of the argument, followed by <code>=</code> and then the value of the argument. Unnamed arguments rely on the programmer to put each argument in the proper order, separated by commas. In this case, <code>pkgs</code> is the first argument. So <code>install.packages(pkgs = "tidyverse")</code> and <code>install.packages("tidyverse")</code> do the same thing. When you are getting started programming, it’s good practice to name your arguments.</p>
+<p>Now Let’s say we wanted to sort this list by average oldest car to newest car.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fhv_summary <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(average_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 3
+  ride_type               no_cars average_year
+  &lt;chr&gt;                     &lt;int&gt;        &lt;dbl&gt;
+1 LIVERY                     3652        2015.
+2 BLACK CAR NON-RIDESHARE   16225        2018.
+3 BLACK CAR RIDESHARE       76710        2018.
+4 LUXURY                     1731        2020.</code></pre>
+</div>
+</div>
+<p>That puts all the oldest car on top and the newest car on bottom</p>
+<p><code>desc</code> is a function that transforms a vector to descending order, and is helpful to use <strong>nested</strong> inside arrange.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fhv_arranged <span class="ot">&lt;-</span> fhv_summary <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(average_year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Arrange also works with multiple variables - the variable listed second breaks ties - and within groups with group_by.</p>
 </section>
-<section id="tidy-data" class="level2">
-<h2 class="anchored" data-anchor-id="tidy-data">Tidy Data</h2>
-<p>Our first package, the <code>tidyverse</code> features a number of <strong>functions</strong> that help keep our data organized in a way that a computer can read, understand, and transform it. The tidyverse uses a principle of <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html#:~:text=Tidy%20data%20is%20a%20standard,with%20observations%2C%20variables%20and%20types."><strong>tidy data</strong></a>, a standard way of mapping the meaning of a dataset to its structure. In tidy data…</p>
-<ol type="1">
-<li><p>Every column is a <strong>variable</strong>.</p></li>
-<li><p>Every row is an <strong>observation</strong>.</p></li>
-<li><p>Every cell is a single <strong>value</strong>.</p></li>
-</ol>
-<p>Next time we’ll learn how to read in data, keep it tidy, and get our observations in the right data types.</p>
-<p>Take a second look at <code>iris</code> to see an example of a tidy dataset. There’s one row (<strong>observation</strong>) for each flower in the sample, a column for each <strong>variable</strong> (measurements and species) and one value in each cell, the <strong>value</strong> of that variable for that observation.</p>
-</section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="write-out-data" class="level2">
+<h2 class="anchored" data-anchor-id="write-out-data">Write out data</h2>
+<p>Now that we have a nice table arranged the way we want, we can output it for use in another software.</p>
+<p><code>write_csv()</code> is a twin function to <code>read_csv()</code>. It takes the name of an object and then a filepath to write to.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fhv_arranged <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_csv</span>(<span class="at">file =</span> <span class="st">"ride_type_by_average_year.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Since we used the <strong>local path</strong> this shows up right in our project directory. We will be writing out to <code>.csv</code>s mostly, but there are companion functions to write out other types of data, like excel spreadsheets.</p>
 
 
 </section>
