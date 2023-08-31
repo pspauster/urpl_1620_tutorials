@@ -13,69 +13,88 @@ editor: visual
 ```{=html}
 <div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&playerId=kaltura_player&entry_id=1_0c9gmqct&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_9o78atzo" width="608" height="402" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="8. group by summarize" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 ```
-## How do we get data out of R?
+## Dates are tricky
 
-Often, we will want to take data that we clean, mutate, summarize, filter, or select with, and output it for use in another software. Think about how you might want to process a million-row data set to get some summary statistics, then create a nice table in excel. Or take some data that you need to make a chart or graphic, and export it so that you can read it into DataWrapper or some other visualization tool. Maybe you need to send your boss a list of items that are buried in a big R dataset.
+Dates can be annoying to work with because they come in many formats...
 
-Writing data will let you take data out of R and use it other places. But first we might want to use some other functions to get it looking nice and orderly.
+-   08/31/2023
 
-## Arrange
+-   08-31-2023
 
-`arrange()` takes data and sorts it based on certain criteria. Like many of our basic functions, it takes a list `...` of inputs to sort on. Let's take a look at an example of something we summarized.
+-   08/31/23 01:30:36
 
-```{r}
+-   08-31-2023 12:36 PM
 
-```
+But R has some helpful tools that standardize dates and allow us to use them in calculations
 
-Let's grab our code to read in the clean dataframe again. This time I'm just going to use a big pipe to go right to the summary.
+To begin, we're going to grab a new dataset from the NYC Open Data Portal, download it as a .csv, and save it to our project.
 
 ```{r}
 library(tidyverse)
 library(janitor)
-
-fhv_summary <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv") %>% 
-  clean_names() %>% 
-  rename(hybrid = veh) %>% 
-  mutate(
-    ride_type = case_when(
-      base_name == "UBER USA, LLC" & base_type == "BLACK-CAR" ~ "BLACK CAR RIDESHARE",
-      base_name != "UBER USA, LLC" & base_type == "BLACK-CAR" ~ "BLACK CAR NON-RIDESHARE",
-      TRUE ~ base_type #if it doesn't meet either condition, return the base_type
-    )) %>% 
-  group_by(ride_type) %>% #group by the variable we just created!
-  summarize(no_cars = n(),
-            average_year = mean(vehicle_year, na.rm = T))
-
-fhv_summary
+filmpermits <- read_csv("Film_Permits.csv", 
+                        col_types = cols(EventID = col_character())) %>%
+  clean_names()
 ```
 
-Now Let's say we wanted to sort this list by average oldest car to newest car.
+Let's clean it and do some summarizing
 
 ```{r}
-fhv_summary %>% 
-  arrange(average_year)
+filmpermits_clean <- filmpermits %>% 
+  select(event_type, borough, category, sub_category_name, start_date_time, end_date_time) %>%
+  filter(category != "WEB") %>%
+  mutate(type = 
+           case_when(category == 'Documentary' ~ 'Film',
+                     category == 'Film' ~ 'Film', 
+                     category == 'Television' ~ 'Television',
+                     category == 'Commerical' ~ 'Commercial',
+                     TRUE ~ 'Other')) 
+
+filmpermits_grouped <- filmpermits_clean %>%
+  group_by(type) %>% 
+  summarize(num_permits = n()) %>% # n() is a count of the records
+  arrange(desc(num_permits)) %>%
+  mutate(share = num_permits / sum(num_permits))
 ```
 
-That puts all the oldest car on top and the newest car on bottom
+## Working with dates
 
-`desc` is a function that transforms a vector to descending order, and is helpful to use **nested** inside arrange.
+We're going to install the lubridate package and load it. Some core R packages have helpful cheatsheets like this one. With our core knowledge of how functions work we should be able to apply these to our work!.
+
+We can use lubridate to work with dates that come in various formats. With the film permits dataset we can run the below to make R recognize these fields as dates. Here's a lubridate cheat sheet: https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_lubridate.pdf
+
+![](images/R_lubridate/R_lubridate-1.jpg)
+
+![](images/R_lubridate/R_lubridate-2.jpg)
 
 ```{r}
-fhv_arranged <- fhv_summary %>% 
-  arrange(desc(average_year))
+library(lubridate)
+
+filmpermits_clean_dates <- filmpermits_clean %>% 
+  mutate(start_date_time = mdy_hms(start_date_time),
+         end_date_time = mdy_hms(end_date_time))
+
+# Let's see what the earliest start date in the dataset is. This will run in the console. 
+filmpermits_clean_dates %>% arrange(start_date_time)
+
+# Let's see what the latest start date in the dataset is. 
+filmpermits_clean_dates %>% arrange(desc(start_date_time))
 ```
 
-Arrange also works with multiple variables - the variable listed second breaks ties - and within groups with group_by.
-
-## Write out data
-
-Now that we have a nice table arranged the way we want, we can output it for use in another software.
-
-`write_csv()` is a twin function to `read_csv()`. It takes the name of an object and then a filepath to write to.
+Let's use lubridate to make a list of all the film permits active just this summer. When sending R a date in a logical condition, wrap it in `as.Date()` so R knows its a date not a string. R & Lubridate defaults to the `'YYYY-MM-DD'` format.
 
 ```{r}
-fhv_arranged %>% 
-  write_csv(file = "ride_type_by_average_year.csv")
-```
 
-Since we used the **local path** this shows up right in our project directory. We will be writing out to `.csv`s mostly, but there are companion functions to write out other types of data, like excel spreadsheets.
+filmpermits_summer23 <- filmpermits_clean_dates %>%
+  filter(end_date_time >= as.Date('2023-06-01') & start_date_time <= as.Date('2023-08-31'))
+
+# Now I can run the same analysis as above and see if the % breakdowns are any different. 
+
+filmpermits_summer23_grouped <- filmpermits_summer23 %>% 
+  group_by(type) %>%
+  summarize(num_permits = n()) %>%
+  mutate(share = num_permits / sum(num_permits)) %>%
+  arrange(desc(share))
+
+filmpermits_summer23_grouped
+```

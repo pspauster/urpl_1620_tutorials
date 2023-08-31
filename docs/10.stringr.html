@@ -273,8 +273,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#video-tutorial" id="toc-video-tutorial" class="nav-link active" data-scroll-target="#video-tutorial">Video Tutorial</a></li>
-  <li><a href="#how-do-we-get-data-out-of-r" id="toc-how-do-we-get-data-out-of-r" class="nav-link" data-scroll-target="#how-do-we-get-data-out-of-r">How do we get data out of R?</a></li>
-  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange">Arrange</a></li>
+  <li><a href="#what-is-a-string" id="toc-what-is-a-string" class="nav-link" data-scroll-target="#what-is-a-string">What is a string?</a></li>
+  <li><a href="#separate-paste" id="toc-separate-paste" class="nav-link" data-scroll-target="#separate-paste">Separate &amp; Paste</a></li>
   <li><a href="#write-out-data" id="toc-write-out-data" class="nav-link" data-scroll-target="#write-out-data">Write out data</a></li>
   </ul>
 </nav>
@@ -309,13 +309,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
 <div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_0c9gmqct&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_9o78atzo" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="8. group by summarize" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 </section>
-<section id="how-do-we-get-data-out-of-r" class="level2">
-<h2 class="anchored" data-anchor-id="how-do-we-get-data-out-of-r">How do we get data out of R?</h2>
+<section id="what-is-a-string" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-string">What is a string?</h2>
 <p>Often, we will want to take data that we clean, mutate, summarize, filter, or select with, and output it for use in another software. Think about how you might want to process a million-row data set to get some summary statistics, then create a nice table in excel. Or take some data that you need to make a chart or graphic, and export it so that you can read it into DataWrapper or some other visualization tool. Maybe you need to send your boss a list of items that are buried in a big R dataset.</p>
-<p>Writing data will let you take data out of R and use it other places. But first we might want to use some other functions to get it looking nice and orderly.</p>
+<p>In this lesson we’ll learn a number of useful functions for manipulating and rewriting strings, using some base R, tidyverse, and a package called stringr.</p>
 </section>
-<section id="arrange" class="level2">
-<h2 class="anchored" data-anchor-id="arrange">Arrange</h2>
+<section id="separate-paste" class="level2">
+<h2 class="anchored" data-anchor-id="separate-paste">Separate &amp; Paste</h2>
 <p><code>arrange()</code> takes data and sorts it based on certain criteria. Like many of our basic functions, it takes a list <code>...</code> of inputs to sort on. Let’s take a look at an example of something we summarized.</p>
 <div class="cell">
 

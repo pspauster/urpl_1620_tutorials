@@ -13,69 +13,123 @@ editor: visual
 ```{=html}
 <div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&playerId=kaltura_player&entry_id=1_0c9gmqct&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_9o78atzo" width="608" height="402" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="8. group by summarize" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 ```
-## How do we get data out of R?
+## Joining two Tables together
 
-Often, we will want to take data that we clean, mutate, summarize, filter, or select with, and output it for use in another software. Think about how you might want to process a million-row data set to get some summary statistics, then create a nice table in excel. Or take some data that you need to make a chart or graphic, and export it so that you can read it into DataWrapper or some other visualization tool. Maybe you need to send your boss a list of items that are buried in a big R dataset.
+Joins are powerful functions that allow you to connect two datasets together through matching values. They can be useful with spatial and non-spatial data alike.
 
-Writing data will let you take data out of R and use it other places. But first we might want to use some other functions to get it looking nice and orderly.
+Joins rely on "keys" that match records across different datasets. This can be something like a name
 
-## Arrange
-
-`arrange()` takes data and sorts it based on certain criteria. Like many of our basic functions, it takes a list `...` of inputs to sort on. Let's take a look at an example of something we summarized.
-
-```{r}
-
-```
-
-Let's grab our code to read in the clean dataframe again. This time I'm just going to use a big pipe to go right to the summary.
+As a recap of how joins work, we're going to show a simple example of two different kinds of joins: 'left' joins and 'inner' joins. For this example, we will be using the `band_members` and `band_instruments` dataframes, which are simple, 3-row datasets that comes included in the dplyr package.
 
 ```{r}
 library(tidyverse)
-library(janitor)
 
-fhv_summary <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv") %>% 
-  clean_names() %>% 
-  rename(hybrid = veh) %>% 
-  mutate(
-    ride_type = case_when(
-      base_name == "UBER USA, LLC" & base_type == "BLACK-CAR" ~ "BLACK CAR RIDESHARE",
-      base_name != "UBER USA, LLC" & base_type == "BLACK-CAR" ~ "BLACK CAR NON-RIDESHARE",
-      TRUE ~ base_type #if it doesn't meet either condition, return the base_type
-    )) %>% 
-  group_by(ride_type) %>% #group by the variable we just created!
-  summarize(no_cars = n(),
-            average_year = mean(vehicle_year, na.rm = T))
+band_members
 
-fhv_summary
+band_instruments
 ```
 
-Now Let's say we wanted to sort this list by average oldest car to newest car.
+As you would expect, the first two arguments in a join function are the two tables you are trying to connect together. The third argument is the "join field", which is the matching column in both datasets we will use to pair up rows.
+
+## Left Joins
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/left-join.gif)
+
+A `left_join` keeps all of the rows in the first table you specify, appending data from the second table through matching values in the specified "join field". Let's see how this kind of join looks with our example data:
 
 ```{r}
-fhv_summary %>% 
-  arrange(average_year)
+band_members_and_instruments <- 
+  left_join(band_members, band_instruments, by = "name")
+
+# When the "join field" column names don't match, you can use:
+# by = c("column1" = "column2")
+
+band_members_and_instruments
 ```
 
-That puts all the oldest car on top and the newest car on bottom
+## Inner Joins
 
-`desc` is a function that transforms a vector to descending order, and is helpful to use **nested** inside arrange.
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/inner-join.gif)
+
+An \`inner_join\` keeps only the rows that have matching values between both tables in the specified "join field." Any other rows are discarded. Let's see how this kind of join looks with our example data:
 
 ```{r}
-fhv_arranged <- fhv_summary %>% 
-  arrange(desc(average_year))
+band_members_with_instruments_only <- 
+  inner_join(band_members, band_instruments, by = "name")
+
+band_members_with_instruments_only
 ```
 
-Arrange also works with multiple variables - the variable listed second breaks ties - and within groups with group_by.
+## Full Joins
 
-## Write out data
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/full-join.gif)
 
-Now that we have a nice table arranged the way we want, we can output it for use in another software.
-
-`write_csv()` is a twin function to `read_csv()`. It takes the name of an object and then a filepath to write to.
+A `full_join` keeps all rows from both tables, even if a row from the join field isn't present in one of them. It shows any missing values as NA.
 
 ```{r}
-fhv_arranged %>% 
-  write_csv(file = "ride_type_by_average_year.csv")
+band_members_with_or_without_instruments <- 
+  full_join(band_members, band_instruments, by = "name")
+
+band_members_with_or_without_instruments
 ```
 
-Since we used the **local path** this shows up right in our project directory. We will be writing out to `.csv`s mostly, but there are companion functions to write out other types of data, like excel spreadsheets.
+## Troubleshooting Joins
+
+### Joining when matching columns have different names
+
+Often times, the "join field" in your first table has a different name than that of your second table. For example, you may be trying to join two tables on a common zip code, but the first table calls the column 'Zip' and the second table calls it 'Postal Code'. There's a special syntax here to make it work:
+
+```{r}
+# Let's change the "name" column to be called "MusicalArtist"
+
+band_instruments_renamed <- band_instruments %>% rename(MusicalArtist = name)
+
+# In our join function, we need to specify that the "name" column in the first table matches up with the "MusicalArtist" column in the second table. We do that by setting our "by" parameter differently:
+
+band_members_and_instruments_2 <- 
+  inner_join(band_members, band_instruments_renamed, 
+             by = c("name" = "MusicalArtist"))
+
+band_members_and_instruments_2
+
+```
+
+You can also join across multiple keys (variables), by giving by a list. It will return only rows that match both variables.
+
+### Detecting duplicate values
+
+Duplicate values in your data can cause problems with joins. For example, what if our \`band_instruments\` dataset listed "John" twice:
+
+```{r}
+# Let's add a new row to band_instruments… say "John" also plays "flute"
+
+band_instruments_with_dup <- band_instruments %>% add_row(name = "John", plays = "flute")
+
+band_instruments_with_dup
+```
+
+When we try and join our \`band_members\` table with this new table, we now get 4 rows in the resulting table, even though our first table only had 3 rows... how can that be?
+
+```{r}
+band_members_and_instruments_dup <- 
+
+  left_join(band_members, band_instruments_with_dup, by = "name")
+
+band_members_and_instruments_dup
+```
+
+In R, if there are multiple matches between the two tables, all combinations of the matches are returned. This GIF illustrates visually how this works:
+
+![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/left-join-extra.gif)
+
+To avoid confusing and unexpected results like this, it's important to always check for duplicate values in your data, \_especially\_ in columns that you intend to use as a join field.
+
+Luckily, the \`janitor\` package has a function for that called \`get_dupes\`.
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+library(janitor)# Remember to run `install.packages('janitor')` in your console if you've
+
+band_instruments_with_dup %>% get_dupes(name)
+```
+
+Sometimes you may expect duplicate values in a column, and sometimes they may come as a surprise. General Rule: always know what each row represents in your data and what should be unique values.

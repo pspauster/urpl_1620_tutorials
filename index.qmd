@@ -15,3 +15,7 @@ In this directory, we're going to learn the basics of R and how to use it to rea
 This page was created as a guide to help students at NYU Wagner's Data Analysis, Mapping, and Storytelling course.
 
 Here are links to the Brightspace, Slack, and Google Drive
+
+## Acknowledgements
+
+These tutorials are adapted from previous course materials assembled and edited by Sam Rabiyah, Maxwell Austensen, and Lucy Block.
