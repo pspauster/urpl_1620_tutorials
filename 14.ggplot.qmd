@@ -15,6 +15,10 @@ editor: visual
 ```
 ## Preparing Data for ggplot
 
+Data for ggplot needs to be in "long" format, meaning that all the **values** need to be in the same column and all the variables need to be in another column.
+
+Let's use that rent stabilization data to create a plot. In this case the data is wide by year, meaning there is a column for each year with different values. We want a dataset where each year has its own row - where each row is a year-building combination - that we can plot.
+
 ```{r}
 library(tidyverse)
 
@@ -28,3 +32,129 @@ rent_stab_long <- read_csv("https://taxbillsnyc.s3.amazonaws.com/joined.csv") %>
 ```
 
 ## ggplot syntax
+
+ggplots use similar syntax to regular R operations - they are groups of functions beginning with `ggplot()`. Instead of the pipe, ggplot uses `+` between different functions to build layers on top of each other.
+
+Typically, ggplot will start with `ggplot(dataframe) +` a geometric function like `geom_col()` and an aesthetics or `aes` argument that indicates which variables to plot.
+
+![](images/ggcheatsheet1.jpeg)
+
+![](images/ggcheatsheet2.jpeg)
+
+After that, ggplot has a ton of options to specify the labels, scales, axes, themes, legends,and more. It's best shown through examples
+
+## Sample Line Chart
+
+Line charts are often a good fit for time-series data. Let's summarize the long data by year and borough and count the number of units.
+
+```{r}
+
+rs_long_manhattan_summary <- rent_stab_long %>% 
+  filter(borough %in% c("MN","BK") # Filter only Manhattan and Brooklyn values
+          & !is.na(units)) %>% # Filter out null unit count values
+  mutate(year = as.numeric(gsub("uc","", year))) %>% # Remove "uc" from year values
+  select(year, borough, units) %>% 
+  # Grouping by 2 columns means each row will have a unique pair of the two columns' values.
+  # Our rows will look like: 2007 MN, 2007 BK, 2008 MN... 
+  group_by(year, borough) %>% 
+  summarise(total_units = sum(units))
+
+```
+
+Now let's plot it. We start with the data, then add aesthetics, our chart type (line), axis specifications, and labels.
+
+```{r}
+rs_over_time_graph <- ggplot(rs_long_manhattan_summary) +
+    # Note these arguments inside 'geom_line' :
+  geom_line(aes(x=year, y=total_units, color=borough)) +
+    # Restyle the Y-axis labels: 
+  scale_y_continuous(
+    limits = c(0,300000),
+    labels = scales::unit_format(scale = 1/1000, unit="K")) +
+  scale_x_continuous(breaks = seq(2007, 2017, by = 1))+
+    # Restyle the Legend: 
+  scale_fill_discrete(
+    name="Borough",
+    breaks=c("BK", "MN"),
+    labels=c("Brooklyn", "Manhattan")) +
+  labs(
+    title = "Total Rent Stabilized Units over Time",
+    subtitle = "Manhattan and Brooklyn, 2007 to 2017",
+    x = "Year",
+    y = "Total Rent Stabilized Units",
+    caption = "Source: taxbills.nyc"
+  )+
+  theme_minimal()
+
+rs_over_time_graph
+```
+
+## Sample Bar Chart + Faceting
+
+Let's make some bar charts out of the table of \# of children by the languages they speak at home by borough.
+
+We'll learn how we pulled this data in an upcoming lesson, but for now just install tidycensus and run this.
+
+```{r}
+library(tidycensus)
+library(tidyverse)
+library(janitor)
+
+# Request your own API key here: https://api.census.gov/data/key_signup.html
+# Install the API key:
+census_api_key("8524147f6edf7fe4b7c85681397fe5acd6993d62")
+
+langs_by_boro <- get_acs(
+  geography = "county",
+  variables = c(
+    totalkids = "B16007_002",
+    englishkids = "B16007_003",
+    spanishkids = "B16007_004",
+    indoeurkids = "B16007_005",
+    apikids = "B16007_006",
+    otherkids = "B16007_007"
+  ),
+  state =  "New York",
+  year = 2020,
+  survey = "acs5"
+) %>%
+  filter(
+    NAME == "Kings County, New York" |
+      NAME == "Queens County, New York" |
+      NAME == "New York County, New York" |
+      NAME == "Bronx County, New York" |
+      NAME == "Richmond County, New York"
+  ) %>%
+  clean_names()
+```
+
+Produce a horizontal bar chart
+
+```{r}
+# Note - this builds progressively; you can run all the code before any + sign as a step toward the final result.
+
+barchart <- ggplot(langs_by_boro_for_graphing) +
+  aes(x = estimate, y = labels) +
+  geom_col() +
+  scale_x_continuous(labels = scales::comma) + # format count labels with commas and thousands
+  theme_minimal() +
+  theme(panel.grid.major.y = element_blank()) +
+  labs(
+    title = 'What languages do NYC kids speak at home?',
+    subtitle = 'Number of children ages 5-17 by the language spoken at home',
+    x = NULL,
+    y = NULL,
+    caption = "Source: Census American Community Survey 2020 5-Year Estimates, Table B16007"
+  )
+
+barchart
+```
+
+Now let's facet it by borough
+
+```{r}
+barchart +
+  facet_wrap( ~ name, ncol = 1)
+```
+
+This [guide from the Urban Institute](https://urbaninstitute.github.io/r-at-urban/graphics-guide.html) has a number of helpful tutorials for how to create a wide number of graphs with ggplot.

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Patrick Spauster">
 
-<title>Learning R - 10. Working with Strings</title>
+<title>Learning R - 11. Working with Dates</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">10. Working with Strings</h1>
+      <h1 class="quarto-secondary-nav-title">11. Working with Dates</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -235,17 +235,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10.stringr.html" class="sidebar-item-text sidebar-link active">10. Working with Strings</a>
+  <a href="./10.joins.html" class="sidebar-item-text sidebar-link">12. Joins</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11.lubridate.html" class="sidebar-item-text sidebar-link">11. Working with Dates</a>
+  <a href="./11.stringr.html" class="sidebar-item-text sidebar-link">10. Working with Strings</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12.joins.html" class="sidebar-item-text sidebar-link">12. Joins</a>
+  <a href="./12.lubridate.html" class="sidebar-item-text sidebar-link active">11. Working with Dates</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -273,9 +273,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#video-tutorial" id="toc-video-tutorial" class="nav-link active" data-scroll-target="#video-tutorial">Video Tutorial</a></li>
-  <li><a href="#what-is-a-string" id="toc-what-is-a-string" class="nav-link" data-scroll-target="#what-is-a-string">What is a string?</a></li>
-  <li><a href="#separate-paste" id="toc-separate-paste" class="nav-link" data-scroll-target="#separate-paste">Separate &amp; Paste</a></li>
-  <li><a href="#write-out-data" id="toc-write-out-data" class="nav-link" data-scroll-target="#write-out-data">Write out data</a></li>
+  <li><a href="#dates-are-tricky" id="toc-dates-are-tricky" class="nav-link" data-scroll-target="#dates-are-tricky">Dates are tricky</a></li>
+  <li><a href="#working-with-dates" id="toc-working-with-dates" class="nav-link" data-scroll-target="#working-with-dates">Working with dates</a></li>
   </ul>
 </nav>
     </div>
@@ -284,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">10. Working with Strings</h1>
+<h1 class="title d-none d-lg-block">11. Working with Dates</h1>
 </div>
 
 
@@ -309,18 +308,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
 <div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_0c9gmqct&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_9o78atzo" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="8. group by summarize" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 </section>
-<section id="what-is-a-string" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-a-string">What is a string?</h2>
-<p>Often, we will want to take data that we clean, mutate, summarize, filter, or select with, and output it for use in another software. Think about how you might want to process a million-row data set to get some summary statistics, then create a nice table in excel. Or take some data that you need to make a chart or graphic, and export it so that you can read it into DataWrapper or some other visualization tool. Maybe you need to send your boss a list of items that are buried in a big R dataset.</p>
-<p>In this lesson we’ll learn a number of useful functions for manipulating and rewriting strings, using some base R, tidyverse, and a package called stringr.</p>
-</section>
-<section id="separate-paste" class="level2">
-<h2 class="anchored" data-anchor-id="separate-paste">Separate &amp; Paste</h2>
-<p><code>arrange()</code> takes data and sorts it based on certain criteria. Like many of our basic functions, it takes a list <code>...</code> of inputs to sort on. Let’s take a look at an example of something we summarized.</p>
-<div class="cell">
-
-</div>
-<p>Let’s grab our code to read in the clean dataframe again. This time I’m just going to use a big pipe to go right to the summary.</p>
+<section id="dates-are-tricky" class="level2">
+<h2 class="anchored" data-anchor-id="dates-are-tricky">Dates are tricky</h2>
+<p>Dates can be annoying to work with because they come in many formats…</p>
+<ul>
+<li><p>08/31/2023</p></li>
+<li><p>08-31-2023</p></li>
+<li><p>08/31/23 01:30:36</p></li>
+<li><p>08-31-2023 12:36 PM</p></li>
+</ul>
+<p>But R has some helpful tools that standardize dates and allow us to use them in calculations</p>
+<p>To begin, we’re going to grab a new dataset from the NYC Open Data Portal, download it as a .csv, and save it to our project.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -377,72 +375,104 @@ The following objects are masked from 'package:stats':
 
     chisq.test, fisher.test</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fhv_summary <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"For_Hire_Vehicles__FHV__-_Active.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">hybrid =</span> veh) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ride_type =</span> <span class="fu">case_when</span>(</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>      base_name <span class="sc">==</span> <span class="st">"UBER USA, LLC"</span> <span class="sc">&amp;</span> base_type <span class="sc">==</span> <span class="st">"BLACK-CAR"</span> <span class="sc">~</span> <span class="st">"BLACK CAR RIDESHARE"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>      base_name <span class="sc">!=</span> <span class="st">"UBER USA, LLC"</span> <span class="sc">&amp;</span> base_type <span class="sc">==</span> <span class="st">"BLACK-CAR"</span> <span class="sc">~</span> <span class="st">"BLACK CAR NON-RIDESHARE"</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> base_type <span class="co">#if it doesn't meet either condition, return the base_type</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ride_type) <span class="sc">%&gt;%</span> <span class="co">#group by the variable we just created!</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">no_cars =</span> <span class="fu">n</span>(),</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">average_year =</span> <span class="fu">mean</span>(vehicle_year, <span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 98318 Columns: 23
--- Column specification --------------------------------------------------------
-Delimiter: ","
-chr  (20): Active, Vehicle License Number, Name, License Type, Expiration Da...
-dbl   (1): Vehicle Year
-lgl   (1): Order Date
-time  (1): Last Time Updated
-
-i Use `spec()` to retrieve the full column specification for this data.
-i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>filmpermits <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Film_Permits.csv"</span>, </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">EventID =</span> <span class="fu">col_character</span>())) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fhv_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 3
-  ride_type               no_cars average_year
-  &lt;chr&gt;                     &lt;int&gt;        &lt;dbl&gt;
-1 BLACK CAR NON-RIDESHARE   16225        2018.
-2 BLACK CAR RIDESHARE       76710        2018.
-3 LIVERY                     3652        2015.
-4 LUXURY                     1731        2020.</code></pre>
-</div>
-</div>
-<p>Now Let’s say we wanted to sort this list by average oldest car to newest car.</p>
+<p>Let’s clean it and do some summarizing</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fhv_summary <span class="sc">%&gt;%</span> </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(average_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 3
-  ride_type               no_cars average_year
-  &lt;chr&gt;                     &lt;int&gt;        &lt;dbl&gt;
-1 LIVERY                     3652        2015.
-2 BLACK CAR NON-RIDESHARE   16225        2018.
-3 BLACK CAR RIDESHARE       76710        2018.
-4 LUXURY                     1731        2020.</code></pre>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>filmpermits_clean <span class="ot">&lt;-</span> filmpermits <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(event_type, borough, category, sub_category_name, start_date_time, end_date_time) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(category <span class="sc">!=</span> <span class="st">"WEB"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">case_when</span>(category <span class="sc">==</span> <span class="st">'Documentary'</span> <span class="sc">~</span> <span class="st">'Film'</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">'Film'</span> <span class="sc">~</span> <span class="st">'Film'</span>, </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">'Television'</span> <span class="sc">~</span> <span class="st">'Television'</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">'Commerical'</span> <span class="sc">~</span> <span class="st">'Commercial'</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                     <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">'Other'</span>)) </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>filmpermits_grouped <span class="ot">&lt;-</span> filmpermits_clean <span class="sc">%&gt;%</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">num_permits =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> <span class="co"># n() is a count of the records</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(num_permits)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share =</span> num_permits <span class="sc">/</span> <span class="fu">sum</span>(num_permits))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>That puts all the oldest car on top and the newest car on bottom</p>
-<p><code>desc</code> is a function that transforms a vector to descending order, and is helpful to use <strong>nested</strong> inside arrange.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fhv_arranged <span class="ot">&lt;-</span> fhv_summary <span class="sc">%&gt;%</span> </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(average_year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Arrange also works with multiple variables - the variable listed second breaks ties - and within groups with group_by.</p>
 </section>
-<section id="write-out-data" class="level2">
-<h2 class="anchored" data-anchor-id="write-out-data">Write out data</h2>
-<p>Now that we have a nice table arranged the way we want, we can output it for use in another software.</p>
-<p><code>write_csv()</code> is a twin function to <code>read_csv()</code>. It takes the name of an object and then a filepath to write to.</p>
+<section id="working-with-dates" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-dates">Working with dates</h2>
+<p>We’re going to install the lubridate package and load it. Some core R packages have helpful cheatsheets like this one. With our core knowledge of how functions work we should be able to apply these to our work!.</p>
+<p>We can use lubridate to work with dates that come in various formats. With the film permits dataset we can run the below to make R recognize these fields as dates. Here’s a lubridate cheat sheet: https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_lubridate.pdf</p>
+<p><img src="images/R_lubridate/R_lubridate-1.jpg" class="img-fluid"></p>
+<p><img src="images/R_lubridate/R_lubridate-2.jpg" class="img-fluid"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fhv_arranged <span class="sc">%&gt;%</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_csv</span>(<span class="at">file =</span> <span class="st">"ride_type_by_average_year.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>filmpermits_clean_dates <span class="ot">&lt;-</span> filmpermits_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">start_date_time =</span> <span class="fu">mdy_hms</span>(start_date_time),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">end_date_time =</span> <span class="fu">mdy_hms</span>(end_date_time))</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's see what the earliest start date in the dataset is. This will run in the console. </span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>filmpermits_clean_dates <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(start_date_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,597 x 7
+   event_type             borough category sub_category_name start_date_time    
+   &lt;chr&gt;                  &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;             &lt;dttm&gt;             
+ 1 Theater Load in and L~ Manhat~ Theater  Theater           2023-01-01 00:01:00
+ 2 Theater Load in and L~ Manhat~ Theater  Theater           2023-01-01 00:01:00
+ 3 Shooting Permit        Manhat~ Televis~ News              2023-01-01 04:00:00
+ 4 Shooting Permit        Manhat~ Televis~ News              2023-01-02 04:00:00
+ 5 Theater Load in and L~ Brookl~ Theater  Theater           2023-01-03 07:00:00
+ 6 Shooting Permit        Queens  Televis~ Episodic series   2023-01-03 07:00:00
+ 7 Shooting Permit        Brookl~ Televis~ Episodic series   2023-01-03 10:00:00
+ 8 Rigging Permit         Manhat~ Documen~ Not Applicable    2023-01-03 17:00:00
+ 9 Shooting Permit        Manhat~ Televis~ Morning Show      2023-01-04 05:00:00
+10 Shooting Permit        Manhat~ Documen~ Not Applicable    2023-01-04 06:00:00
+# i 2,587 more rows
+# i 2 more variables: end_date_time &lt;dttm&gt;, type &lt;chr&gt;</code></pre>
 </div>
-<p>Since we used the <strong>local path</strong> this shows up right in our project directory. We will be writing out to <code>.csv</code>s mostly, but there are companion functions to write out other types of data, like excel spreadsheets.</p>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's see what the latest start date in the dataset is. </span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>filmpermits_clean_dates <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(start_date_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,597 x 7
+   event_type             borough category sub_category_name start_date_time    
+   &lt;chr&gt;                  &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;             &lt;dttm&gt;             
+ 1 Shooting Permit        Manhat~ Film     Feature           2023-06-01 09:00:00
+ 2 Shooting Permit        Manhat~ Televis~ News              2023-06-01 09:00:00
+ 3 Shooting Permit        Queens  Film     Feature           2023-06-01 08:00:00
+ 4 Shooting Permit        Bronx   Televis~ Episodic series   2023-06-01 07:00:00
+ 5 Shooting Permit        Manhat~ Televis~ Episodic series   2023-06-01 07:00:00
+ 6 Shooting Permit        Queens  Televis~ Episodic series   2023-06-01 07:00:00
+ 7 Shooting Permit        Manhat~ Commerc~ Commercial        2023-06-01 06:00:00
+ 8 Shooting Permit        Manhat~ Still P~ Not Applicable    2023-06-01 06:00:00
+ 9 Shooting Permit        Brookl~ Televis~ Episodic series   2023-06-01 05:00:00
+10 Theater Load in and L~ Manhat~ Theater  Theater           2023-06-01 01:00:00
+# i 2,587 more rows
+# i 2 more variables: end_date_time &lt;dttm&gt;, type &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>Let’s use lubridate to make a list of all the film permits active just this summer. When sending R a date in a logical condition, wrap it in <code>as.Date()</code> so R knows its a date not a string. R &amp; Lubridate defaults to the <code>'YYYY-MM-DD'</code> format.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>filmpermits_summer23 <span class="ot">&lt;-</span> filmpermits_clean_dates <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(end_date_time <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">'2023-06-01'</span>) <span class="sc">&amp;</span> start_date_time <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">'2023-08-31'</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now I can run the same analysis as above and see if the % breakdowns are any different. </span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>filmpermits_summer23_grouped <span class="ot">&lt;-</span> filmpermits_summer23 <span class="sc">%&gt;%</span> </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">num_permits =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share =</span> num_permits <span class="sc">/</span> <span class="fu">sum</span>(num_permits)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(share))</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>filmpermits_summer23_grouped</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 x 3
+  type       num_permits  share
+  &lt;chr&gt;            &lt;int&gt;  &lt;dbl&gt;
+1 Other               16 0.667 
+2 Television           6 0.25  
+3 Film                 2 0.0833</code></pre>
+</div>
+</div>
 
 
 </section>

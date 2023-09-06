@@ -24,9 +24,9 @@ website:
           - 9.arrange_writecsv.qmd
       - section: "Intermediates"
         contents:
-          - 10.stringr.qmd
-          - 11.lubridate.qmd
-          - 12.joins.qmd
+          - 10.joins.qmd
+          - 11.stringr.qmd
+          - 12.lubridate.qmd
           - 13.pivoting.qmd
           - 14.ggplot.qmd
       - section: "Advanced"

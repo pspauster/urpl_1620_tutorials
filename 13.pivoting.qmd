@@ -15,6 +15,16 @@ editor: visual
 ```
 ## "Wide" and "Long" Data
 
+A dataset can be written as wide and long. A wide format contains values that do not repeat in the first column, whereas long format contains values that do repeat in the first column. Imagine keeping statistics for a basket ball game. You could do it two ways:
+
+![](https://www.statology.org/wp-content/uploads/2021/12/wideLong1-1-768x543.png)
+
+Long data is **tidy** - Every column is a **variable** Every row is an **observation**. Every cell is a single **value**.
+
+We can use pivoting to convert data between wide and long formats. Here's a visual for what pivoting does.
+
+![](https://fromthebottomoftheheap.net/assets/img/posts/tidyr-longer-wider.gif)
+
 ## Pivoting Longer
 
 For this demo, we want to make a timeline of rent stabilized units in NYC.
@@ -45,11 +55,7 @@ rent_stab <- rent_stab_raw %>% select(borough, ucbbl, ends_with("uc"))
 
 Annoyingly, the data separates unit counts for different years into different columns... to make a timeline, we need all of the yearly data to be stored in one column.
 
-We can use the `pivot_longer` function included in tidyverse to transform our data accordingly. To get a conceptual picture of what we're about to do, see this gif:
-
-![](https://fromthebottomoftheheap.net/assets/img/posts/tidyr-longer-wider.gif)
-
-Here is how we apply the \`pivot_longer\` function to our data:
+We can use the `pivot_longer` function included in tidyverse to transform our data accordingly. Here is how we apply the \`pivot_longer\` function to our data:
 
 ```{r}
 rs_long <- rent_stab %>% 
@@ -62,20 +68,14 @@ rs_long <- rent_stab %>%
 
 Now we have data that is "tidy" there is one row for each year for each building. So each observation is a bbl-year pair.
 
-\### 4. Pivoting data into "wide" format
+## Pivoting Wider
 
 Additionally, you may have data that is in this "long" format and wish to transform it into the "wide" format we are used to. Luckily, there is an analogous function called \`pivot_wider\` that does just that:
 
-\`\`\`{r}
-
-rs_wide \<- rs_long %\>%
-
-pivot_wider(
-
-names_from = year, \# The current column containing our future column names
-
-values_from = units \# The current column containing the values for our future columns
-
-)
-
-\`\`\`
+```{r}
+rs_wide <- rs_long %>%
+  pivot_wider(
+  names_from = year, # The current column containing our future column names
+  values_from = units # The current column containing the values for our future columns
+  )
+```

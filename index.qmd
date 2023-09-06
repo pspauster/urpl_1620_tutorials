@@ -14,7 +14,7 @@ In this directory, we're going to learn the basics of R and how to use it to rea
 
 This page was created as a guide to help students at NYU Wagner's Data Analysis, Mapping, and Storytelling course.
 
-Here are links to the Brightspace, Slack, and Google Drive
+Here are links to the [Brightspace](https://brightspace.nyu.edu/d2l/home/297278), [Slack](https://urldefense.proofpoint.com/v2/url?u=https-3A__join.slack.com_t_dataanalysism-2Daj63202_shared-5Finvite_zt-2D21e5k9rpy-2D7ThVBI2fTgCfRXwULojEnw&d=DwMBaQ&c=slrrB7dE8n7gBJbeO0g-IQ&r=IT7pIxRu6okCkWecVYaZCg&m=1DkH9OZ00PYnW9Wl6Yw6AvwaUWDCSvRGW9FDGPZGqGSWR5GMzI9ys430tZUxEVtT&s=N-MggnY0Ekw4m301-xEsL7IKB288wZ959lNC62RHE4o&e=), and [Google Drive](https://drive.google.com/drive/folders/1CD_cePHs3-YzLFLxaDdfw_UE1b07O6RO)
 
 ## Acknowledgements
 
