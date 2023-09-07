@@ -29,7 +29,7 @@ To get started with R, we need to install packages beyond the preinstalled.
 We install packages with a **console** command, using a function called `install.packages()`. We can get our first, and most crucial package, the tidyverse, using this function. Copy this into your console. Make sure to put the package name in quotes.
 
 ```{r}
-#install.packages("tidyverse")
+#install.packages("tidyverse") #remove the # at the front to actually get this to run
 ```
 
 We can install multiple packages at once by putting them into a **list** (also called a **vector**), like so. More on lists later.
