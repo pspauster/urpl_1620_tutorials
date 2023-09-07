@@ -21,7 +21,7 @@ Joins rely on "keys" that match records across different datasets. This can be s
 
 As a recap of how joins work, we're going to show a simple example of two different kinds of joins: 'left' joins and 'inner' joins. For this example, we will be using the `band_members` and `band_instruments` dataframes, which are simple, 3-row datasets that comes included in the dplyr package.
 
-```{r message = F}
+```{r message = F, warning = F}
 library(tidyverse)
 
 band_members

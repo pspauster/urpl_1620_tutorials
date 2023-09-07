@@ -36,7 +36,7 @@ Now, save a copy of `For_Hire_Vehicles__FHV__-_Active.csv` to your project folde
 
 (remember to load the tidyverse first! If you get an error like "the function `function_name` can't be found", you probably forgot to load the proper package with `library()`!)
 
-```{r message = F}
+```{r message = F, warning = F}
 library(tidyverse)
 ```
 

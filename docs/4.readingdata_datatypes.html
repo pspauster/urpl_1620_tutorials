@@ -189,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./6.select_filter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6. Select, Filter, and Mutate</span></a>
+ <span class="menu-text">6. Select and Filter</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -304,27 +304,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>(remember to load the tidyverse first! If you get an error like “the function <code>function_name</code> can’t be found”, you probably forgot to load the proper package with <code>library()</code>!)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.0.5</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tibble' was built under R version 4.0.5</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tidyr' was built under R version 4.0.5</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'readr' was built under R version 4.0.5</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'dplyr' was built under R version 4.0.5</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'forcats' was built under R version 4.0.5</code></pre>
-</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"For_Hire_Vehicles__FHV__-_Active.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"For_Hire_Vehicles__FHV__-_Active.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 98318 Columns: 23</code></pre>
 </div>
@@ -366,18 +348,18 @@ i Specify the column types or set `show_col_types = FALSE` to quiet this message
 </div>
 <p>Let’s take a closer look at what <code>read_csv()</code> is doing.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The function has one required argument, “file” and several optional arguments that we can change. The “file” argument asks for a path to a file as a “string” - remember if you see the words “character” or “string” think <strong>quotes</strong>. So let’s feed read_csv() the name of the file we want to read in in quotes, and <strong>assign</strong> it to something using our assignment operator <code>&lt;-</code> so we can further modify it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fhv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"For_Hire_Vehicles__FHV__-_Active.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fhv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"For_Hire_Vehicles__FHV__-_Active.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>(Aside - naming things is hard, and you will have to name a lot of different objects. Some general rules - don’t use spaces, and try to keep the names simple but informative, and be careful about overwriting the same name)</p>
 <p>Now, <code>parking_violations</code> is an <strong>object</strong> in our <strong>environment</strong>. R gives us some helpful details about the object in the environment menu and the dropdown arrow on the object itself.</p>
 <p><img src="images/environment.PNG" class="img-fluid"></p>
 <p>R tells us how many <strong>observations</strong> (rows) and <strong>variables</strong> (columns) this object has - note how this is a “tidy” dataset. If you hover over the object itself, it will tell you the type of object and its size. In this case we have a <code>dataframe</code>, the tidy format for data in R, often abbreviated <code>df</code>. You can confirm this by running the function <code>is.data.frame()</code> which identifies if an object is of a certain type.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>(fhv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>(fhv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -389,11 +371,11 @@ i Specify the column types or set `show_col_types = FALSE` to quiet this message
 <p><strong>Numbers, characters, and dates</strong>, are three fundamental types of data that we will be using in R. We can use some of the other arguments of <code>read_csv()</code> to make sure that we get columns in the correct format. For example, it missed that <code>Expiration Date</code> should be a <strong>date.</strong></p>
 <p>When you start getting long arguments, and nested functions, it can be helpful to enter between each argument.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fhv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"For_Hire_Vehicles__FHV__-_Active.csv"</span>,</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="st">`</span><span class="at">Expiration Date</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_datetime</span>(<span class="at">format =</span> <span class="st">'%m/%d/%Y'</span>))</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                               )</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#check out the documentation of read_csv and col_datetime to get the right syntax for your column</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#note that when there are spaces in variable names in our data we need to refer to the name of the column in backticks `` we will fix this in a later lesson.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fhv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"For_Hire_Vehicles__FHV__-_Active.csv"</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="st">`</span><span class="at">Expiration Date</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_datetime</span>(<span class="at">format =</span> <span class="st">'%m/%d/%Y'</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                               )</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#check out the documentation of read_csv and col_datetime to get the right syntax for your column</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#note that when there are spaces in variable names in our data we need to refer to the name of the column in backticks `` we will fix this in a later lesson.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Be careful with numeric data types that aren’t actually numbers that will drop <strong>leading zeroes</strong> (think of a zip code like “06810” which starts with a 0 would get read in as an integer 6,810). If you wanted to match to another dataset with a zipcode you wouldn’t be able to! Another helpful note: you can change the default col_type using <code>col_type = cols(.default = col_character())</code>. You can always change the types of columns back to numbers later.</p>
 </section>
@@ -402,30 +384,30 @@ i Specify the column types or set `show_col_types = FALSE` to quiet this message
 <p>Here’s a brief look at some other object types you might find in R.</p>
 <p>A <strong>value</strong> is just one number, stored in an object.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>my_value <span class="ot">&lt;-</span> <span class="dv">42</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>my_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>my_value <span class="ot">&lt;-</span> <span class="dv">42</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>my_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 42</code></pre>
 </div>
 </div>
 <p>A <strong>list</strong> is a group of values put together, separated by commas. In R the <strong>syntax</strong> to create a list starts with <code>c()</code>. They are also called <strong>vectors</strong> in R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>my_character_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Patrick"</span>, <span class="st">"Lucy"</span>, <span class="st">"Henry"</span>, <span class="st">"Ceinna"</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>my_character_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>my_character_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Patrick"</span>, <span class="st">"Lucy"</span>, <span class="st">"Henry"</span>, <span class="st">"Ceinna"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>my_character_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Patrick" "Lucy"    "Henry"   "Ceinna" </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>my_numeric_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">17</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>my_numeric_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>my_numeric_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">17</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>my_numeric_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  1  3  5  7  9 11 13 17</code></pre>
 </div>
 </div>
 <p>Vectors can be named or unnamed. Named vectors are pairs of <strong>keys</strong> (names) and <strong>values</strong> separated by <code>=</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>named_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Patrick"</span> <span class="ot">=</span> <span class="dv">42</span>, <span class="st">"Lucy"</span> <span class="ot">=</span> <span class="dv">12</span>, <span class="st">"Ceinna"</span> <span class="ot">=</span> <span class="dv">56</span>, <span class="st">"Henry"</span> <span class="ot">=</span> <span class="dv">44</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>named_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>named_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Patrick"</span> <span class="ot">=</span> <span class="dv">42</span>, <span class="st">"Lucy"</span> <span class="ot">=</span> <span class="dv">12</span>, <span class="st">"Ceinna"</span> <span class="ot">=</span> <span class="dv">56</span>, <span class="st">"Henry"</span> <span class="ot">=</span> <span class="dv">44</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>named_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Patrick    Lucy  Ceinna   Henry 
      42      12      56      44 </code></pre>
@@ -433,27 +415,27 @@ i Specify the column types or set `show_col_types = FALSE` to quiet this message
 </div>
 <p>You can get a <strong>vector</strong> of a particular variable in a dataframe by using <code>$</code> with the dataframe name and the variable name.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>printme <span class="ot">&lt;-</span> <span class="fu">head</span>(fhv)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>printme<span class="sc">$</span><span class="st">`</span><span class="at">Base Name</span><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>printme <span class="ot">&lt;-</span> <span class="fu">head</span>(fhv)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>printme<span class="sc">$</span><span class="st">`</span><span class="at">Base Name</span><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "UBER USA, LLC"               "UBER USA, LLC"              
 [3] "UBER USA, LLC"               "BELL LX INC"                
 [5] "BAYRIDGE EXPRESS LUXYRY INC" "FIRST CLASS C/L SVC CORP"   </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#head() only keeps the first few rows of a dataframe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#head() only keeps the first few rows of a dataframe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You’ll also notice an important type of data - <strong>missing data</strong> - noted in R as <code>NA</code>. In this dataset the <code>Wheelchair Accessible</code> column is missing for the first few observations. This means that there is no <strong>value</strong> for that <strong>observation</strong> and <strong>variable</strong>. <code>NA</code> values in R are <strong>sticky</strong>, meaning that unless you tell R to ignore them, R will carry them through all your operations and maybe mess up some of your calculations. For example…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="cn">NA</span>) <span class="co">#you should be able to figure this out based on what we've learned about functions so far!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="cn">NA</span>) <span class="co">#you should be able to figure this out based on what we've learned about functions so far!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="cn">NA</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co">#the na.rm = T argument removes NAs from a calculation.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="cn">NA</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co">#the na.rm = T argument removes NAs from a calculation.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>

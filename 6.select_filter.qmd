@@ -1,5 +1,5 @@
 ---
-title: "6. Select, Filter, and Mutate"
+title: "6. Select and Filter"
 author: "Patrick Spauster"
 format:
   html:
@@ -17,7 +17,7 @@ editor: visual
 
 Let's read in our data and do some cleaning up of the names with the pipe
 
-```{r message = F}
+```{r message = F, warning = F}
 library(tidyverse)
 library(janitor)
 

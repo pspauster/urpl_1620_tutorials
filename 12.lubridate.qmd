@@ -29,7 +29,7 @@ But R has some helpful tools that standardize dates and allow us to use them in 
 
 To begin, we're going to grab a new dataset from the NYC Open Data Portal, download it as a .csv, and save it to our project.
 
-```{r}
+```{r warning=F, message=F}
 library(tidyverse)
 library(janitor)
 filmpermits <- read_csv("Film_Permits.csv", 
