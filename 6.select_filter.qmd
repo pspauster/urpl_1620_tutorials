@@ -17,7 +17,7 @@ editor: visual
 
 Let's read in our data and do some cleaning up of the names with the pipe
 
-```{r}
+```{r message = F}
 library(tidyverse)
 library(janitor)
 
@@ -28,7 +28,7 @@ fhv_clean <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv") %>%
 
 We have a lot of information in this data frame. What if we want to look at just a few rows and columns. Two core `dplyr` functions, `select` and `filter`, help us do so. `dplyr` is a core part of the tidyverse, and it has functions that modify dataframes (think of the pipe!)
 
-```{r}
+```{r include = F}
 ?select()
 ?filter()
 ```
@@ -62,7 +62,7 @@ You use R's logical operators to return the rows that you care about. Here I've 
 
 Here's some other helpful logical operators you may find yourself using, to return certain strings, numbers, or lists.
 
-```{r}
+```{r message = F}
 fhv_clean %>% 
   filter(base_name %in% c("UBER USA, LLC", "Take Me 2 Inc"), #name is in the list
          vehicle_year >= 2000, #year is greater than or equal to

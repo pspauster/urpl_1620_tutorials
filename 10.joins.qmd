@@ -1,5 +1,5 @@
 ---
-title: "12. Joins"
+title: "10. Joins"
 author: "Patrick Spauster"
 format:
   html:
@@ -17,11 +17,11 @@ editor: visual
 
 Joins are powerful functions that allow you to connect two datasets together through matching values. They can be useful with spatial and non-spatial data alike.
 
-Joins rely on "keys" that match records across different datasets. This can be something like a name
+Joins rely on "keys" that match records across different datasets. This can be something like a name or ID number.
 
 As a recap of how joins work, we're going to show a simple example of two different kinds of joins: 'left' joins and 'inner' joins. For this example, we will be using the `band_members` and `band_instruments` dataframes, which are simple, 3-row datasets that comes included in the dplyr package.
 
-```{r}
+```{r message = F}
 library(tidyverse)
 
 band_members
@@ -112,7 +112,6 @@ When we try and join our \`band_members\` table with this new table, we now get 
 
 ```{r}
 band_members_and_instruments_dup <- 
-
   left_join(band_members, band_instruments_with_dup, by = "name")
 
 band_members_and_instruments_dup
@@ -122,7 +121,7 @@ In R, if there are multiple matches between the two tables, all combinations of 
 
 ![](https://raw.githubusercontent.com/gadenbuie/tidyexplain/main/images/left-join-extra.gif)
 
-To avoid confusing and unexpected results like this, it's important to always check for duplicate values in your data, \_especially\_ in columns that you intend to use as a join field.
+In general, to avoid confusing and unexpected results like this, it's important to always check for duplicate values in your data, \_especially\_ in columns that you intend to use as a join field.
 
 Luckily, the \`janitor\` package has a function for that called \`get_dupes\`.
 
@@ -133,3 +132,29 @@ band_instruments_with_dup %>% get_dupes(name)
 ```
 
 Sometimes you may expect duplicate values in a column, and sometimes they may come as a surprise. General Rule: always know what each row represents in your data and what should be unique values.
+
+Sometimes you'll want to return more rows than you start with, for example if you were matching census divisions to states in order to aggregate the total land area.
+
+```{r include=FALSE}
+regions_divisions <- state.region %>%  as.data.frame %>% 
+  mutate(division = state.division) %>% 
+  distinct()
+names(regions_divisions) <- c("region", "division")
+
+state_area <- data.frame(name = state.name, division = state.division, area = state.area)
+
+```
+
+```{r}
+regions_divisions #crosswalk between regions and divisions
+
+state_area #this doesn't have the region included! oh no!
+
+regions_states <- left_join(regions_divisions, state_area, by = "division")
+
+regions_states #the join matches state to region and lets us summarize
+
+regions_states %>% 
+  group_by(region) %>% 
+  summarize(region_area = sum(area))
+```

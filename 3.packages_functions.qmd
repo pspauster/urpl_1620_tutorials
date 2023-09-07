@@ -21,14 +21,16 @@ Base R has a number of functions, packages, and data already installed, which we
 Take the iris dataset for example, which we can access by simply typing `iris`
 
 ```{r}
-iris
+head(iris) #head just limits the output to the first few rows of a dataset. put "iris" into your console to see the whole dataset
 ```
 
 To get started with R, we need to install packages beyond the preinstalled.
 
 We install packages with a **console** command, using a function called `install.packages()`. We can get our first, and most crucial package, the tidyverse, using this function. Copy this into your console. Make sure to put the package name in quotes.
 
-![](images/install_tidyverse.png)
+```{r}
+#install.packages("tidyverse")
+```
 
 We can install multiple packages at once by putting them into a **list** (also called a **vector**), like so. More on lists later.
 
@@ -48,7 +50,7 @@ Each function has a **name** and **arguments**. The **name** of a function tells
 
 You can look up any R function by typing the function name into the console, preceded by a `?`.
 
-```{r}
+```{r message = F}
 ?install.packages()
 ```
 

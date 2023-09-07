@@ -17,7 +17,7 @@ editor: visual
 
 Mutate is an incredibly powerful tool to create new columns and new variables.
 
-```{r}
+```{r include = F}
 library(tidyverse)
 library(janitor)
 ?mutate()
@@ -25,7 +25,7 @@ library(janitor)
 
 Let's grab our code to read in the clean dataframe
 
-```{r}
+```{r message = F}
 fhv_clean <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv") %>% 
   clean_names() %>% 
   rename(hybrid = veh)
@@ -83,8 +83,7 @@ Use `&` and `|` for **and** and **or** logical expressions with multiple conditi
 
 ```{r}
 fhv_blackcar %>% 
-  count(ride_type)
-#now we have four categories!
+  count(ride_type)#now we have four categories!
 ```
 
 ## Normalizing with Mutate

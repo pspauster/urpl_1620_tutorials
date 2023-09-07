@@ -1,5 +1,5 @@
 ---
-title: "11. Working with Dates"
+title: "12. Working with Dates"
 author: "Patrick Spauster"
 format:
   html:
@@ -50,11 +50,6 @@ filmpermits_clean <- filmpermits %>%
                      category == 'Commerical' ~ 'Commercial',
                      TRUE ~ 'Other')) 
 
-filmpermits_grouped <- filmpermits_clean %>%
-  group_by(type) %>% 
-  summarize(num_permits = n()) %>% # n() is a count of the records
-  arrange(desc(num_permits)) %>%
-  mutate(share = num_permits / sum(num_permits))
 ```
 
 ## Working with dates

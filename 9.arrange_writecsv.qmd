@@ -23,7 +23,7 @@ Writing data will let you take data out of R and use it other places. But first 
 
 `arrange()` takes data and sorts it based on certain criteria. Like many of our basic functions, it takes a list `...` of inputs to sort on. Let's take a look at an example of something we summarized.
 
-```{r}
+```{r include = F}
 library(tidyverse)
 library(janitor)
 
@@ -32,7 +32,7 @@ library(janitor)
 
 Let's grab our code to read in the clean dataframe again. This time I'm just going to use a big pipe to go right to the summary.
 
-```{r}
+```{r message = F}
 library(tidyverse)
 library(janitor)
 
@@ -66,6 +66,8 @@ That puts all the oldest car on top and the newest car on bottom
 ```{r}
 fhv_arranged <- fhv_summary %>% 
   arrange(desc(average_year))
+
+fhv_arranged
 ```
 
 Arrange also works with multiple variables - the variable listed second breaks ties - and within groups with group_by.

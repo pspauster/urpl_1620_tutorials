@@ -19,7 +19,7 @@ Data for ggplot needs to be in "long" format, meaning that all the **values** ne
 
 Let's use that rent stabilization data to create a plot. In this case the data is wide by year, meaning there is a column for each year with different values. We want a dataset where each year has its own row - where each row is a year-building combination - that we can plot.
 
-```{r}
+```{r message = F, warning = F}
 library(tidyverse)
 
 rent_stab_long <- read_csv("https://taxbillsnyc.s3.amazonaws.com/joined.csv") %>% 
@@ -47,7 +47,7 @@ After that, ggplot has a ton of options to specify the labels, scales, axes, the
 
 Line charts are often a good fit for time-series data. Let's summarize the long data by year and borough and count the number of units.
 
-```{r}
+```{r message = F}
 
 rs_long_manhattan_summary <- rent_stab_long %>% 
   filter(borough %in% c("MN","BK") # Filter only Manhattan and Brooklyn values
@@ -95,7 +95,7 @@ Let's make some bar charts out of the table of \# of children by the languages t
 
 We'll learn how we pulled this data in an upcoming lesson, but for now just install tidycensus and run this.
 
-```{r}
+```{r message = F}
 library(tidycensus)
 library(tidyverse)
 library(janitor)
@@ -126,6 +126,20 @@ langs_by_boro <- get_acs(
       NAME == "Richmond County, New York"
   ) %>%
   clean_names()
+
+langs_by_boro_for_graphing <- langs_by_boro %>%
+  mutate(
+    labels = # Add a new column with neat category labels
+      case_when(
+        variable == 'englishkids' ~ 'English',
+        variable == 'spanishkids' ~ 'Spanish',
+        variable == 'indoeurkids' ~ 'Indo-European',
+        variable == 'apikids' ~ 'Asian & Pacific Islander',
+        variable == 'otherkids' ~ 'Other Languages'
+      ),
+    labels = fct_reorder(labels, estimate)
+  ) %>% # Overwrite the variable column of langs_by_boro with a function that tells R to order the variable column by the estimate column when it gets plotted (like a sort). If I wanted it ordered in the other direction I would put estimate inside of desc().
+  filter(variable != 'totalkids')
 ```
 
 Produce a horizontal bar chart
@@ -150,11 +164,21 @@ barchart <- ggplot(langs_by_boro_for_graphing) +
 barchart
 ```
 
-Now let's facet it by borough
+Now let's facet it by borough. Faceting creates separate charts based on one identifying variable, in this case the borough name.
 
-```{r}
+```{r fig.height=6}
 barchart +
   facet_wrap( ~ name, ncol = 1)
+```
+
+## Saving plots
+
+Save your ggplots and specify the size and file type with `ggsave`
+
+```{r, message = F}
+ggsave("language_by_boro_faceted.png") #ggsave defaults to the last plot you ran
+
+ggsave(filename = "language_by_boro.png", plot = barchart) #you can also assign the plot and specify what to save
 ```
 
 This [guide from the Urban Institute](https://urbaninstitute.github.io/r-at-urban/graphics-guide.html) has a number of helpful tutorials for how to create a wide number of graphs with ggplot.

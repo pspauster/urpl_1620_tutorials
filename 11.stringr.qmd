@@ -1,5 +1,5 @@
 ---
-title: "10. Working with Strings"
+title: "11. Working with Strings"
 author: "Patrick Spauster"
 format:
   html:
@@ -15,67 +15,84 @@ editor: visual
 ```
 ## What is a string?
 
-Often, we will want to take data that we clean, mutate, summarize, filter, or select with, and output it for use in another software. Think about how you might want to process a million-row data set to get some summary statistics, then create a nice table in excel. Or take some data that you need to make a chart or graphic, and export it so that you can read it into DataWrapper or some other visualization tool. Maybe you need to send your boss a list of items that are buried in a big R dataset.
+Strings are groups of characters. They can form words, sentences, addresses, categories, or represent other data. Working with strings is going to be essential to cleaning data. Often times we get string and character data that is manually inputted and messy. We can use string modifiers to clean it up. Think of address data for example. What if addresses are misspelled or inconsistent in how they refer to street names?
 
 In this lesson we'll learn a number of useful functions for manipulating and rewriting strings, using some base R, tidyverse, and a package called stringr.
 
 ## Separate & Paste
 
-`arrange()` takes data and sorts it based on certain criteria. Like many of our basic functions, it takes a list `...` of inputs to sort on. Let's take a look at an example of something we summarized.
+Let's read in a clean dataframe for film permits from the [open data portal](https://data.cityofnewyork.us/City-Government/Film-Permits/tg4x-b46p).
 
-```{r}
-
-```
-
-Let's grab our code to read in the clean dataframe again. This time I'm just going to use a big pipe to go right to the summary.
-
-```{r}
+```{r message = F}
 library(tidyverse)
 library(janitor)
 
-fhv_summary <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv") %>% 
-  clean_names() %>% 
-  rename(hybrid = veh) %>% 
-  mutate(
-    ride_type = case_when(
-      base_name == "UBER USA, LLC" & base_type == "BLACK-CAR" ~ "BLACK CAR RIDESHARE",
-      base_name != "UBER USA, LLC" & base_type == "BLACK-CAR" ~ "BLACK CAR NON-RIDESHARE",
-      TRUE ~ base_type #if it doesn't meet either condition, return the base_type
-    )) %>% 
-  group_by(ride_type) %>% #group by the variable we just created!
-  summarize(no_cars = n(),
-            average_year = mean(vehicle_year, na.rm = T))
-
-fhv_summary
+filmpermits <- read_csv("Film_Permits.csv", 
+                        col_types = cols(EventID = col_character())) %>%
+  clean_names()
 ```
 
-Now Let's say we wanted to sort this list by average oldest car to newest car.
+We can use `separate()` to split up long string columns and `paste()` to concatenate strings into new columns
+
+```{r warning=F}
+street_closures <- filmpermits %>% 
+  separate_rows(parking_held, sep = ",") %>% #this makes a new row for each street closure listed
+  separate(parking_held, into = c("street", "cross_street1", "cross_street2"), sep = "between|and") %>% #this separates the string into three different columns
+  mutate_at(.vars = c("street", "cross_street1", "cross_street2", "borough", "country"), .funs = ~tolower(.)) %>% # a .fns argument takes a function like tolower, which makes all the characters lowercase. start the function with ~ and subsitite . for the argument of the nested function
+  mutate(intersection1_address = paste(street, "and", cross_street1, borough, country), #paste concatenates strings to create, in this case an address of an intersection
+         intersection2_address = paste(street, "and", cross_street1, borough, country))
+```
+
+## StringR
+
+StringR is a package with a number of handy functions. All of them take a string as the first argument, and return the result of your inquiry. There's tons of possibilities and uses, here's few examples.
+
+![](images/stringr.png)
+
+![](images/stringr2.png)
+
+The spacing for the strings in the street columns is weird, I can use `str_trim` to get rid of white space
+
+```{r message = F}
+library(stringr)
+
+street_closures %>% head() %>% .$street #here I am just printing the first 10 rows of the variable street
+
+street_closures %>% 
+  mutate(street = str_trim(street, side = "both")) %>% 
+  head() %>% #here I am just printing the first 10 rows of the variable street that I overwrote
+  .$street
+```
+
+Or perhaps I want to know the total closures on 14th street, but I don't care if it's West 14th street or East 14th street, or I'm worried that sometimes it's in the data as "street" and other times as "st" - making it hard to do an exact match. `str_detect` finds matches of certain patterns. We can pair it with conditional logic to create a variable that flags if the closure was on the street we care about.
 
 ```{r}
-fhv_summary %>% 
-  arrange(average_year)
+street_closures %>% 
+  filter(borough == "manhattan") %>% 
+  mutate(fourteenth_street = if_else(str_detect(street, "14 |14th"), T, F)) %>% #use these with conditional logic!
+  count(fourteenth_street) #count how many times!
+
+
+  
 ```
 
-That puts all the oldest car on top and the newest car on bottom
-
-`desc` is a function that transforms a vector to descending order, and is helpful to use **nested** inside arrange.
+Or use stringr to change data entry inconsistencies!
 
 ```{r}
-fhv_arranged <- fhv_summary %>% 
-  arrange(desc(average_year))
+street_replace <- street_closures %>% 
+  mutate(street = str_replace(street, "14 ", "14th")) 
 ```
 
-Arrange also works with multiple variables - the variable listed second breaks ties - and within groups with group_by.
+Writing **regular expressions,** the complex notation you can use to return parts of strings is a great example of something you can use AI for!
 
-## Write out data
-
-Now that we have a nice table arranged the way we want, we can output it for use in another software.
-
-`write_csv()` is a twin function to `read_csv()`. It takes the name of an object and then a filepath to write to.
+![](images/regex_ai.JPG)
 
 ```{r}
-fhv_arranged %>% 
-  write_csv(file = "ride_type_by_average_year.csv")
-```
+# Define the regular expression pattern
+pattern <- "^(.*?)(?=\\b(?:street|boulevard|avenue|st|blvd|ave|rd|road|circle|cr)\\b)"
 
-Since we used the **local path** this shows up right in our project directory. We will be writing out to `.csv`s mostly, but there are companion functions to write out other types of data, like excel spreadsheets.
+# Use str_match to extract the matched part
+str_extract(head(street_closures)$street, pattern)
+
+
+```

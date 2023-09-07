@@ -36,20 +36,23 @@ Now, save a copy of `For_Hire_Vehicles__FHV__-_Active.csv` to your project folde
 
 (remember to load the tidyverse first! If you get an error like "the function `function_name` can't be found", you probably forgot to load the proper package with `library()`!)
 
-```{r}
+```{r message = F}
 library(tidyverse)
+```
+
+```{r}
 read_csv("For_Hire_Vehicles__FHV__-_Active.csv")
 ```
 
 Let's take a closer look at what `read_csv()` is doing.
 
-```{r}
+```{r message=F}
 ?read_csv()
 ```
 
 The function has one required argument, "file" and several optional arguments that we can change. The "file" argument asks for a path to a file as a "string" - remember if you see the words "character" or "string" think **quotes**. So let's feed read_csv() the name of the file we want to read in in quotes, and **assign** it to something using our assignment operator `<-` so we can further modify it.
 
-```{r}
+```{r message = F}
 fhv <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv")
 ```
 
@@ -71,9 +74,11 @@ is.data.frame(fhv)
 
 **Numbers, characters, and dates**, are three fundamental types of data that we will be using in R. We can use some of the other arguments of `read_csv()` to make sure that we get columns in the correct format. For example, it missed that `Expiration Date` should be a **date.**
 
-```{r}
+When you start getting long arguments, and nested functions, it can be helpful to enter between each argument.
+
+```{r message = F}
 fhv <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv",
-                               col_types = cols(`Expiration Date` = col_datetime(format = '%m/%d/%Y'))
+                col_types = cols(`Expiration Date` = col_datetime(format = '%m/%d/%Y'))
                                )
 #check out the documentation of read_csv and col_datetime to get the right syntax for your column
 #note that when there are spaces in variable names in our data we need to refer to the name of the column in backticks `` we will fix this in a later lesson.
@@ -96,10 +101,11 @@ A **list** is a group of values put together, separated by commas. In R the **sy
 
 ```{r}
 my_character_vector <- c("Patrick", "Lucy", "Henry", "Ceinna")
-my_numeric_vector <- c(1, 3, 5, 7, 9, 11, 13, 17)
-
 my_character_vector
+
+my_numeric_vector <- c(1, 3, 5, 7, 9, 11, 13, 17)
 my_numeric_vector
+
 ```
 
 Vectors can be named or unnamed. Named vectors are pairs of **keys** (names) and **values** separated by `=`.

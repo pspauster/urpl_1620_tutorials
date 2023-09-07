@@ -35,7 +35,7 @@ The dataset we want is [here](https://taxbillsnyc.s3.amazonaws.com/joined.csv).
 
 You can save this file in your project folder and read it in how we're used to. Or we can read it directly into our environment, a cool feature of read_csv() that lets you pull directly from a weblink.
 
-```{r}
+```{r message = F}
 library(tidyverse)
 rent_stab_raw <- read_csv("https://taxbillsnyc.s3.amazonaws.com/joined.csv")
 ```

@@ -23,7 +23,7 @@ Summarizing allows us to compare means, medians, or top values based on differen
 
 Summarize takes a data frame and a `...` list of new variables to generate.
 
-```{r}
+```{r include = F}
 library(tidyverse)
 library(janitor)
 ?summarize()
@@ -31,13 +31,13 @@ library(janitor)
 
 Let's grab our code to read in the clean dataframe again.
 
-```{r}
+```{r message = F}
 fhv_clean <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv") %>% 
   clean_names() %>% 
   rename(hybrid = veh)
 ```
 
-*Note - `summarize` is different than `summary` a helpful function that provides the basic stats of all variables* *- a good first step when looking at a new data set*
+*Note - `summarize` is different than `summary` - a helpful function that provides the basic stats of all variables* *- a good first step when looking at a new data set*
 
 ```{r}
 summary(fhv_clean)
@@ -130,7 +130,47 @@ fhv_clean %>%
     condition = vehicle_year > mean_by_type,
     true = "above mean",
     false = "below mean"
-  ))
+  )) %>% 
+  count(above_below_mean)
 
 #this creates a variable to show if this car is above or below the average year for the group
+```
+
+## Normalizing with Groups
+
+Group by, summarize, and mutate are crucial when comparing geographic areas. You can use group_by to get the proportion within a certain group.
+
+Here's a full example of how to normalize within a group, using the data on new york housing authority apartments by borough. We want to find the proportion of NYCHA apartments that are Section 8 (vouchers) in each borough.
+
+```{r message=F}
+nycha <- read_csv('https://data.cityofnewyork.us/resource/evjd-dqpz.csv') %>%
+  clean_names()
+
+# Filter for developments that contain any Section 8 transition apartments
+section8devs <- nycha %>%
+  filter(number_of_section_8_transition_apartments > 0)
+
+# Get some stats on number of section 8 apts across all developments by borough
+section8devs_by_boro <- section8devs %>%
+  group_by(borough) %>%
+  summarize(section8apts = sum(number_of_section_8_transition_apartments),
+            totalapts = sum(total_number_of_apartments),
+            median_section8apts = median(number_of_section_8_transition_apartments),
+            avg_section8apts = mean(number_of_section_8_transition_apartments)) 
+
+# Is this all the info we need? What's missing? (Normalization)
+
+# Section 8 units as a share of all units in mixed finance developments, by borough
+section8devs_grouped <- section8devs %>%
+  group_by(borough) %>%
+  summarize(total_s8_apts = sum(number_of_section_8_transition_apartments),
+            total_apts = sum(total_number_of_apartments))%>%
+  mutate(s8_share = total_s8_apts / total_apts)
+
+# Section 8 units as a share of all NYCHA units, by borough
+nycha_grouped <- nycha %>%
+  group_by(borough) %>%
+  summarize(total_s8_apts = sum(number_of_section_8_transition_apartments, na.rm=TRUE),
+            total_apts = sum(total_number_of_apartments, na.rm=TRUE))%>%
+  mutate(s8_share = total_s8_apts / total_apts)
 ```
