@@ -11,7 +11,7 @@ editor: visual
 ## Video Tutorial
 
 ```{=html}
-<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&playerId=kaltura_player&entry_id=1_0c9gmqct&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_9o78atzo" width="608" height="402" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="8. group by summarize" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
+<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&playerId=kaltura_player&entry_id=1_1z2obv8k&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_ccob1jc3" width="608" height="402" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="14. ggplot" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 ```
 ## Preparing Data for ggplot
 
@@ -41,7 +41,7 @@ Typically, ggplot will start with `ggplot(dataframe) +` a geometric function lik
 
 ![](images/ggcheatsheet2.jpeg)
 
-After that, ggplot has a ton of options to specify the labels, scales, axes, themes, legends,and more. It's best shown through examples
+ggplot has endless options to specify the colors labels, scales, axes, themes, legends,and more. Once you know how to use the functions, you can apply them to style your work according to data viz best practices. Building a ggplot best shown through examples
 
 ## Sample Line Chart
 
@@ -96,36 +96,8 @@ Let's make some bar charts out of the table of \# of children by the languages t
 We'll learn how we pulled this data in an upcoming lesson, but for now just install tidycensus and run this.
 
 ```{r message = F}
-library(tidycensus)
-library(tidyverse)
-library(janitor)
 
-# Request your own API key here: https://api.census.gov/data/key_signup.html
-# Install the API key:
-census_api_key("8524147f6edf7fe4b7c85681397fe5acd6993d62")
-
-langs_by_boro <- get_acs(
-  geography = "county",
-  variables = c(
-    totalkids = "B16007_002",
-    englishkids = "B16007_003",
-    spanishkids = "B16007_004",
-    indoeurkids = "B16007_005",
-    apikids = "B16007_006",
-    otherkids = "B16007_007"
-  ),
-  state =  "New York",
-  year = 2020,
-  survey = "acs5"
-) %>%
-  filter(
-    NAME == "Kings County, New York" |
-      NAME == "Queens County, New York" |
-      NAME == "New York County, New York" |
-      NAME == "Bronx County, New York" |
-      NAME == "Richmond County, New York"
-  ) %>%
-  clean_names()
+langs_by_boro <- read_csv("langs_by_boro.csv")
 
 langs_by_boro_for_graphing <- langs_by_boro %>%
   mutate(
@@ -176,9 +148,9 @@ barchart +
 Save your ggplots and specify the size and file type with `ggsave`
 
 ```{r, message = F}
-ggsave("language_by_boro_faceted.png") #ggsave defaults to the last plot you ran
+ggsave("output/language_by_boro_faceted.png") #ggsave defaults to the last plot you ran
 
-ggsave(filename = "language_by_boro.png", plot = barchart) #you can also assign the plot and specify what to save
+ggsave(filename = "output/language_by_boro.png", plot = barchart) #you can also assign the plot and specify what to save
 ```
 
 This [guide from the Urban Institute](https://urbaninstitute.github.io/r-at-urban/graphics-guide.html) has a number of helpful tutorials for how to create a wide number of graphs with ggplot.

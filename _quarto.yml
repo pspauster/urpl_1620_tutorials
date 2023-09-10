@@ -31,3 +31,6 @@ website:
           - 14.ggplot.qmd
       - section: "Advanced"
         contents:
+          - 15.apis.qmd
+          - 16.tidycensus.qmd
+          - 17.sf.qmd

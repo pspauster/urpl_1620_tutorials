@@ -8,7 +8,7 @@
 
 <meta name="author" content="Patrick Spauster">
 
-<title>Learning R - 14. ggplot</title>
+<title>Learning R - 15. APIs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10.joins.html">Intermediates</a></li><li class="breadcrumb-item"><a href="./14.ggplot.html">14. ggplot</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./15.apis.html">Advanced</a></li><li class="breadcrumb-item"><a href="./15.apis.html">15. APIs</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14.ggplot.html" class="sidebar-item-text sidebar-link active">
+  <a href="./14.ggplot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">14. ggplot</span></a>
   </div>
 </li>
@@ -265,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15.apis.html" class="sidebar-item-text sidebar-link">
+  <a href="./15.apis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">15. APIs</span></a>
   </div>
 </li>
@@ -296,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">14. ggplot</h1>
+<h1 class="title">15. APIs</h1>
 </div>
 
 
@@ -319,140 +319,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="video-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
-<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_1z2obv8k&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_ccob1jc3" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="14. ggplot" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
+
 </section>
-<section id="preparing-data-for-ggplot" class="level2">
-<h2 class="anchored" data-anchor-id="preparing-data-for-ggplot">Preparing Data for ggplot</h2>
-<p>Data for ggplot needs to be in “long” format, meaning that all the <strong>values</strong> need to be in the same column and all the variables need to be in another column.</p>
-<p>Let’s use that rent stabilization data to create a plot. In this case the data is wide by year, meaning there is a column for each year with different values. We want a dataset where each year has its own row - where each row is a year-building combination - that we can plot.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>rent_stab_long <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://taxbillsnyc.s3.amazonaws.com/joined.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(borough, ucbbl, <span class="fu">ends_with</span>(<span class="st">"uc"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ends_with</span>(<span class="st">"uc"</span>),  <span class="co"># The multiple column names we want to mush into one column</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>, <span class="co"># The title for the new column of names we're generating</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"units"</span> <span class="co"># The title for the new column of values we're generating</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="writing-api-calls-to-nyc-open-data" class="level2">
+<h2 class="anchored" data-anchor-id="writing-api-calls-to-nyc-open-data">Writing API Calls to NYC Open Data</h2>
+<p>When downloading data from <a href="https://opendata.cityofnewyork.us/">NYC Open Data</a>, you can use a special set of commands to filter and manipulate the data before downloading it to your local computer. These commands, unlike ones you’d write in an R script, are actually written <strong>in the URL itself</strong>. This kind of command is called an “API Call”— API stands for “Application programming interface” and is just a special system and language for users to communicate with the NYC Open Data servers. API Calls to NYC Open Data use a special syntax, very similar to a popular language called SQL or Structured Query Language.</p>
+<p>Using API Calls is particularly useful when you’re dealing with a **huge dataset** that would otherwise be a hassle to download in full. For this example, we’re going to use the <a href="https://data.cityofnewyork.us/Housing-Development/Housing-Maintenance-Code-Violations/wvxf-dwi5">HPD’s Housing Maintinance Code Violations</a> dataset on NYC Open Data, which has ~7 million rows.</p>
+<section id="grabbing-the-api-endpoint" class="level3">
+<h3 class="anchored" data-anchor-id="grabbing-the-api-endpoint">Grabbing the “API Endpoint”</h3>
+<p>Let’s first grab the beginning part of the URL that we’re going to use to write our API Call. This is called the “API Endpoint” and can be found by clicking the “API” tab on the NYC Open Data page for the dataset you’re working with.</p>
+<p>Before copying the URL, make sure you set the data format toggle from “JSON” to “CSV”, as that is the format we’re going to want our data in.</p>
+<p>For our example, our endpoint looks like this:</p>
+<p><a href="https://data.cityofnewyork.us/resource/wvxf-dwi5.csv"><code>https://data.cityofnewyork.us/resource/wvxf-dwi5.csv</code></a></p>
 </section>
-<section id="ggplot-syntax" class="level2">
-<h2 class="anchored" data-anchor-id="ggplot-syntax">ggplot syntax</h2>
-<p>ggplots use similar syntax to regular R operations - they are groups of functions beginning with <code>ggplot()</code>. Instead of the pipe, ggplot uses <code>+</code> between different functions to build layers on top of each other.</p>
-<p>Typically, ggplot will start with <code>ggplot(dataframe) +</code> a geometric function like <code>geom_col()</code> and an aesthetics or <code>aes</code> argument that indicates which variables to plot.</p>
-<p><img src="images/ggcheatsheet1.jpeg" class="img-fluid"></p>
-<p><img src="images/ggcheatsheet2.jpeg" class="img-fluid"></p>
-<p>ggplot has endless options to specify the colors labels, scales, axes, themes, legends,and more. Once you know how to use the functions, you can apply them to style your work according to data viz best practices. Building a ggplot best shown through examples</p>
+<section id="writing-up-your-api-call" class="level3">
+<h3 class="anchored" data-anchor-id="writing-up-your-api-call">Writing up your API Call</h3>
+<p>Copy the API Endpoint into a text editor (I prefer <a href="https://www.sublimetext.com/">Sublime Text</a> or <a href="https://code.visualstudio.com/">Visual Studio Code</a>— others like Word or Pages have a tendency to “auto-correct” certain letters and syntax which may mess you up).</p>
+<p>Now, to initiate our query, we are going to add <code>?$query=</code> to the end of our URL:</p>
+<pre><code>https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=</code></pre>
 </section>
-<section id="sample-line-chart" class="level2">
-<h2 class="anchored" data-anchor-id="sample-line-chart">Sample Line Chart</h2>
-<p>Line charts are often a good fit for time-series data. Let’s summarize the long data by year and borough and count the number of units.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rs_long_manhattan_summary <span class="ot">&lt;-</span> rent_stab_long <span class="sc">%&gt;%</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(borough <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"MN"</span>,<span class="st">"BK"</span>) <span class="co"># Filter only Manhattan and Brooklyn values</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>          <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(units)) <span class="sc">%&gt;%</span> <span class="co"># Filter out null unit count values</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"uc"</span>,<span class="st">""</span>, year))) <span class="sc">%&gt;%</span> <span class="co"># Remove "uc" from year values</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, borough, units) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Grouping by 2 columns means each row will have a unique pair of the two columns' values.</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Our rows will look like: 2007 MN, 2007 BK, 2008 MN... </span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, borough) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_units =</span> <span class="fu">sum</span>(units))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now let’s plot it. We start with the data, then add aesthetics, our chart type (line), axis specifications, and labels.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rs_over_time_graph <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(rs_long_manhattan_summary) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Note these arguments inside 'geom_line' :</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>total_units, <span class="at">color=</span>borough)) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Restyle the Y-axis labels: </span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">300000</span>),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">unit_format</span>(<span class="at">scale =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">1000</span>, <span class="at">unit=</span><span class="st">"K"</span>)) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2007</span>, <span class="dv">2017</span>, <span class="at">by =</span> <span class="dv">1</span>))<span class="sc">+</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Restyle the Legend: </span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">"Borough"</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks=</span><span class="fu">c</span>(<span class="st">"BK"</span>, <span class="st">"MN"</span>),</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Brooklyn"</span>, <span class="st">"Manhattan"</span>)) <span class="sc">+</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Total Rent Stabilized Units over Time"</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Manhattan and Brooklyn, 2007 to 2017"</span>,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total Rent Stabilized Units"</span>,</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: taxbills.nyc"</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>rs_over_time_graph</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="14.ggplot_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
-</div>
+<section id="adding-your-query" class="level3">
+<h3 class="anchored" data-anchor-id="adding-your-query">Adding your Query</h3>
+<p>At the end our URL, we can now add some special code to filter the violations data for our download.</p>
+<p>To do this, we’re going to want to first take a look at the <a href="https://dev.socrata.com/foundry/data.cityofnewyork.us/wvxf-dwi5">API Documentation</a> for our dataset of choice, which can be found by clicking on the “API” tab again on the dataset’s Open Data page and clicking the “API Docs” button. Specifically, this documentation gives us a run down of all of the columns in the data and how we can reference them by name in our API call.</p>
+<p>For this example, we want to look at the most serious (class C) HPD Violations within the past month. So, we’re going to write out our query as such:</p>
+<p><strong><code>SELECT *</code></strong> – this selects all columns of the data</p>
+<p><strong><code>WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000' AND class='C'</code></strong> – this filters only rows where the <code>inspectiondate</code> value is between June 1st and Aug 31st, and the class of the violation is <code>'C'</code>. The <code>AND</code> operator here allows us to include multiple filtering conditions at once, and could even include conditions on other columns. Note the special format that the dates come in… we were able to spot this by looking at the <a href="https://dev.socrata.com/foundry/data.cityofnewyork.us/wvxf-dwi5">Documentation</a>.</p>
+<p><strong><code>LIMIT 100000</code></strong> — this sets the maximum number of downloadable rows to 100,000. It’s good practice to set a limit here so we don’t accidentially try downloading millions of rows at once. <strong>Note: if you don’t specify, the default limit is just 1,000 rows!</strong></p>
+<p>You can find more information on the types of queries you can write on the <a href="https://dev.socrata.com/docs/queries/query.html">Socrata Developers Portal</a> (Socrata is the special “flavor” of API that NYC Open Data uses).</p>
+</section>
+<section id="running-our-api-call" class="level3">
+<h3 class="anchored" data-anchor-id="running-our-api-call">Running our API Call</h3>
+<p>We add the above pieces in that order to our URL:</p>
+<p><code>https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000' AND class='C' LIMIT 100000</code></p>
+<p>Now, you can copy this full url into your browser and press ENTER— your special download should begin!</p>
+</section>
+<section id="importing-your-data-directly-into-r-studio" class="level3">
+<h3 class="anchored" data-anchor-id="importing-your-data-directly-into-r-studio">Importing your data directly into R Studio</h3>
+<p>Once you have your data downloaded via API Call, you can feel free to import it into your R project like any other CSV. If you want to use the URL you created to import it directly, you can do that as well:</p>
+<div class="cell" data-paged.print="false">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># R doesn't like weird characters like spaces and carats, so we need the `URLencode` function here to encode those symbols properly</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>url_hpd_viol <span class="ot">&lt;-</span> <span class="fu">URLencode</span>(<span class="st">"https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000' AND class='C' LIMIT 100000"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, we can use our formatted url inside our `read_csv` function</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>summer_hpd_viols <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_hpd_viol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="sample-bar-chart-faceting" class="level2">
-<h2 class="anchored" data-anchor-id="sample-bar-chart-faceting">Sample Bar Chart + Faceting</h2>
-<p>Let’s make some bar charts out of the table of # of children by the languages they speak at home by borough.</p>
-<p>We’ll learn how we pulled this data in an upcoming lesson, but for now just install tidycensus and run this.</p>
+<section id="note-always-check-the-size-of-your-output" class="level3">
+<h3 class="anchored" data-anchor-id="note-always-check-the-size-of-your-output">Note: Always check the size of your output</h3>
+<p>Sometimes, the limit on your API Call may make your data export smaller than your desired outcome, and you won’t necessarily be notified. Therefore, it is always very important to <strong>check the number of rows</strong> of your data from your API Call before proceeding with analysis— if the number of rows matches the exact number of your limit (or is 1000, the default limit), it’s very likely that your data got cut off and you don’t have the complete set of data that you wanted.</p>
+<p>The below example illustrates this problem and shows how to diagnose. For the example, imagine that we didn’t include a <code>LIMIT</code> clause in our API Call query:</p>
+<p><code>https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000'</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>langs_by_boro <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"langs_by_boro.csv"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>langs_by_boro_for_graphing <span class="ot">&lt;-</span> langs_by_boro <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="co"># Add a new column with neat category labels</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        variable <span class="sc">==</span> <span class="st">'englishkids'</span> <span class="sc">~</span> <span class="st">'English'</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        variable <span class="sc">==</span> <span class="st">'spanishkids'</span> <span class="sc">~</span> <span class="st">'Spanish'</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        variable <span class="sc">==</span> <span class="st">'indoeurkids'</span> <span class="sc">~</span> <span class="st">'Indo-European'</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        variable <span class="sc">==</span> <span class="st">'apikids'</span> <span class="sc">~</span> <span class="st">'Asian &amp; Pacific Islander'</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        variable <span class="sc">==</span> <span class="st">'otherkids'</span> <span class="sc">~</span> <span class="st">'Other Languages'</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">fct_reorder</span>(labels, estimate)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="co"># Overwrite the variable column of langs_by_boro with a function that tells R to order the variable column by the estimate column when it gets plotted (like a sort). If I wanted it ordered in the other direction I would put estimate inside of desc().</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable <span class="sc">!=</span> <span class="st">'totalkids'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url_viol_no_limit <span class="ot">=</span> <span class="fu">URLencode</span>(<span class="st">"https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000'"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>summer_violations_cut_off <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_viol_no_limit)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the head() function won't actually reveal the cut-off problem:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(summer_violations_cut_off)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 41
+  violationid buildingid registrationid boroid boro   housenumber lowhousenumber
+        &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;         
+1    14369016     326090         374306      3 BROOK~ 735         735           
+2    14368090     374043         316185      3 BROOK~ 565         565           
+3    14372713     123595         219960      2 BRONX  4639        4639          
+4    14372260     167073         320072      3 BROOK~ 416         416           
+5    14372287     167073         320072      3 BROOK~ 416         416           
+6    14338217      38732         122934      1 MANHA~ 414         414           
+# ... with 34 more variables: highhousenumber &lt;chr&gt;, streetname &lt;chr&gt;,
+#   streetcode &lt;dbl&gt;, zip &lt;dbl&gt;, apartment &lt;chr&gt;, ...</code></pre>
 </div>
-<p>Produce a horizontal bar chart</p>
+</div>
+<p>By looking at the head of your dataset, things appear to be fine. However, let’s use the <code>nrow()</code> function to get a sense of how many rows we have:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note - this builds progressively; you can run all the code before any + sign as a step toward the final result.</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>barchart <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(langs_by_boro_for_graphing) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> labels) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span> <span class="co"># format count labels with commas and thousands</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'What languages do NYC kids speak at home?'</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">'Number of children ages 5-17 by the language spoken at home'</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Census American Community Survey 2020 5-Year Estimates, Table B16007"</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>barchart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="14.ggplot_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(summer_violations_cut_off)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1000</code></pre>
 </div>
 </div>
-<p>Now let’s facet it by borough. Faceting creates separate charts based on one identifying variable, in this case the borough name.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>barchart <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> name, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="14.ggplot_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="saving-plots" class="level2">
-<h2 class="anchored" data-anchor-id="saving-plots">Saving plots</h2>
-<p>Save your ggplots and specify the size and file type with <code>ggsave</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"output/language_by_boro_faceted.png"</span>) <span class="co">#ggsave defaults to the last plot you ran</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"output/language_by_boro.png"</span>, <span class="at">plot =</span> barchart) <span class="co">#you can also assign the plot and specify what to save</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This <a href="https://urbaninstitute.github.io/r-at-urban/graphics-guide.html">guide from the Urban Institute</a> has a number of helpful tutorials for how to create a wide number of graphs with ggplot.</p>
+<p>Given that our data output is 1,000 rows, which is exactly the default limit for API Calls to NYC Open Data, it’s very likely that our data got cut off and there are more rows within our filtering conditions that we want.</p>
+<p>Our next step would be to increase our LIMIT in our API CAll until get a number of outputs rows below the limit value. In our first example, you can see we’ve done just that— our LIMIT was set to 100,000 rows and we only received around 20K or so rows. Safe to say we got all of the rows that fit our filtering criteria…</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

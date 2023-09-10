@@ -1,0 +1,31 @@
+geoid,name,variable,estimate,moe
+36005,"Bronx County, New York",totalkids,252002,54
+36005,"Bronx County, New York",englishkids,117489,2617
+36005,"Bronx County, New York",spanishkids,110033,2235
+36005,"Bronx County, New York",indoeurkids,9842,981
+36005,"Bronx County, New York",apikids,2008,593
+36005,"Bronx County, New York",otherkids,12630,1378
+36047,"Kings County, New York",totalkids,400780,100
+36047,"Kings County, New York",englishkids,222532,3391
+36047,"Kings County, New York",spanishkids,58923,1795
+36047,"Kings County, New York",indoeurkids,76422,2831
+36047,"Kings County, New York",apikids,27477,1131
+36047,"Kings County, New York",otherkids,15426,1506
+36061,"New York County, New York",totalkids,156214,61
+36061,"New York County, New York",englishkids,90065,1992
+36061,"New York County, New York",spanishkids,41380,1564
+36061,"New York County, New York",indoeurkids,11467,1187
+36061,"New York County, New York",apikids,8510,722
+36061,"New York County, New York",otherkids,4792,982
+36081,"Queens County, New York",totalkids,316886,108
+36081,"Queens County, New York",englishkids,156744,2354
+36081,"Queens County, New York",spanishkids,79475,1550
+36081,"Queens County, New York",indoeurkids,40876,1833
+36081,"Queens County, New York",apikids,33186,1315
+36081,"Queens County, New York",otherkids,6605,1246
+36085,"Richmond County, New York",totalkids,76828,46
+36085,"Richmond County, New York",englishkids,55447,1356
+36085,"Richmond County, New York",spanishkids,8314,849
+36085,"Richmond County, New York",indoeurkids,6432,832
+36085,"Richmond County, New York",apikids,3743,388
+36085,"Richmond County, New York",otherkids,2892,644

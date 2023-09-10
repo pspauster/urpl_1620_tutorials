@@ -1,0 +1,14 @@
+---
+title: "17. Spatial Features"
+author: "Patrick Spauster"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+---
+
+Video Tutorial
+
+```{=html}
+```

@@ -1,0 +1,149 @@
+---
+title: "16. Census Data with tidycensus"
+author: "Patrick Spauster"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+---
+
+## Video Tutorial
+
+```{=html}
+```
+## Intro to TidyCensus
+
+https://walker-data.com/census-r/an-introduction-to-tidycensus.html
+
+```{r warning=F, message=F}
+
+library(tidycensus)
+library(tidyverse)
+library(janitor)
+
+```
+
+Request your own API key here: https://api.census.gov/data/key_signup.html
+
+### Install the API key:
+
+```{r}
+census_api_key("8524147f6edf7fe4b7c85681397fe5acd6993d62")
+```
+
+You can use this key for practicing this demo, but please request your own for your projects and future use.
+
+When you get your own key install it, so you won't have to call this function again with `census_api_key("key", install = TRUE)`
+
+### Browse available variables:
+
+```{r}
+
+v20 <- load_variables(2020, "acs5", cache = TRUE)
+
+```
+
+AGE BY LANGUAGE SPOKEN AT HOME FOR THE POPULATION 5 YEARS AND OVER
+
+-   B16007_001 Estimate!!Total:
+
+-   B16007_002 Estimate!!Total:!!5 to 17 years:
+
+-   B16007_003 Estimate!!Total:!!5 to 17 years:!!Speak only English
+
+-   B16007_004 Estimate!!Total:!!5 to 17 years:!!Speak Spanish
+
+-   B16007_005 Estimate!!Total:!!5 to 17 years:!!Speak other Indo-European languages
+
+-   B16007_006 Estimate!!Total:!!5 to 17 years:!!Speak Asian and Pacific Island languages
+
+-   B16007_007 Estimate!!Total:!!5 to 17 years:!!Speak other languages
+
+## Pull data
+```{r}
+langs_by_puma <- get_acs(
+    geography = "public use microdata area", 
+    variables = c( totalkids = "B16007_002",
+                   englishkids = "B16007_003",
+                   spanishkids = "B16007_004",
+                   indoeurkids = "B16007_005",
+                   apikids = "B16007_006",
+                   otherkids = "B16007_007" ), 
+    state = "New York", 
+    year = 2020, survey = "acs5" ) %>% 
+  filter(str_detect(NAME, "NYC")) %>% 
+  mutate(moeshare = moe / estimate)
+```
+
+```{r}
+
+langs_by_boro <- get_acs(
+  geography = "county",
+  variables = c(
+    totalkids = "B16007_002",
+    englishkids = "B16007_003",
+    spanishkids = "B16007_004",
+    indoeurkids = "B16007_005",
+    apikids = "B16007_006",
+    otherkids = "B16007_007"
+  ),
+  state =  "New York",
+  year = 2020,
+  survey = "acs5"
+) %>%
+  filter(
+    NAME == "Kings County, New York" |
+      NAME == "Queens County, New York" |
+      NAME == "New York County, New York" |
+      NAME == "Bronx County, New York" |
+      NAME == "Richmond County, New York"
+  ) %>%
+  clean_names()
+```
+
+Write langs_by_boro as a CSV file into the same folder
+
+```{r}
+write_csv(langs_by_boro, 'langs_by_boro.csv')
+#this output might look familiar from our ggplot lesson!
+```
+
+Tidycensus also has a "wide" option to make calculating percentages, for example, easier.
+
+```{r}
+get_acs(
+  geography = "county",
+  variables = c(
+    totalkids = "B16007_002",
+    englishkids = "B16007_003",
+    spanishkids = "B16007_004",
+    indoeurkids = "B16007_005",
+    apikids = "B16007_006",
+    otherkids = "B16007_007"
+  ),
+  state =  "New York",
+  year = 2020,
+  survey = "acs5",
+  output = "wide" #look here!
+) %>%
+  filter(
+    NAME == "Kings County, New York" |
+      NAME == "Queens County, New York" |
+      NAME == "New York County, New York" |
+      NAME == "Bronx County, New York" |
+      NAME == "Richmond County, New York"
+  ) %>%
+  clean_names() %>% 
+  mutate(
+    pct_englishkids = englishkids_e / totalkids_e, #_u is for the estimate and _m is the margin or error
+    pct_spanishkids = spanishkids_e / totalkids_e,
+    pct_indoeurkids = indoeurkids_e / totalkids_e,
+    pct_aapikids = apikids_e / totalkids_e,
+    pct_otherkids = otherkids_e / totalkids_e
+  ) %>% 
+  select(name, starts_with("pct"))
+
+
+
+```

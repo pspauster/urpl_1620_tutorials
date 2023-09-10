@@ -80,7 +80,7 @@ Now that we have a nice table arranged the way we want, we can output it for use
 
 ```{r}
 fhv_arranged %>% 
-  write_csv(file = "ride_type_by_average_year.csv")
+  write_csv(file = "output/ride_type_by_average_year.csv")
 ```
 
 Since we used the **local path** this shows up right in our project directory. We will be writing out to `.csv`s mostly, but there are companion functions to write out other types of data, like excel spreadsheets.
