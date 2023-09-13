@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Patrick Spauster">
+
+<title>Learning R - 15. APIs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">15. APIs</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Learning R</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Learning R</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Getting Started</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1.installing_r.html" class="sidebar-item-text sidebar-link">1. Installing R</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2.r_projects.html" class="sidebar-item-text sidebar-link">2. Creating R Projects</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3.packages_functions.html" class="sidebar-item-text sidebar-link">3. Packages and Functions</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4.readingdata_datatypes.html" class="sidebar-item-text sidebar-link">4. Reading Data and Data Types</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Basics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5.datacleaning_pipe.html" class="sidebar-item-text sidebar-link">5. Data cleaning and the pipe</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6.select_filter.html" class="sidebar-item-text sidebar-link">6. Select and Filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7.mutate.html" class="sidebar-item-text sidebar-link">7. Mutate</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8.groupby_summarize.html" class="sidebar-item-text sidebar-link">8. Group By and Summarize</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9.arrange_writecsv.html" class="sidebar-item-text sidebar-link">9. Arrange and Write Data</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Intermediates</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10.joins.html" class="sidebar-item-text sidebar-link">10. Joins</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11.stringr.html" class="sidebar-item-text sidebar-link">10. Working with Strings</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12.lubridate.html" class="sidebar-item-text sidebar-link">12. Working with Dates</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13.pivoting.html" class="sidebar-item-text sidebar-link">13. Pivoting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14.ggplot.html" class="sidebar-item-text sidebar-link">14. ggplot</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Advanced</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15.apis.html" class="sidebar-item-text sidebar-link active">15. APIs</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16.tidycensus.html" class="sidebar-item-text sidebar-link">16. Census Data with tidycensus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17.sf.html" class="sidebar-item-text sidebar-link">17. Spatial Features</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#video-tutorial" id="toc-video-tutorial" class="nav-link active" data-scroll-target="#video-tutorial">Video Tutorial</a></li>
+  <li><a href="#writing-api-calls-to-nyc-open-data" id="toc-writing-api-calls-to-nyc-open-data" class="nav-link" data-scroll-target="#writing-api-calls-to-nyc-open-data">Writing API Calls to NYC Open Data</a>
+  <ul class="collapse">
+  <li><a href="#grabbing-the-api-endpoint" id="toc-grabbing-the-api-endpoint" class="nav-link" data-scroll-target="#grabbing-the-api-endpoint">Grabbing the “API Endpoint”</a></li>
+  <li><a href="#writing-up-your-api-call" id="toc-writing-up-your-api-call" class="nav-link" data-scroll-target="#writing-up-your-api-call">Writing up your API Call</a></li>
+  <li><a href="#adding-your-query" id="toc-adding-your-query" class="nav-link" data-scroll-target="#adding-your-query">Adding your Query</a></li>
+  <li><a href="#running-our-api-call" id="toc-running-our-api-call" class="nav-link" data-scroll-target="#running-our-api-call">Running our API Call</a></li>
+  <li><a href="#importing-your-data-directly-into-r-studio" id="toc-importing-your-data-directly-into-r-studio" class="nav-link" data-scroll-target="#importing-your-data-directly-into-r-studio">Importing your data directly into R Studio</a></li>
+  <li><a href="#note-always-check-the-size-of-your-output" id="toc-note-always-check-the-size-of-your-output" class="nav-link" data-scroll-target="#note-always-check-the-size-of-your-output">Note: Always check the size of your output</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">15. APIs</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Patrick Spauster </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="video-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
+
+</section>
+<section id="writing-api-calls-to-nyc-open-data" class="level2">
+<h2 class="anchored" data-anchor-id="writing-api-calls-to-nyc-open-data">Writing API Calls to NYC Open Data</h2>
+<p>When downloading data from <a href="https://opendata.cityofnewyork.us/">NYC Open Data</a>, you can use a special set of commands to filter and manipulate the data before downloading it to your local computer. These commands, unlike ones you’d write in an R script, are actually written <strong>in the URL itself</strong>. This kind of command is called an “API Call”— API stands for “Application programming interface” and is just a special system and language for users to communicate with the NYC Open Data servers. API Calls to NYC Open Data use a special syntax, very similar to a popular language called SQL or Structured Query Language.</p>
+<p>Using API Calls is particularly useful when you’re dealing with a **huge dataset** that would otherwise be a hassle to download in full. For this example, we’re going to use the <a href="https://data.cityofnewyork.us/Housing-Development/Housing-Maintenance-Code-Violations/wvxf-dwi5">HPD’s Housing Maintinance Code Violations</a> dataset on NYC Open Data, which has ~7 million rows.</p>
+<section id="grabbing-the-api-endpoint" class="level3">
+<h3 class="anchored" data-anchor-id="grabbing-the-api-endpoint">Grabbing the “API Endpoint”</h3>
+<p>Let’s first grab the beginning part of the URL that we’re going to use to write our API Call. This is called the “API Endpoint” and can be found by clicking the “API” tab on the NYC Open Data page for the dataset you’re working with.</p>
+<p>Before copying the URL, make sure you set the data format toggle from “JSON” to “CSV”, as that is the format we’re going to want our data in.</p>
+<p>For our example, our endpoint looks like this:</p>
+<p><a href="https://data.cityofnewyork.us/resource/wvxf-dwi5.csv"><code>https://data.cityofnewyork.us/resource/wvxf-dwi5.csv</code></a></p>
+</section>
+<section id="writing-up-your-api-call" class="level3">
+<h3 class="anchored" data-anchor-id="writing-up-your-api-call">Writing up your API Call</h3>
+<p>Copy the API Endpoint into a text editor (I prefer <a href="https://www.sublimetext.com/">Sublime Text</a> or <a href="https://code.visualstudio.com/">Visual Studio Code</a>— others like Word or Pages have a tendency to “auto-correct” certain letters and syntax which may mess you up).</p>
+<p>Now, to initiate our query, we are going to add <code>?$query=</code> to the end of our URL:</p>
+<pre><code>https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=</code></pre>
+</section>
+<section id="adding-your-query" class="level3">
+<h3 class="anchored" data-anchor-id="adding-your-query">Adding your Query</h3>
+<p>At the end our URL, we can now add some special code to filter the violations data for our download.</p>
+<p>To do this, we’re going to want to first take a look at the <a href="https://dev.socrata.com/foundry/data.cityofnewyork.us/wvxf-dwi5">API Documentation</a> for our dataset of choice, which can be found by clicking on the “API” tab again on the dataset’s Open Data page and clicking the “API Docs” button. Specifically, this documentation gives us a run down of all of the columns in the data and how we can reference them by name in our API call.</p>
+<p>For this example, we want to look at the most serious (class C) HPD Violations within the past month. So, we’re going to write out our query as such:</p>
+<p><strong><code>SELECT *</code></strong> – this selects all columns of the data</p>
+<p><strong><code>WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000' AND class='C'</code></strong> – this filters only rows where the <code>inspectiondate</code> value is between June 1st and Aug 31st, and the class of the violation is <code>'C'</code>. The <code>AND</code> operator here allows us to include multiple filtering conditions at once, and could even include conditions on other columns. Note the special format that the dates come in… we were able to spot this by looking at the <a href="https://dev.socrata.com/foundry/data.cityofnewyork.us/wvxf-dwi5">Documentation</a>.</p>
+<p><strong><code>LIMIT 100000</code></strong> — this sets the maximum number of downloadable rows to 100,000. It’s good practice to set a limit here so we don’t accidentially try downloading millions of rows at once. <strong>Note: if you don’t specify, the default limit is just 1,000 rows!</strong></p>
+<p>You can find more information on the types of queries you can write on the <a href="https://dev.socrata.com/docs/queries/query.html">Socrata Developers Portal</a> (Socrata is the special “flavor” of API that NYC Open Data uses).</p>
+</section>
+<section id="running-our-api-call" class="level3">
+<h3 class="anchored" data-anchor-id="running-our-api-call">Running our API Call</h3>
+<p>We add the above pieces in that order to our URL:</p>
+<p><code>https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000' AND class='C' LIMIT 100000</code></p>
+<p>Now, you can copy this full url into your browser and press ENTER— your special download should begin!</p>
+</section>
+<section id="importing-your-data-directly-into-r-studio" class="level3">
+<h3 class="anchored" data-anchor-id="importing-your-data-directly-into-r-studio">Importing your data directly into R Studio</h3>
+<p>Once you have your data downloaded via API Call, you can feel free to import it into your R project like any other CSV. If you want to use the URL you created to import it directly, you can do that as well:</p>
+<div class="cell" data-paged.print="false">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># R doesn't like weird characters like spaces and carats, so we need the `URLencode` function here to encode those symbols properly</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>url_hpd_viol <span class="ot">&lt;-</span> <span class="fu">URLencode</span>(<span class="st">"https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000' AND class='C' LIMIT 100000"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, we can use our formatted url inside our `read_csv` function</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>summer_hpd_viols <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_hpd_viol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="note-always-check-the-size-of-your-output" class="level3">
+<h3 class="anchored" data-anchor-id="note-always-check-the-size-of-your-output">Note: Always check the size of your output</h3>
+<p>Sometimes, the limit on your API Call may make your data export smaller than your desired outcome, and you won’t necessarily be notified. Therefore, it is always very important to <strong>check the number of rows</strong> of your data from your API Call before proceeding with analysis— if the number of rows matches the exact number of your limit (or is 1000, the default limit), it’s very likely that your data got cut off and you don’t have the complete set of data that you wanted.</p>
+<p>The below example illustrates this problem and shows how to diagnose. For the example, imagine that we didn’t include a <code>LIMIT</code> clause in our API Call query:</p>
+<p><code>https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000'</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url_viol_no_limit <span class="ot">=</span> <span class="fu">URLencode</span>(<span class="st">"https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000'"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>summer_violations_cut_off <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_viol_no_limit)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the head() function won't actually reveal the cut-off problem:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(summer_violations_cut_off)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 41
+  violationid buildingid registrationid boroid boro   housenumber lowhousenumber
+        &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;         
+1    14369016     326090         374306      3 BROOK~ 735         735           
+2    14368090     374043         316185      3 BROOK~ 565         565           
+3    14372713     123595         219960      2 BRONX  4639        4639          
+4    14372260     167073         320072      3 BROOK~ 416         416           
+5    14372287     167073         320072      3 BROOK~ 416         416           
+6    14338217      38732         122934      1 MANHA~ 414         414           
+# i 34 more variables: highhousenumber &lt;chr&gt;, streetname &lt;chr&gt;,
+#   streetcode &lt;dbl&gt;, zip &lt;dbl&gt;, apartment &lt;chr&gt;, ...</code></pre>
+</div>
+</div>
+<p>By looking at the head of your dataset, things appear to be fine. However, let’s use the <code>nrow()</code> function to get a sense of how many rows we have:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(summer_violations_cut_off)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1000</code></pre>
+</div>
+</div>
+<p>Given that our data output is 1,000 rows, which is exactly the default limit for API Calls to NYC Open Data, it’s very likely that our data got cut off and there are more rows within our filtering conditions that we want.</p>
+<p>Our next step would be to increase our LIMIT in our API CAll until get a number of outputs rows below the limit value. In our first example, you can see we’ve done just that— our LIMIT was set to 100,000 rows and we only received around 20K or so rows. Safe to say we got all of the rows that fit our filtering criteria…</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

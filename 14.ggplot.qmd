@@ -97,36 +97,24 @@ Let's make some bar charts out of the table of \# of children by the languages t
 We'll learn how we pulled this data in an upcoming lesson, but for now just install tidycensus and run this.
 
 ```{r}
-library(tidycensus)
 library(tidyverse)
 library(janitor)
 
 # Request your own API key here: https://api.census.gov/data/key_signup.html
 # Install the API key:
-census_api_key("8524147f6edf7fe4b7c85681397fe5acd6993d62")
-
-langs_by_boro <- get_acs(
-  geography = "county",
-  variables = c(
-    totalkids = "B16007_002",
-    englishkids = "B16007_003",
-    spanishkids = "B16007_004",
-    indoeurkids = "B16007_005",
-    apikids = "B16007_006",
-    otherkids = "B16007_007"
-  ),
-  state =  "New York",
-  year = 2020,
-  survey = "acs5"
-) %>%
-  filter(
-    NAME == "Kings County, New York" |
-      NAME == "Queens County, New York" |
-      NAME == "New York County, New York" |
-      NAME == "Bronx County, New York" |
-      NAME == "Richmond County, New York"
-  ) %>%
-  clean_names()
+langs_by_boro_for_graphing <- read_csv("langs_by_boro.csv") %>%
+  mutate(
+    labels = # Add a new column with neat category labels
+      case_when(
+        variable == 'englishkids' ~ 'English',
+        variable == 'spanishkids' ~ 'Spanish',
+        variable == 'indoeurkids' ~ 'Indo-European',
+        variable == 'apikids' ~ 'Asian & Pacific Islander',
+        variable == 'otherkids' ~ 'Other Languages'
+      ),
+    labels = fct_reorder(labels, estimate)
+  ) %>% # Overwrite the variable column of langs_by_boro with a function that tells R to order the variable column by the estimate column when it gets plotted (like a sort). If I wanted it ordered in the other direction I would put estimate inside of desc().
+  filter(variable != 'totalkids')
 ```
 
 Produce a horizontal bar chart
