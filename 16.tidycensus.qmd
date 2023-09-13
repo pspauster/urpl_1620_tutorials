@@ -4,6 +4,7 @@ author: "Patrick Spauster"
 format:
   html:
     code-copy: true
+    toc: true
     toc-location: right
 editor: visual
 ---
@@ -61,6 +62,7 @@ AGE BY LANGUAGE SPOKEN AT HOME FOR THE POPULATION 5 YEARS AND OVER
 -   B16007_007 Estimate!!Total:!!5 to 17 years:!!Speak other languages
 
 ## Pull data
+
 ```{r}
 langs_by_puma <- get_acs(
     geography = "public use microdata area", 

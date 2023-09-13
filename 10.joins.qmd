@@ -4,6 +4,7 @@ author: "Patrick Spauster"
 format:
   html:
     code-copy: true
+    toc: true
     toc-location: right
 editor: visual
 ---

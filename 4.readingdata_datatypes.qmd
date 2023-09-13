@@ -3,6 +3,7 @@ title: "4. Reading Data and Data Types"
 format:
   html:
     code-copy: true
+    toc: true
     toc-location: right
 editor: visual
 ---

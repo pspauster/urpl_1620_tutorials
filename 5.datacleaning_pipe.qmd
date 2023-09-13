@@ -4,6 +4,7 @@ author: "Patrick Spauster"
 format:
   html:
     code-copy: true
+    toc: true
     toc-location: right
 editor: visual
 ---
@@ -17,7 +18,7 @@ editor: visual
 
 Let's read in data like we did last time. We're going to "clean" it, which just means making it easier to use and getting it into tidy format.
 
-```{r message = F, warning = F}
+```{r}
 library(tidyverse)
 library(janitor)
 fhv <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv")
@@ -28,9 +29,8 @@ When we read this in, we have some unfriendly names of variables with spaces in 
 For many functions, the first **argument** is always the name of a dataframe. In this case we want to clean the names of our `fhv` dataframe.
 
 ```{r}
+library(janitor)
 fhv_clean <- clean_names(fhv)
-
-names(fhv_clean) # the names function returns a list of the names of a dataframes columns
 ```
 
 Now our names are clean - they are all lowercase, and have replaced all spaces with underscores. This will make it easier to refer to our column names as we transform data going forward.
@@ -47,8 +47,6 @@ It's an indicator for whether the vehicle is hybrid, so i'm going to rename it "
 
 To use the pipe, start with the name of the data frame you want to edit, and then chain the pipes after each function using some indenting to organize your code.
 
-When we code with the pipe, we usually enter and then indent the next line.
-
 ```{r}
 fhv_clean <- fhv %>% 
   clean_names() %>% 
@@ -61,7 +59,8 @@ Now we have a dataset with clean names and a renamed column "hybrid"
 
 As we learn more and more functions, we'll have longer chains of pipes to clean and construct datasets.
 
-```{}
+```{r}
+fhv_clean
 ```
 
 ## 

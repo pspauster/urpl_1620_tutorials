@@ -3,6 +3,7 @@ title: "3. Packages and Functions"
 format:
   html:
     code-copy: true
+    toc: true
     toc-location: right
 editor: visual
 ---
