@@ -12,7 +12,7 @@ editor: visual
 ## Video Tutorial
 
 ```{=html}
-<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&playerId=kaltura_player&entry_id=1_0c9gmqct&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_9o78atzo" width="608" height="402" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="8. group by summarize" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
+<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&playerId=kaltura_player&entry_id=1_1z2obv8k&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_peanbvbw" width="608" height="402" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="14. ggplot" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 ```
 ## Preparing Data for ggplot
 
@@ -20,8 +20,9 @@ Data for ggplot needs to be in "long" format, meaning that all the **values** ne
 
 Let's use that rent stabilization data to create a plot. In this case the data is wide by year, meaning there is a column for each year with different values. We want a dataset where each year has its own row - where each row is a year-building combination - that we can plot.
 
-```{r}
+```{r warning=F, message=F}
 library(tidyverse)
+library(janitor)
 
 rent_stab_long <- read_csv("https://taxbillsnyc.s3.amazonaws.com/joined.csv") %>% 
   select(borough, ucbbl, ends_with("uc")) %>% 
@@ -96,12 +97,8 @@ Let's make some bar charts out of the table of \# of children by the languages t
 
 We'll learn how we pulled this data in an upcoming lesson, but for now just install tidycensus and run this.
 
-```{r}
-library(tidyverse)
-library(janitor)
+```{r message=F, warning=F}
 
-# Request your own API key here: https://api.census.gov/data/key_signup.html
-# Install the API key:
 langs_by_boro_for_graphing <- read_csv("langs_by_boro.csv") %>%
   mutate(
     labels = # Add a new column with neat category labels
@@ -141,9 +138,11 @@ barchart
 
 Now let's facet it by borough
 
-```{r}
+```{r fig.height=6}
 barchart +
   facet_wrap( ~ name, ncol = 1)
 ```
+
+## Additional Resources
 
 This [guide from the Urban Institute](https://urbaninstitute.github.io/r-at-urban/graphics-guide.html) has a number of helpful tutorials for how to create a wide number of graphs with ggplot.

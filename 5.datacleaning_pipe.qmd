@@ -18,7 +18,7 @@ editor: visual
 
 Let's read in data like we did last time. We're going to "clean" it, which just means making it easier to use and getting it into tidy format.
 
-```{r}
+```{r message = F, warning = F}
 library(tidyverse)
 library(janitor)
 fhv <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv")
@@ -29,7 +29,6 @@ When we read this in, we have some unfriendly names of variables with spaces in 
 For many functions, the first **argument** is always the name of a dataframe. In this case we want to clean the names of our `fhv` dataframe.
 
 ```{r}
-library(janitor)
 fhv_clean <- clean_names(fhv)
 ```
 
