@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,9 +18,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -47,43 +48,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -130,11 +101,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">15. APIs</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./15.apis.html">Advanced</a></li><li class="breadcrumb-item"><a href="./15.apis.html">15. APIs</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -142,145 +118,167 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Learning R</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Learning R</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning R</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Getting Started</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1.installing_r.html" class="sidebar-item-text sidebar-link">1. Installing R</a>
+  <a href="./1.installing_r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Installing R</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2.r_projects.html" class="sidebar-item-text sidebar-link">2. Creating R Projects</a>
+  <a href="./2.r_projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Creating R Projects</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3.packages_functions.html" class="sidebar-item-text sidebar-link">3. Packages and Functions</a>
+  <a href="./3.packages_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Packages and Functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4.readingdata_datatypes.html" class="sidebar-item-text sidebar-link">4. Reading Data and Data Types</a>
+  <a href="./4.readingdata_datatypes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Reading Data and Data Types</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Basics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./5.datacleaning_pipe.html" class="sidebar-item-text sidebar-link">5. Data cleaning and the pipe</a>
+  <a href="./5.datacleaning_pipe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Data cleaning and the pipe</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./6.select_filter.html" class="sidebar-item-text sidebar-link">6. Select and Filter</a>
+  <a href="./6.select_filter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Select and Filter</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./7.mutate.html" class="sidebar-item-text sidebar-link">7. Mutate</a>
+  <a href="./7.mutate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Mutate</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./8.groupby_summarize.html" class="sidebar-item-text sidebar-link">8. Group By and Summarize</a>
+  <a href="./8.groupby_summarize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Group By and Summarize</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./9.arrange_writecsv.html" class="sidebar-item-text sidebar-link">9. Arrange and Write Data</a>
+  <a href="./9.arrange_writecsv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Arrange and Write Data</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Intermediates</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Intermediates</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10.joins.html" class="sidebar-item-text sidebar-link">10. Joins</a>
+  <a href="./10.joins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. Joins</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11.stringr.html" class="sidebar-item-text sidebar-link">11. Working with Strings</a>
+  <a href="./11.stringr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Working with Strings</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12.lubridate.html" class="sidebar-item-text sidebar-link">12. Working with Dates</a>
+  <a href="./12.lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. Working with Dates</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13.pivoting.html" class="sidebar-item-text sidebar-link">13. Pivoting</a>
+  <a href="./13.pivoting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13. Pivoting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14.ggplot.html" class="sidebar-item-text sidebar-link">14. ggplot</a>
+  <a href="./14.ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14. ggplot</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Advanced</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Advanced</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15.apis.html" class="sidebar-item-text sidebar-link active">15. APIs</a>
+  <a href="./15.apis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">15. APIs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16.tidycensus.html" class="sidebar-item-text sidebar-link">16. Census Data with tidycensus</a>
+  <a href="./16.tidycensus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">16. Census Data with tidycensus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./17.sf.html" class="sidebar-item-text sidebar-link">17. Spatial Features</a>
+  <a href="./17.sf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">17. Spatial Features</span></a>
   </div>
 </li>
       </ul>
@@ -288,6 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -295,6 +294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#video-tutorial" id="toc-video-tutorial" class="nav-link active" data-scroll-target="#video-tutorial">Video Tutorial</a></li>
+  <li><a href="#downloading-data-from-the-web" id="toc-downloading-data-from-the-web" class="nav-link" data-scroll-target="#downloading-data-from-the-web">Downloading Data from the web</a></li>
   <li><a href="#writing-api-calls-to-nyc-open-data" id="toc-writing-api-calls-to-nyc-open-data" class="nav-link" data-scroll-target="#writing-api-calls-to-nyc-open-data">Writing API Calls to NYC Open Data</a>
   <ul class="collapse">
   <li><a href="#grabbing-the-api-endpoint" id="toc-grabbing-the-api-endpoint" class="nav-link" data-scroll-target="#grabbing-the-api-endpoint">Grabbing the “API Endpoint”</a></li>
@@ -304,6 +304,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#importing-your-data-directly-into-r-studio" id="toc-importing-your-data-directly-into-r-studio" class="nav-link" data-scroll-target="#importing-your-data-directly-into-r-studio">Importing your data directly into R Studio</a></li>
   <li><a href="#note-always-check-the-size-of-your-output" id="toc-note-always-check-the-size-of-your-output" class="nav-link" data-scroll-target="#note-always-check-the-size-of-your-output">Note: Always check the size of your output</a></li>
   </ul></li>
+  <li><a href="#other-apis" id="toc-other-apis" class="nav-link" data-scroll-target="#other-apis">Other APIs</a></li>
+  <li><a href="#api-wrappers" id="toc-api-wrappers" class="nav-link" data-scroll-target="#api-wrappers">API Wrappers</a></li>
   </ul>
 </nav>
     </div>
@@ -312,7 +314,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">15. APIs</h1>
+<h1 class="title">15. APIs</h1>
 </div>
 
 
@@ -335,11 +337,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="video-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
-
+<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_vpkmj6pj&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_wkx3phqq" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="15. APIs" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
+</section>
+<section id="downloading-data-from-the-web" class="level2">
+<h2 class="anchored" data-anchor-id="downloading-data-from-the-web">Downloading Data from the web</h2>
+<p>You can download datasets directly from the web with read_csv().</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/Statology/Miscellaneous/main/basketball_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 x 3
+  player assists points
+  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+1 A            6     12
+2 B            7     19
+3 C           14      7
+4 D            4      6
+5 E            5     10</code></pre>
+</div>
+</div>
+<p>But sometimes getting data stored on the web is more complicated, or you are accessing massive databases that would take forever to read the whole thing into R.</p>
+<p>When downloading data from <a href="https://opendata.cityofnewyork.us/">NYC Open Data</a> and other sources, you can use a special set of commands to filter and manipulate the data before downloading it to your local computer. These commands, unlike ones you’d write in an R script, are actually written <strong>in the URL itself</strong>. This kind of command is called an “API Call”— API stands for “Application programming interface” and is just a special system and language for users to communicate with the back end data servers. API Calls to APIs use a special syntax, which will be included in an API’s documentation. For NYC’s Open data, that syntax is very similar to a popular language called SQL or Structured Query Language.</p>
+<p>Some APIs will require registration of a “token” which will be an input in your URL. We’ll go over those with an example using the census API.</p>
 </section>
 <section id="writing-api-calls-to-nyc-open-data" class="level2">
 <h2 class="anchored" data-anchor-id="writing-api-calls-to-nyc-open-data">Writing API Calls to NYC Open Data</h2>
-<p>When downloading data from <a href="https://opendata.cityofnewyork.us/">NYC Open Data</a>, you can use a special set of commands to filter and manipulate the data before downloading it to your local computer. These commands, unlike ones you’d write in an R script, are actually written <strong>in the URL itself</strong>. This kind of command is called an “API Call”— API stands for “Application programming interface” and is just a special system and language for users to communicate with the NYC Open Data servers. API Calls to NYC Open Data use a special syntax, very similar to a popular language called SQL or Structured Query Language.</p>
 <p>Using API Calls is particularly useful when you’re dealing with a **huge dataset** that would otherwise be a hassle to download in full. For this example, we’re going to use the <a href="https://data.cityofnewyork.us/Housing-Development/Housing-Maintenance-Code-Violations/wvxf-dwi5">HPD’s Housing Maintinance Code Violations</a> dataset on NYC Open Data, which has ~7 million rows.</p>
 <section id="grabbing-the-api-endpoint" class="level3">
 <h3 class="anchored" data-anchor-id="grabbing-the-api-endpoint">Grabbing the “API Endpoint”</h3>
@@ -350,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="writing-up-your-api-call" class="level3">
 <h3 class="anchored" data-anchor-id="writing-up-your-api-call">Writing up your API Call</h3>
-<p>Copy the API Endpoint into a text editor (I prefer <a href="https://www.sublimetext.com/">Sublime Text</a> or <a href="https://code.visualstudio.com/">Visual Studio Code</a>— others like Word or Pages have a tendency to “auto-correct” certain letters and syntax which may mess you up).</p>
+<p>Copy the API Endpoint into a text editor - or an R script! - (I prefer <a href="https://www.sublimetext.com/">Sublime Text</a> or <a href="https://code.visualstudio.com/">Visual Studio Code</a>— others like Word or Pages have a tendency to “auto-correct” certain letters and syntax which may mess you up).</p>
 <p>Now, to initiate our query, we are going to add <code>?$query=</code> to the end of our URL:</p>
 <pre><code>https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=</code></pre>
 </section>
@@ -369,22 +390,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We add the above pieces in that order to our URL:</p>
 <p><code>https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000' AND class='C' LIMIT 100000</code></p>
 <p>Now, you can copy this full url into your browser and press ENTER— your special download should begin!</p>
+<p>We can also use string operators to create and quickly modify the different components of our API call.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://data.cityofnewyork.us/resource/wvxf-dwi5.csv"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>inspectiondate_range <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2021-06-01T00:00:01.000"</span>,<span class="st">"2021-09-01T00:00:01.000"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>class <span class="ot">&lt;-</span> <span class="st">"C"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>limit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"100000"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>full_api_call <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, <span class="st">"?$query=SELECT * WHERE inspectiondate&gt;='"</span>,inspectiondate_range[<span class="dv">1</span>],<span class="st">"' AND inspectiondate&lt;'"</span>,inspectiondate_range[<span class="dv">2</span>],<span class="st">"' AND class='"</span>,class,<span class="st">"' LIMIT "</span>,limit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="importing-your-data-directly-into-r-studio" class="level3">
 <h3 class="anchored" data-anchor-id="importing-your-data-directly-into-r-studio">Importing your data directly into R Studio</h3>
 <p>Once you have your data downloaded via API Call, you can feel free to import it into your R project like any other CSV. If you want to use the URL you created to import it directly, you can do that as well:</p>
 <div class="cell" data-paged.print="false">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># R doesn't like weird characters like spaces and carats, so we need the `URLencode` function here to encode those symbols properly</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>url_hpd_viol <span class="ot">&lt;-</span> <span class="fu">URLencode</span>(<span class="st">"https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000' AND class='C' LIMIT 100000"</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, we can use our formatted url inside our `read_csv` function</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>summer_hpd_viols <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_hpd_viol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># R doesn't like weird characters like spaces and carats, so we need the `URLencode` function here to encode those symbols properly</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>url_hpd_viol <span class="ot">&lt;-</span> <span class="fu">URLencode</span>(<span class="st">"https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000' AND class='C' LIMIT 100000"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, we can use our formatted url inside our `read_csv` function</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>summer_hpd_viols <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_hpd_viol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="note-always-check-the-size-of-your-output" class="level3">
@@ -393,12 +427,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The below example illustrates this problem and shows how to diagnose. For the example, imagine that we didn’t include a <code>LIMIT</code> clause in our API Call query:</p>
 <p><code>https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000'</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url_viol_no_limit <span class="ot">=</span> <span class="fu">URLencode</span>(<span class="st">"https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000'"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>summer_violations_cut_off <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_viol_no_limit)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the head() function won't actually reveal the cut-off problem:</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(summer_violations_cut_off)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>url_viol_no_limit <span class="ot">=</span> <span class="fu">URLencode</span>(<span class="st">"https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000'"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>summer_violations_cut_off <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_viol_no_limit)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the head() function won't actually reveal the cut-off problem:</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(summer_violations_cut_off)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 x 41
   violationid buildingid registrationid boroid boro   housenumber lowhousenumber
@@ -409,22 +443,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4    14372260     167073         320072      3 BROOK~ 416         416           
 5    14372287     167073         320072      3 BROOK~ 416         416           
 6    14338217      38732         122934      1 MANHA~ 414         414           
-# i 34 more variables: highhousenumber &lt;chr&gt;, streetname &lt;chr&gt;,
+# ... with 34 more variables: highhousenumber &lt;chr&gt;, streetname &lt;chr&gt;,
 #   streetcode &lt;dbl&gt;, zip &lt;dbl&gt;, apartment &lt;chr&gt;, ...</code></pre>
 </div>
 </div>
 <p>By looking at the head of your dataset, things appear to be fine. However, let’s use the <code>nrow()</code> function to get a sense of how many rows we have:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(summer_violations_cut_off)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(summer_violations_cut_off)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1000</code></pre>
 </div>
 </div>
 <p>Given that our data output is 1,000 rows, which is exactly the default limit for API Calls to NYC Open Data, it’s very likely that our data got cut off and there are more rows within our filtering conditions that we want.</p>
 <p>Our next step would be to increase our LIMIT in our API CAll until get a number of outputs rows below the limit value. In our first example, you can see we’ve done just that— our LIMIT was set to 100,000 rows and we only received around 20K or so rows. Safe to say we got all of the rows that fit our filtering criteria…</p>
-
-
 </section>
+</section>
+<section id="other-apis" class="level2">
+<h2 class="anchored" data-anchor-id="other-apis">Other APIs</h2>
+<p>Thousands of sites have APIs that work similarly. Each API will have specific documentation and formatting. Once you read up on the documentation for one, the others will be easier to decipher. Here are some examples</p>
+<ul>
+<li><p><a href="https://developer.spotify.com/documentation/web-api">Spotify</a></p></li>
+<li><p><a href="https://projects.propublica.org/nonprofits/api">Pro Publica’s Nonprofit Explorer</a></p></li>
+<li><p><a href="https://www.bls.gov/bls/api_features.htm">Bureau of Labor Statistics (BLS)</a></p></li>
+</ul>
+</section>
+<section id="api-wrappers" class="level2">
+<h2 class="anchored" data-anchor-id="api-wrappers">API Wrappers</h2>
+<p>A number of developers have also created R packages that make certain APIs easier to use. The example we will look at next, tidycensus, is an example of a wrapper for the US Census API. It will construct API calls based on parameters we set in a function. Here are some other API wrappers.</p>
+<ul>
+<li><p><a href="https://dev.socrata.com/connectors/rsocrata.html">RSocrata</a> (Many Open Data Portals, including NYC’s use Socrata’s data system)</p></li>
+<li><p><a href="https://github.com/mikeasilva/blsAPI">BLS</a></p></li>
+<li><p><a href="https://googlesheets4.tidyverse.org/">Google Sheets</a></p></li>
+<li><p><a href="https://blog.datawrapper.de/why-i-created-an-r-library-to-use-datawrappers-api/">Datawrapper</a></p></li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -455,9 +508,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -522,6 +589,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
