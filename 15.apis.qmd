@@ -12,6 +12,7 @@ editor: visual
 ## Video Tutorial
 
 ```{=html}
+<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&playerId=kaltura_player&entry_id=1_vpkmj6pj&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_wkx3phqq" width="608" height="402" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="15. APIs" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 ```
 ```{r include=F}
 knitr::opts_chunk$set(
@@ -23,9 +24,21 @@ knitr::opts_chunk$set(
 options(tibble.max_extra_cols = 5, tibble.print_max = 5)
 ```
 
-## Writing API Calls to NYC Open Data
+## Downloading Data from the web
 
-When downloading data from [NYC Open Data](https://opendata.cityofnewyork.us/), you can use a special set of commands to filter and manipulate the data before downloading it to your local computer. These commands, unlike ones you'd write in an R script, are actually written **in the URL itself**. This kind of command is called an "API Call"--- API stands for "Application programming interface" and is just a special system and language for users to communicate with the NYC Open Data servers. API Calls to NYC Open Data use a special syntax, very similar to a popular language called SQL or Structured Query Language.
+You can download datasets directly from the web with read_csv().
+
+```{r warning=F, message=F}
+read_csv('https://raw.githubusercontent.com/Statology/Miscellaneous/main/basketball_data.csv')
+```
+
+But sometimes getting data stored on the web is more complicated, or you are accessing massive databases that would take forever to read the whole thing into R.
+
+When downloading data from [NYC Open Data](https://opendata.cityofnewyork.us/) and other sources, you can use a special set of commands to filter and manipulate the data before downloading it to your local computer. These commands, unlike ones you'd write in an R script, are actually written **in the URL itself**. This kind of command is called an "API Call"--- API stands for "Application programming interface" and is just a special system and language for users to communicate with the back end data servers. API Calls to APIs use a special syntax, which will be included in an API's documentation. For NYC's Open data, that syntax is very similar to a popular language called SQL or Structured Query Language.
+
+Some APIs will require registration of a "token" which will be an input in your URL. We'll go over those with an example using the census API.
+
+## Writing API Calls to NYC Open Data
 
 Using API Calls is particularly useful when you're dealing with a \*\*huge dataset\*\* that would otherwise be a hassle to download in full. For this example, we're going to use the [HPD's Housing Maintinance Code Violations](https://data.cityofnewyork.us/Housing-Development/Housing-Maintenance-Code-Violations/wvxf-dwi5) dataset on NYC Open Data, which has \~7 million rows.
 
@@ -41,7 +54,7 @@ For our example, our endpoint looks like this:
 
 ### Writing up your API Call
 
-Copy the API Endpoint into a text editor (I prefer [Sublime Text](https://www.sublimetext.com/) or [Visual Studio Code](https://code.visualstudio.com/)--- others like Word or Pages have a tendency to "auto-correct" certain letters and syntax which may mess you up).
+Copy the API Endpoint into a text editor - or an R script! - (I prefer [Sublime Text](https://www.sublimetext.com/) or [Visual Studio Code](https://code.visualstudio.com/)--- others like Word or Pages have a tendency to "auto-correct" certain letters and syntax which may mess you up).
 
 Now, to initiate our query, we are going to add `?$query=` to the end of our URL:
 
@@ -72,6 +85,22 @@ We add the above pieces in that order to our URL:
 `https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate>='2021-06-01T00:00:01.000' AND inspectiondate<'2021-09-01T00:00:01.000' AND class='C' LIMIT 100000`
 
 Now, you can copy this full url into your browser and press ENTER--- your special download should begin!
+
+We can also use string operators to create and quickly modify the different components of our API call.
+
+```{r}
+
+base_url <- "https://data.cityofnewyork.us/resource/wvxf-dwi5.csv"
+
+inspectiondate_range <- c("2021-06-01T00:00:01.000","2021-09-01T00:00:01.000")
+
+class <- "C"
+
+limit <- c("100000")
+
+
+full_api_call <- paste0(base_url, "?$query=SELECT * WHERE inspectiondate>='",inspectiondate_range[1],"' AND inspectiondate<'",inspectiondate_range[2],"' AND class='",class,"' LIMIT ",limit)
+```
 
 ### Importing your data directly into R Studio
 
@@ -119,3 +148,25 @@ nrow(summer_violations_cut_off)
 Given that our data output is 1,000 rows, which is exactly the default limit for API Calls to NYC Open Data, it's very likely that our data got cut off and there are more rows within our filtering conditions that we want.
 
 Our next step would be to increase our LIMIT in our API CAll until get a number of outputs rows below the limit value. In our first example, you can see we've done just that--- our LIMIT was set to 100,000 rows and we only received around 20K or so rows. Safe to say we got all of the rows that fit our filtering criteria...
+
+## Other APIs
+
+Thousands of sites have APIs that work similarly. Each API will have specific documentation and formatting. Once you read up on the documentation for one, the others will be easier to decipher. Here are some examples
+
+-   [Spotify](https://developer.spotify.com/documentation/web-api)
+
+-   [Pro Publica's Nonprofit Explorer](https://projects.propublica.org/nonprofits/api)
+
+-   [Bureau of Labor Statistics (BLS)](https://www.bls.gov/bls/api_features.htm)
+
+## API Wrappers
+
+A number of developers have also created R packages that make certain APIs easier to use. The example we will look at next, tidycensus, is an example of a wrapper for the US Census API. It will construct API calls based on parameters we set in a function. Here are some other API wrappers.
+
+-   [RSocrata](https://dev.socrata.com/connectors/rsocrata.html) (Many Open Data Portals, including NYC's use Socrata's data system)
+
+-   [BLS](https://github.com/mikeasilva/blsAPI)
+
+-   [Google Sheets](https://googlesheets4.tidyverse.org/)
+
+-   [Datawrapper](https://blog.datawrapper.de/why-i-created-an-r-library-to-use-datawrappers-api/)

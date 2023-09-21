@@ -9,7 +9,7 @@ format:
 editor: visual
 ---
 
-Video Tutorial
+## Video Tutorial
 
 ```{=html}
 ```
