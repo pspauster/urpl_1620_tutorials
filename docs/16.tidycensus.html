@@ -300,6 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#browse-available-variables" id="toc-browse-available-variables" class="nav-link" data-scroll-target="#browse-available-variables">Browse available variables:</a></li>
   </ul></li>
   <li><a href="#pull-data" id="toc-pull-data" class="nav-link" data-scroll-target="#pull-data">Pull data</a></li>
+  <li><a href="#crosswalks-and-matching-census-geographies" id="toc-crosswalks-and-matching-census-geographies" class="nav-link" data-scroll-target="#crosswalks-and-matching-census-geographies">Crosswalks and matching census geographies</a></li>
   </ul>
 </nav>
     </div>
@@ -470,6 +471,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 4 Kings County, Ne~           0.555           0.147          0.191       0.0686 
 5 Queens County, N~           0.495           0.251          0.129       0.105  
 # ... with 1 more variable: pct_otherkids &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="crosswalks-and-matching-census-geographies" class="level2">
+<h2 class="anchored" data-anchor-id="crosswalks-and-matching-census-geographies">Crosswalks and matching census geographies</h2>
+<p>Let’s say I wanted to compare a number of statistics by Brooklyn neighborhood. But oh no! The census doesn’t provide data at the neighborhood level. Fear not, you can use something called a crosswalk to match data from different geographies. Census data makes it easy - they have standard <code>GEOID</code> columns that allow you to match data at different geographies.</p>
+<p>Census data is powerful because you can join it with data on whatever you are interested in at almost any geographic level.</p>
+<p>First I’ll grab some statistics at the tract level in Brooklyn.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pop_data <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"tract"</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="fu">c</span>(<span class="at">total_population =</span> <span class="st">"B01003_001"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">median_household_income =</span> <span class="st">"B19019_001"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">race_eth_denom =</span> <span class="st">"B03002_001"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">white_nonhsp =</span> <span class="st">"B03002_003"</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2021</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">state =</span> <span class="st">"New York"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">county =</span> <span class="st">"Kings"</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Getting data from the 2017-2021 5-year ACS</code></pre>
+</div>
+</div>
+<p>Then I’ll read in this <a href="https://data.cityofnewyork.us/City-Government/2020-Census-Tracts-to-2020-NTAs-and-CDTAs-Equivale/hm78-6dwm">crosswalk between neighborhoods and tracts</a> from the NYC Open data portal. By joining the two on GEOID I can summarize at the neighborhood level</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>nta_tract <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://data.cityofnewyork.us/resource/hm78-6dwm.csv"</span>,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">geoid =</span> <span class="fu">col_character</span>())) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(boroname <span class="sc">==</span> <span class="st">"Brooklyn"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>pop_data_joined <span class="ot">&lt;-</span> nta_tract <span class="sc">%&gt;%</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(pop_data, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"GEOID"</span>))</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>pop_data_joined <span class="sc">%&gt;%</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">"total_population"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ntaname) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_population =</span> <span class="fu">sum</span>(estimate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53 x 2
+   ntaname                   total_population
+   &lt;chr&gt;                                &lt;dbl&gt;
+ 1 Bath Beach                           33765
+ 2 Bay Ridge                            85796
+ 3 Bedford-Stuyvesant (East)            92298
+ 4 Bedford-Stuyvesant (West)            89224
+ 5 Bensonhurst                         102241
+ 6 Borough Park                         84493
+ 7 Brighton Beach                       31295
+ 8 Brooklyn Heights                     24775
+ 9 Brooklyn Navy Yard                       0
+10 Bushwick (East)                      62987
+# ... with 43 more rows</code></pre>
+</div>
+</div>
+<p>What if I just wanted to compare one neighborhood to the rest of Brooklyn? Using the <code>pull()</code> function which rips a list from a dataframe variable I can mutate my way to that summary.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gowanus_tracts <span class="ot">&lt;-</span> nta_tract <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">geoid =</span> <span class="fu">as.character</span>(geoid)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ntaname <span class="sc">==</span> <span class="st">"Carroll Gardens-Cobble Hill-Gowanus-Red Hook"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(geoid)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>pop_data_clean <span class="ot">&lt;-</span> pop_data <span class="sc">%&gt;%</span> </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gowanus =</span> <span class="fu">if_else</span>(GEOID <span class="sc">%in%</span> gowanus_tracts, <span class="st">"Gowanus"</span>, <span class="st">"Rest of BK"</span>))</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>pop_data_clean <span class="sc">%&gt;%</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">"total_population"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gowanus) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total =</span> <span class="fu">sum</span>(estimate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 x 2
+  gowanus      total
+  &lt;chr&gt;        &lt;dbl&gt;
+1 Gowanus      63167
+2 Rest of BK 2649193</code></pre>
 </div>
 </div>
 
