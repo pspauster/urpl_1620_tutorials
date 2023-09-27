@@ -1,5 +1,5 @@
 ---
-title: "12. Working with Dates"
+title: "14. Working with Dates"
 author: "Patrick Spauster"
 format:
   html:
@@ -28,7 +28,7 @@ Dates can be annoying to work with because they come in many formats...
 
 But R has some helpful tools that standardize dates and allow us to use them in calculations
 
-To begin, we're going to grab a new dataset from the NYC Open Data Portal, download it as a .csv, and save it to our project.
+To begin, we're going to grab a dataset from the NYC Open Data Portal, download it as a .csv, and save it to our project.
 
 ```{r warning=F, message=F}
 library(tidyverse)

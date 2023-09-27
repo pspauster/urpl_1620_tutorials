@@ -8,7 +8,7 @@
 
 <meta name="author" content="Patrick Spauster">
 
-<title>Learning R - 12. Working with Dates</title>
+<title>Learning R - 13. Working with Strings</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10.joins.html">Intermediates</a></li><li class="breadcrumb-item"><a href="./12.lubridate.html">12. Working with Dates</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10.joins.html">Intermediates</a></li><li class="breadcrumb-item"><a href="./13.stringr.html">13. Working with Strings</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -230,26 +230,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11.stringr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11. Working with Strings</span></a>
+  <a href="./11.pivoting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Pivoting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12.lubridate.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">12. Working with Dates</span></a>
+  <a href="./12.ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. ggplot</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13.pivoting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">13. Pivoting</span></a>
+  <a href="./13.stringr.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">13. Working with Strings</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14.ggplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">14. ggplot</span></a>
+  <a href="./14.lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14. Working with Dates</span></a>
   </div>
 </li>
       </ul>
@@ -294,8 +294,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#video-tutorial" id="toc-video-tutorial" class="nav-link active" data-scroll-target="#video-tutorial">Video Tutorial</a></li>
-  <li><a href="#dates-are-tricky" id="toc-dates-are-tricky" class="nav-link" data-scroll-target="#dates-are-tricky">Dates are tricky</a></li>
-  <li><a href="#working-with-dates" id="toc-working-with-dates" class="nav-link" data-scroll-target="#working-with-dates">Working with dates</a></li>
+  <li><a href="#what-is-a-string" id="toc-what-is-a-string" class="nav-link" data-scroll-target="#what-is-a-string">What is a string?</a></li>
+  <li><a href="#separate-paste" id="toc-separate-paste" class="nav-link" data-scroll-target="#separate-paste">Separate &amp; Paste</a></li>
+  <li><a href="#stringr" id="toc-stringr" class="nav-link" data-scroll-target="#stringr">StringR</a></li>
   </ul>
 </nav>
     </div>
@@ -304,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">12. Working with Dates</h1>
+<h1 class="title">13. Working with Strings</h1>
 </div>
 
 
@@ -327,112 +328,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="video-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
-<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_qodj8v9m&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_n383ocqv" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="12. lubridate" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
+<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_qh1tjhi3&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_w97k0x0u" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="11. strings" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 </section>
-<section id="dates-are-tricky" class="level2">
-<h2 class="anchored" data-anchor-id="dates-are-tricky">Dates are tricky</h2>
-<p>Dates can be annoying to work with because they come in many formats…</p>
-<ul>
-<li><p>08/31/2023</p></li>
-<li><p>08-31-2023</p></li>
-<li><p>08/31/23 01:30:36</p></li>
-<li><p>08-31-2023 12:36 PM</p></li>
-</ul>
-<p>But R has some helpful tools that standardize dates and allow us to use them in calculations</p>
-<p>To begin, we’re going to grab a new dataset from the NYC Open Data Portal, download it as a .csv, and save it to our project.</p>
+<section id="what-is-a-string" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-string">What is a string?</h2>
+<p>Strings are groups of characters. They can form words, sentences, addresses, categories, or represent other data. Working with strings is going to be essential to cleaning data. Often times we get string and character data that is manually inputted and messy. We can use string modifiers to clean it up. Think of address data for example. What if addresses are misspelled or inconsistent in how they refer to street names?</p>
+<p>In this lesson we’ll learn a number of useful functions for manipulating and rewriting strings, using some base R, tidyverse, and a package called stringr.</p>
+</section>
+<section id="separate-paste" class="level2">
+<h2 class="anchored" data-anchor-id="separate-paste">Separate &amp; Paste</h2>
+<p>Let’s read in a clean dataframe for film permits from the <a href="https://data.cityofnewyork.us/City-Government/Film-Permits/tg4x-b46p">open data portal</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>filmpermits <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Film_Permits.csv"</span>, </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">EventID =</span> <span class="fu">col_character</span>())) <span class="sc">%&gt;%</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>filmpermits <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Film_Permits.csv"</span>, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">EventID =</span> <span class="fu">col_character</span>())) <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Let’s clean it and do some summarizing</p>
+<p>We can use <code>separate()</code> to split up long string columns and <code>paste()</code> to concatenate strings into new columns</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>filmpermits_clean <span class="ot">&lt;-</span> filmpermits <span class="sc">%&gt;%</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(event_type, borough, category, sub_category_name, start_date_time, end_date_time) <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(category <span class="sc">!=</span> <span class="st">"WEB"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">case_when</span>(category <span class="sc">==</span> <span class="st">'Documentary'</span> <span class="sc">~</span> <span class="st">'Film'</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">'Film'</span> <span class="sc">~</span> <span class="st">'Film'</span>, </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">'Television'</span> <span class="sc">~</span> <span class="st">'Television'</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">'Commerical'</span> <span class="sc">~</span> <span class="st">'Commercial'</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                     <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">'Other'</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>street_closures <span class="ot">&lt;-</span> filmpermits <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_rows</span>(parking_held, <span class="at">sep =</span> <span class="st">","</span>) <span class="sc">%&gt;%</span> <span class="co">#this makes a new row for each street closure listed</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(parking_held, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"street"</span>, <span class="st">"cross_street1"</span>, <span class="st">"cross_street2"</span>), <span class="at">sep =</span> <span class="st">"between|and"</span>) <span class="sc">%&gt;%</span> <span class="co">#this separates the string into three different columns</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="at">.vars =</span> <span class="fu">c</span>(<span class="st">"street"</span>, <span class="st">"cross_street1"</span>, <span class="st">"cross_street2"</span>, <span class="st">"borough"</span>, <span class="st">"country"</span>), <span class="at">.funs =</span> <span class="sc">~</span><span class="fu">tolower</span>(.)) <span class="sc">%&gt;%</span> <span class="co"># a .fns argument takes a function like tolower, which makes all the characters lowercase. start the function with ~ and subsitite . for the argument of the nested function</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">intersection1_address =</span> <span class="fu">paste</span>(street, <span class="st">"and"</span>, cross_street1, borough, country), <span class="co">#paste concatenates strings to create, in this case an address of an intersection</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">intersection2_address =</span> <span class="fu">paste</span>(street, <span class="st">"and"</span>, cross_street1, borough, country))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="working-with-dates" class="level2">
-<h2 class="anchored" data-anchor-id="working-with-dates">Working with dates</h2>
-<p>We’re going to install the lubridate package and load it. Some core R packages have helpful cheatsheets like this one. With our core knowledge of how functions work we should be able to apply these to our work!.</p>
-<p>We can use lubridate to work with dates that come in various formats. With the film permits dataset we can run the below to make R recognize these fields as dates. Here’s a lubridate cheat sheet: https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_lubridate.pdf</p>
-<p><img src="images/R_lubridate/R_lubridate-1.jpg" class="img-fluid"></p>
-<p><img src="images/R_lubridate/R_lubridate-2.jpg" class="img-fluid"></p>
+<section id="stringr" class="level2">
+<h2 class="anchored" data-anchor-id="stringr">StringR</h2>
+<p>StringR is a package with a number of handy functions. All of them take a string as the first argument, and return the result of your inquiry. There’s tons of possibilities and uses, here’s few examples.</p>
+<p><img src="images/stringr.png" class="img-fluid"></p>
+<p><img src="images/stringr2.png" class="img-fluid"></p>
+<p>The spacing for the strings in the street columns is weird, I can use <code>str_trim</code> to get rid of white space</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>filmpermits_clean_dates <span class="ot">&lt;-</span> filmpermits_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">start_date_time =</span> <span class="fu">mdy_hms</span>(start_date_time),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">end_date_time =</span> <span class="fu">mdy_hms</span>(end_date_time))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's see what the earliest start date in the dataset is. This will run in the console. </span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>filmpermits_clean_dates <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(start_date_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>street_closures <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> .<span class="sc">$</span>street <span class="co">#here I am just printing the first 10 rows of the variable street</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,597 x 7
-   event_type           borough   category  sub_category_na~ start_date_time    
-   &lt;chr&gt;                &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;            &lt;dttm&gt;             
- 1 Theater Load in and~ Manhattan Theater   Theater          2023-01-01 00:01:00
- 2 Theater Load in and~ Manhattan Theater   Theater          2023-01-01 00:01:00
- 3 Shooting Permit      Manhattan Televisi~ News             2023-01-01 04:00:00
- 4 Shooting Permit      Manhattan Televisi~ News             2023-01-02 04:00:00
- 5 Theater Load in and~ Brooklyn  Theater   Theater          2023-01-03 07:00:00
- 6 Shooting Permit      Queens    Televisi~ Episodic series  2023-01-03 07:00:00
- 7 Shooting Permit      Brooklyn  Televisi~ Episodic series  2023-01-03 10:00:00
- 8 Rigging Permit       Manhattan Document~ Not Applicable   2023-01-03 17:00:00
- 9 Shooting Permit      Manhattan Televisi~ Morning Show     2023-01-04 05:00:00
-10 Shooting Permit      Manhattan Document~ Not Applicable   2023-01-04 06:00:00
-# ... with 2,587 more rows, and 2 more variables: end_date_time &lt;dttm&gt;,
-#   type &lt;chr&gt;</code></pre>
+<pre><code>[1] "commerce street "   "  seabring street " "amsterdam avenue " 
+[4] "eagle street "      "  west street "     "  freeman street " </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's see what the latest start date in the dataset is. </span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>filmpermits_clean_dates <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(start_date_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>street_closures <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">street =</span> <span class="fu">str_trim</span>(street, <span class="at">side =</span> <span class="st">"both"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span> <span class="co">#here I am just printing the first 10 rows of the variable street that I overwrote</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>street</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,597 x 7
-   event_type         borough  category     sub_category_na~ start_date_time    
-   &lt;chr&gt;              &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;            &lt;dttm&gt;             
- 1 Shooting Permit    Manhatt~ Film         Feature          2023-06-01 09:00:00
- 2 Shooting Permit    Manhatt~ Television   News             2023-06-01 09:00:00
- 3 Shooting Permit    Queens   Film         Feature          2023-06-01 08:00:00
- 4 Shooting Permit    Bronx    Television   Episodic series  2023-06-01 07:00:00
- 5 Shooting Permit    Manhatt~ Television   Episodic series  2023-06-01 07:00:00
- 6 Shooting Permit    Queens   Television   Episodic series  2023-06-01 07:00:00
- 7 Shooting Permit    Manhatt~ Commercial   Commercial       2023-06-01 06:00:00
- 8 Shooting Permit    Manhatt~ Still Photo~ Not Applicable   2023-06-01 06:00:00
- 9 Shooting Permit    Brooklyn Television   Episodic series  2023-06-01 05:00:00
-10 Theater Load in a~ Manhatt~ Theater      Theater          2023-06-01 01:00:00
-# ... with 2,587 more rows, and 2 more variables: end_date_time &lt;dttm&gt;,
-#   type &lt;chr&gt;</code></pre>
+<pre><code>[1] "commerce street"  "seabring street"  "amsterdam avenue" "eagle street"    
+[5] "west street"      "freeman street"  </code></pre>
 </div>
 </div>
-<p>Let’s use lubridate to make a list of all the film permits active just this summer. When sending R a date in a logical condition, wrap it in <code>as.Date()</code> so R knows its a date not a string. R &amp; Lubridate defaults to the <code>'YYYY-MM-DD'</code> format.</p>
+<p>Or perhaps I want to know the total closures on 14th street, but I don’t care if it’s West 14th street or East 14th street, or I’m worried that sometimes it’s in the data as “street” and other times as “st” - making it hard to do an exact match. <code>str_detect</code> finds matches of certain patterns. We can pair it with conditional logic to create a variable that flags if the closure was on the street we care about.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>filmpermits_summer23 <span class="ot">&lt;-</span> filmpermits_clean_dates <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(end_date_time <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">'2023-06-01'</span>) <span class="sc">&amp;</span> start_date_time <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">'2023-08-31'</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now I can run the same analysis as above and see if the % breakdowns are any different. </span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>filmpermits_summer23_grouped <span class="ot">&lt;-</span> filmpermits_summer23 <span class="sc">%&gt;%</span> </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">num_permits =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share =</span> num_permits <span class="sc">/</span> <span class="fu">sum</span>(num_permits)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(share))</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>filmpermits_summer23_grouped</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>street_closures <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(borough <span class="sc">==</span> <span class="st">"manhattan"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fourteenth_street =</span> <span class="fu">if_else</span>(<span class="fu">str_detect</span>(street, <span class="st">"14 |14th"</span>), T, F)) <span class="sc">%&gt;%</span> <span class="co">#use these with conditional logic!</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(fourteenth_street) <span class="co">#count how many times!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 x 3
-  type       num_permits  share
-  &lt;chr&gt;            &lt;int&gt;  &lt;dbl&gt;
-1 Other               16 0.667 
-2 Television           6 0.25  
-3 Film                 2 0.0833</code></pre>
+<pre><code># A tibble: 2 x 2
+  fourteenth_street     n
+  &lt;lgl&gt;             &lt;int&gt;
+1 FALSE              5110
+2 TRUE                 17</code></pre>
+</div>
+</div>
+<p>Or use stringr to change data entry inconsistencies!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>street_replace <span class="ot">&lt;-</span> street_closures <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">street =</span> <span class="fu">str_replace</span>(street, <span class="st">"14 "</span>, <span class="st">"14th"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Writing <strong>regular expressions,</strong> the complex notation you can use to return parts of strings is a great example of something you can use AI for!</p>
+<p><img src="images/regex_ai.JPG" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the regular expression pattern</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pattern <span class="ot">&lt;-</span> <span class="st">"^(.*?)(?=</span><span class="sc">\\</span><span class="st">b(?:street|boulevard|avenue|st|blvd|ave|rd|road|circle|cr)</span><span class="sc">\\</span><span class="st">b)"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use str_match to extract the matched part</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="fu">head</span>(street_closures)<span class="sc">$</span>street, pattern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "commerce "   "  seabring " "amsterdam "  "eagle "      "  west "    
+[6] "  freeman " </code></pre>
 </div>
 </div>
 

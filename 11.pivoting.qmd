@@ -1,5 +1,5 @@
 ---
-title: "13. Pivoting"
+title: "11. Pivoting"
 author: "Patrick Spauster"
 format:
   html:

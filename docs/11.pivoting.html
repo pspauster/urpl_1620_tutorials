@@ -8,7 +8,7 @@
 
 <meta name="author" content="Patrick Spauster">
 
-<title>Learning R - 11. Working with Strings</title>
+<title>Learning R - 11. Pivoting</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10.joins.html">Intermediates</a></li><li class="breadcrumb-item"><a href="./11.stringr.html">11. Working with Strings</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10.joins.html">Intermediates</a></li><li class="breadcrumb-item"><a href="./11.pivoting.html">11. Pivoting</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -230,26 +230,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11.stringr.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">11. Working with Strings</span></a>
+  <a href="./11.pivoting.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">11. Pivoting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12.lubridate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">12. Working with Dates</span></a>
+  <a href="./12.ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. ggplot</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13.pivoting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">13. Pivoting</span></a>
+  <a href="./13.stringr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13. Working with Strings</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14.ggplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">14. ggplot</span></a>
+  <a href="./14.lubridate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14. Working with Dates</span></a>
   </div>
 </li>
       </ul>
@@ -294,9 +294,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#video-tutorial" id="toc-video-tutorial" class="nav-link active" data-scroll-target="#video-tutorial">Video Tutorial</a></li>
-  <li><a href="#what-is-a-string" id="toc-what-is-a-string" class="nav-link" data-scroll-target="#what-is-a-string">What is a string?</a></li>
-  <li><a href="#separate-paste" id="toc-separate-paste" class="nav-link" data-scroll-target="#separate-paste">Separate &amp; Paste</a></li>
-  <li><a href="#write-out-data" id="toc-write-out-data" class="nav-link" data-scroll-target="#write-out-data">Write out data</a></li>
+  <li><a href="#wide-and-long-data" id="toc-wide-and-long-data" class="nav-link" data-scroll-target="#wide-and-long-data">“Wide” and “Long” Data</a></li>
+  <li><a href="#pivoting-longer" id="toc-pivoting-longer" class="nav-link" data-scroll-target="#pivoting-longer">Pivoting Longer</a></li>
+  <li><a href="#pivoting-wider" id="toc-pivoting-wider" class="nav-link" data-scroll-target="#pivoting-wider">Pivoting Wider</a></li>
   </ul>
 </nav>
     </div>
@@ -305,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">11. Working with Strings</h1>
+<h1 class="title">11. Pivoting</h1>
 </div>
 
 
@@ -328,17 +328,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="video-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
-<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_qh1tjhi3&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_40wgivu8" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="11. strings" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
+<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_l6mfvz2o&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_hktaq1d5" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="13. pivoting" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 </section>
-<section id="what-is-a-string" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-a-string">What is a string?</h2>
-<p>Often, we will want to take data that we clean, mutate, summarize, filter, or select with, and output it for use in another software. Think about how you might want to process a million-row data set to get some summary statistics, then create a nice table in excel. Or take some data that you need to make a chart or graphic, and export it so that you can read it into DataWrapper or some other visualization tool. Maybe you need to send your boss a list of items that are buried in a big R dataset.</p>
-<p>In this lesson we’ll learn a number of useful functions for manipulating and rewriting strings, using some base R, tidyverse, and a package called stringr.</p>
+<section id="wide-and-long-data" class="level2">
+<h2 class="anchored" data-anchor-id="wide-and-long-data">“Wide” and “Long” Data</h2>
+<p>A dataset can be written as wide and long. A wide format contains values that do not repeat in the first column, whereas long format contains values that do repeat in the first column. Imagine keeping statistics for a basket ball game. You could do it two ways:</p>
+<p><img src="https://www.statology.org/wp-content/uploads/2021/12/wideLong1-1-768x543.png" class="img-fluid"></p>
+<p>Long data is <strong>tidy</strong> - Every column is a <strong>variable</strong> Every row is an <strong>observation</strong>. Every cell is a single <strong>value</strong>.</p>
+<p>We can use pivoting to convert data between wide and long formats. Here’s a visual for what pivoting does.</p>
+<p><img src="https://fromthebottomoftheheap.net/assets/img/posts/tidyr-longer-wider.gif" class="img-fluid"></p>
 </section>
-<section id="separate-paste" class="level2">
-<h2 class="anchored" data-anchor-id="separate-paste">Separate &amp; Paste</h2>
-<p><code>arrange()</code> takes data and sorts it based on certain criteria. Like many of our basic functions, it takes a list <code>...</code> of inputs to sort on. Let’s take a look at an example of something we summarized.</p>
-<p>Let’s grab our code to read in the clean dataframe again. This time I’m just going to use a big pipe to go right to the summary.</p>
+<section id="pivoting-longer" class="level2">
+<h2 class="anchored" data-anchor-id="pivoting-longer">Pivoting Longer</h2>
+<p>For this demo, we want to make a timeline of rent stabilized units in NYC.</p>
+<p>So, let’s start by loading in some data from https://github.com/talos/nyc-stabilization-unit-counts.</p>
+<p>The dataset we want is <a href="https://taxbillsnyc.s3.amazonaws.com/joined.csv">here</a>.</p>
+<p>You can save this file in your project folder and read it in how we’re used to. Or we can read it directly into our environment, a cool feature of read_csv() that lets you pull directly from a weblink.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -373,89 +378,54 @@ v readr   2.1.1     v forcats 0.5.1</code></pre>
 x dplyr::filter() masks stats::filter()
 x dplyr::lag()    masks stats::lag()</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rent_stab_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://taxbillsnyc.s3.amazonaws.com/joined.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'janitor' was built under R version 4.0.5</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'janitor'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    chisq.test, fisher.test</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fhv_summary <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"For_Hire_Vehicles__FHV__-_Active.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">hybrid =</span> veh) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ride_type =</span> <span class="fu">case_when</span>(</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>      base_name <span class="sc">==</span> <span class="st">"UBER USA, LLC"</span> <span class="sc">&amp;</span> base_type <span class="sc">==</span> <span class="st">"BLACK-CAR"</span> <span class="sc">~</span> <span class="st">"BLACK CAR RIDESHARE"</span>,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>      base_name <span class="sc">!=</span> <span class="st">"UBER USA, LLC"</span> <span class="sc">&amp;</span> base_type <span class="sc">==</span> <span class="st">"BLACK-CAR"</span> <span class="sc">~</span> <span class="st">"BLACK CAR NON-RIDESHARE"</span>,</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> base_type <span class="co">#if it doesn't meet either condition, return the base_type</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ride_type) <span class="sc">%&gt;%</span> <span class="co">#group by the variable we just created!</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">no_cars =</span> <span class="fu">n</span>(),</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">average_year =</span> <span class="fu">mean</span>(vehicle_year, <span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 98318 Columns: 23</code></pre>
+<pre><code>Rows: 46461 Columns: 61</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>-- Column specification --------------------------------------------------------
 Delimiter: ","
-chr  (20): Active, Vehicle License Number, Name, License Type, Expiration Da...
-dbl   (1): Vehicle Year
-lgl   (1): Order Date
-time  (1): Last Time Updated</code></pre>
+chr (27): borough, 2007est, 2008est, 2009est, 2009dhcr, 2009abat, 2010est, 2...
+dbl (25): ucbbl, 2007uc, 2008uc, 2009uc, 2010uc, 2011uc, 2012uc, 2013uc, 201...
+lgl  (9): 2007dhcr, 2007abat, 2008dhcr, 2008abat, 2010dhcr, 2014dhcr, 2015dh...</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 i Use `spec()` to retrieve the full column specification for this data.
 i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fhv_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 3
-  ride_type               no_cars average_year
-  &lt;chr&gt;                     &lt;int&gt;        &lt;dbl&gt;
-1 BLACK CAR NON-RIDESHARE   16225        2018.
-2 BLACK CAR RIDESHARE       76710        2018.
-3 LIVERY                     3652        2015.
-4 LUXURY                     1731        2020.</code></pre>
 </div>
-</div>
-<p>Now Let’s say we wanted to sort this list by average oldest car to newest car.</p>
+<p>This project scraped data from PDFs of property tax documents to get estimates for rent stabilized units counts in buildings across NYC. You can read up on the various field names at the Github project page:</p>
+<p>https://github.com/talos/nyc-stabilization-unit-counts#user-content-data-usage.</p>
+<p>For this demo, we only want to look at rent stabilized unit counts, which according to the Github doccumentation corresponds to column names that end in “uc”. Let’s also grab BBL (which is a unique identifier for NYC buildings) and Borough while we’re at it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fhv_summary <span class="sc">%&gt;%</span> </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(average_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 3
-  ride_type               no_cars average_year
-  &lt;chr&gt;                     &lt;int&gt;        &lt;dbl&gt;
-1 LIVERY                     3652        2015.
-2 BLACK CAR NON-RIDESHARE   16225        2018.
-3 BLACK CAR RIDESHARE       76710        2018.
-4 LUXURY                     1731        2020.</code></pre>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rent_stab <span class="ot">&lt;-</span> rent_stab_raw <span class="sc">%&gt;%</span> <span class="fu">select</span>(borough, ucbbl, <span class="fu">ends_with</span>(<span class="st">"uc"</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># starts_with(…) and ends_with(…) are neat selector functions to help you </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># grab names that fit a certain pattern </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>That puts all the oldest car on top and the newest car on bottom</p>
-<p><code>desc</code> is a function that transforms a vector to descending order, and is helpful to use <strong>nested</strong> inside arrange.</p>
+<p>Annoyingly, the data separates unit counts for different years into different columns… to make a timeline, we need all of the yearly data to be stored in one column.</p>
+<p>We can use the <code>pivot_longer</code> function included in tidyverse to transform our data accordingly. Here is how we apply the `pivot_longer` function to our data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fhv_arranged <span class="ot">&lt;-</span> fhv_summary <span class="sc">%&gt;%</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(average_year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rs_long <span class="ot">&lt;-</span> rent_stab <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ends_with</span>(<span class="st">"uc"</span>),  <span class="co"># The multiple column names we want to mush into one column</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>, <span class="co"># The title for the new column of names we're generating</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"units"</span> <span class="co"># The title for the new column of values we're generating</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Arrange also works with multiple variables - the variable listed second breaks ties - and within groups with group_by.</p>
+<p>Now we have data that is “tidy” there is one row for each year for each building. So each observation is a bbl-year pair.</p>
 </section>
-<section id="write-out-data" class="level2">
-<h2 class="anchored" data-anchor-id="write-out-data">Write out data</h2>
-<p>Now that we have a nice table arranged the way we want, we can output it for use in another software.</p>
-<p><code>write_csv()</code> is a twin function to <code>read_csv()</code>. It takes the name of an object and then a filepath to write to.</p>
+<section id="pivoting-wider" class="level2">
+<h2 class="anchored" data-anchor-id="pivoting-wider">Pivoting Wider</h2>
+<p>Additionally, you may have data that is in this “long” format and wish to transform it into the “wide” format we are used to. Luckily, there is an analogous function called `pivot_wider` that does just that:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fhv_arranged <span class="sc">%&gt;%</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_csv</span>(<span class="at">file =</span> <span class="st">"ride_type_by_average_year.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>rs_wide <span class="ot">&lt;-</span> rs_long <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_from =</span> year, <span class="co"># The current column containing our future column names</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_from =</span> units <span class="co"># The current column containing the values for our future columns</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Since we used the <strong>local path</strong> this shows up right in our project directory. We will be writing out to <code>.csv</code>s mostly, but there are companion functions to write out other types of data, like excel spreadsheets.</p>
 
 
 </section>

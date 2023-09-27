@@ -1,5 +1,5 @@
 ---
-title: "14. ggplot"
+title: "12. ggplot"
 author: "Patrick Spauster"
 format:
   html:

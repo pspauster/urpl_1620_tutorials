@@ -8,7 +8,7 @@
 
 <meta name="author" content="Patrick Spauster">
 
-<title>Learning R - 14. ggplot</title>
+<title>Learning R - 14. Working with Dates</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10.joins.html">Intermediates</a></li><li class="breadcrumb-item"><a href="./14.ggplot.html">14. ggplot</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10.joins.html">Intermediates</a></li><li class="breadcrumb-item"><a href="./14.lubridate.html">14. Working with Dates</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -230,26 +230,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11.stringr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11. Working with Strings</span></a>
+  <a href="./11.pivoting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Pivoting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12.lubridate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">12. Working with Dates</span></a>
+  <a href="./12.ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. ggplot</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13.pivoting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">13. Pivoting</span></a>
+  <a href="./13.stringr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13. Working with Strings</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14.ggplot.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">14. ggplot</span></a>
+  <a href="./14.lubridate.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">14. Working with Dates</span></a>
   </div>
 </li>
       </ul>
@@ -294,11 +294,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#video-tutorial" id="toc-video-tutorial" class="nav-link active" data-scroll-target="#video-tutorial">Video Tutorial</a></li>
-  <li><a href="#preparing-data-for-ggplot" id="toc-preparing-data-for-ggplot" class="nav-link" data-scroll-target="#preparing-data-for-ggplot">Preparing Data for ggplot</a></li>
-  <li><a href="#ggplot-syntax" id="toc-ggplot-syntax" class="nav-link" data-scroll-target="#ggplot-syntax">ggplot syntax</a></li>
-  <li><a href="#sample-line-chart" id="toc-sample-line-chart" class="nav-link" data-scroll-target="#sample-line-chart">Sample Line Chart</a></li>
-  <li><a href="#sample-bar-chart-faceting" id="toc-sample-bar-chart-faceting" class="nav-link" data-scroll-target="#sample-bar-chart-faceting">Sample Bar Chart + Faceting</a></li>
-  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
+  <li><a href="#dates-are-tricky" id="toc-dates-are-tricky" class="nav-link" data-scroll-target="#dates-are-tricky">Dates are tricky</a></li>
+  <li><a href="#working-with-dates" id="toc-working-with-dates" class="nav-link" data-scroll-target="#working-with-dates">Working with dates</a></li>
   </ul>
 </nav>
     </div>
@@ -307,7 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">14. ggplot</h1>
+<h1 class="title">14. Working with Dates</h1>
 </div>
 
 
@@ -330,134 +327,114 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="video-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
-<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_1z2obv8k&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_peanbvbw" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="14. ggplot" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
+<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_qodj8v9m&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_n383ocqv" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="12. lubridate" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 </section>
-<section id="preparing-data-for-ggplot" class="level2">
-<h2 class="anchored" data-anchor-id="preparing-data-for-ggplot">Preparing Data for ggplot</h2>
-<p>Data for ggplot needs to be in “long” format, meaning that all the <strong>values</strong> need to be in the same column and all the variables need to be in another column.</p>
-<p>Let’s use that rent stabilization data to create a plot. In this case the data is wide by year, meaning there is a column for each year with different values. We want a dataset where each year has its own row - where each row is a year-building combination - that we can plot.</p>
+<section id="dates-are-tricky" class="level2">
+<h2 class="anchored" data-anchor-id="dates-are-tricky">Dates are tricky</h2>
+<p>Dates can be annoying to work with because they come in many formats…</p>
+<ul>
+<li><p>08/31/2023</p></li>
+<li><p>08-31-2023</p></li>
+<li><p>08/31/23 01:30:36</p></li>
+<li><p>08-31-2023 12:36 PM</p></li>
+</ul>
+<p>But R has some helpful tools that standardize dates and allow us to use them in calculations</p>
+<p>To begin, we’re going to grab a dataset from the NYC Open Data Portal, download it as a .csv, and save it to our project.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rent_stab_long <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://taxbillsnyc.s3.amazonaws.com/joined.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(borough, ucbbl, <span class="fu">ends_with</span>(<span class="st">"uc"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ends_with</span>(<span class="st">"uc"</span>),  <span class="co"># The multiple column names we want to mush into one column</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>, <span class="co"># The title for the new column of names we're generating</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"units"</span> <span class="co"># The title for the new column of values we're generating</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>filmpermits <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Film_Permits.csv"</span>, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">EventID =</span> <span class="fu">col_character</span>())) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s clean it and do some summarizing</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>filmpermits_clean <span class="ot">&lt;-</span> filmpermits <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(event_type, borough, category, sub_category_name, start_date_time, end_date_time) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(category <span class="sc">!=</span> <span class="st">"WEB"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">case_when</span>(category <span class="sc">==</span> <span class="st">'Documentary'</span> <span class="sc">~</span> <span class="st">'Film'</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">'Film'</span> <span class="sc">~</span> <span class="st">'Film'</span>, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">'Television'</span> <span class="sc">~</span> <span class="st">'Television'</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                     category <span class="sc">==</span> <span class="st">'Commerical'</span> <span class="sc">~</span> <span class="st">'Commercial'</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                     <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">'Other'</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="ggplot-syntax" class="level2">
-<h2 class="anchored" data-anchor-id="ggplot-syntax">ggplot syntax</h2>
-<p>ggplots use similar syntax to regular R operations - they are groups of functions beginning with <code>ggplot()</code>. Instead of the pipe, ggplot uses <code>+</code> between different functions to build layers on top of each other.</p>
-<p>Typically, ggplot will start with <code>ggplot(dataframe) +</code> a geometric function like <code>geom_col()</code> and an aesthetics or <code>aes</code> argument that indicates which variables to plot.</p>
-<p><img src="images/ggcheatsheet1.jpeg" class="img-fluid"></p>
-<p><img src="images/ggcheatsheet2.jpeg" class="img-fluid"></p>
-<p>After that, ggplot has a ton of options to specify the labels, scales, axes, themes, legends,and more. It’s best shown through examples</p>
-</section>
-<section id="sample-line-chart" class="level2">
-<h2 class="anchored" data-anchor-id="sample-line-chart">Sample Line Chart</h2>
-<p>Line charts are often a good fit for time-series data. Let’s summarize the long data by year and borough and count the number of units.</p>
+<section id="working-with-dates" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-dates">Working with dates</h2>
+<p>We’re going to install the lubridate package and load it. Some core R packages have helpful cheatsheets like this one. With our core knowledge of how functions work we should be able to apply these to our work!.</p>
+<p>We can use lubridate to work with dates that come in various formats. With the film permits dataset we can run the below to make R recognize these fields as dates. Here’s a lubridate cheat sheet: https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_lubridate.pdf</p>
+<p><img src="images/R_lubridate/R_lubridate-1.jpg" class="img-fluid"></p>
+<p><img src="images/R_lubridate/R_lubridate-2.jpg" class="img-fluid"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rs_long_manhattan_summary <span class="ot">&lt;-</span> rent_stab_long <span class="sc">%&gt;%</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(borough <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"MN"</span>,<span class="st">"BK"</span>) <span class="co"># Filter only Manhattan and Brooklyn values</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>          <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(units)) <span class="sc">%&gt;%</span> <span class="co"># Filter out null unit count values</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"uc"</span>,<span class="st">""</span>, year))) <span class="sc">%&gt;%</span> <span class="co"># Remove "uc" from year values</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, borough, units) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Grouping by 2 columns means each row will have a unique pair of the two columns' values.</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Our rows will look like: 2007 MN, 2007 BK, 2008 MN... </span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, borough) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_units =</span> <span class="fu">sum</span>(units))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'year'. You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>filmpermits_clean_dates <span class="ot">&lt;-</span> filmpermits_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">start_date_time =</span> <span class="fu">mdy_hms</span>(start_date_time),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">end_date_time =</span> <span class="fu">mdy_hms</span>(end_date_time))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's see what the earliest start date in the dataset is. This will run in the console. </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>filmpermits_clean_dates <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(start_date_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,597 x 7
+   event_type           borough   category  sub_category_na~ start_date_time    
+   &lt;chr&gt;                &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;            &lt;dttm&gt;             
+ 1 Theater Load in and~ Manhattan Theater   Theater          2023-01-01 00:01:00
+ 2 Theater Load in and~ Manhattan Theater   Theater          2023-01-01 00:01:00
+ 3 Shooting Permit      Manhattan Televisi~ News             2023-01-01 04:00:00
+ 4 Shooting Permit      Manhattan Televisi~ News             2023-01-02 04:00:00
+ 5 Theater Load in and~ Brooklyn  Theater   Theater          2023-01-03 07:00:00
+ 6 Shooting Permit      Queens    Televisi~ Episodic series  2023-01-03 07:00:00
+ 7 Shooting Permit      Brooklyn  Televisi~ Episodic series  2023-01-03 10:00:00
+ 8 Rigging Permit       Manhattan Document~ Not Applicable   2023-01-03 17:00:00
+ 9 Shooting Permit      Manhattan Televisi~ Morning Show     2023-01-04 05:00:00
+10 Shooting Permit      Manhattan Document~ Not Applicable   2023-01-04 06:00:00
+# ... with 2,587 more rows, and 2 more variables: end_date_time &lt;dttm&gt;,
+#   type &lt;chr&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's see what the latest start date in the dataset is. </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>filmpermits_clean_dates <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(start_date_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,597 x 7
+   event_type         borough  category     sub_category_na~ start_date_time    
+   &lt;chr&gt;              &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;            &lt;dttm&gt;             
+ 1 Shooting Permit    Manhatt~ Film         Feature          2023-06-01 09:00:00
+ 2 Shooting Permit    Manhatt~ Television   News             2023-06-01 09:00:00
+ 3 Shooting Permit    Queens   Film         Feature          2023-06-01 08:00:00
+ 4 Shooting Permit    Bronx    Television   Episodic series  2023-06-01 07:00:00
+ 5 Shooting Permit    Manhatt~ Television   Episodic series  2023-06-01 07:00:00
+ 6 Shooting Permit    Queens   Television   Episodic series  2023-06-01 07:00:00
+ 7 Shooting Permit    Manhatt~ Commercial   Commercial       2023-06-01 06:00:00
+ 8 Shooting Permit    Manhatt~ Still Photo~ Not Applicable   2023-06-01 06:00:00
+ 9 Shooting Permit    Brooklyn Television   Episodic series  2023-06-01 05:00:00
+10 Theater Load in a~ Manhatt~ Theater      Theater          2023-06-01 01:00:00
+# ... with 2,587 more rows, and 2 more variables: end_date_time &lt;dttm&gt;,
+#   type &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>Now let’s plot it. We start with the data, then add aesthetics, our chart type (line), axis specifications, and labels.</p>
+<p>Let’s use lubridate to make a list of all the film permits active just this summer. When sending R a date in a logical condition, wrap it in <code>as.Date()</code> so R knows its a date not a string. R &amp; Lubridate defaults to the <code>'YYYY-MM-DD'</code> format.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rs_over_time_graph <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(rs_long_manhattan_summary) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Note these arguments inside 'geom_line' :</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>total_units, <span class="at">color=</span>borough)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Restyle the Y-axis labels: </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">300000</span>),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">unit_format</span>(<span class="at">scale =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">1000</span>, <span class="at">unit=</span><span class="st">"K"</span>)) <span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2007</span>, <span class="dv">2017</span>, <span class="at">by =</span> <span class="dv">1</span>))<span class="sc">+</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Restyle the Legend: </span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">name=</span><span class="st">"Borough"</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks=</span><span class="fu">c</span>(<span class="st">"BK"</span>, <span class="st">"MN"</span>),</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Brooklyn"</span>, <span class="st">"Manhattan"</span>)) <span class="sc">+</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Total Rent Stabilized Units over Time"</span>,</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Manhattan and Brooklyn, 2007 to 2017"</span>,</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total Rent Stabilized Units"</span>,</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: taxbills.nyc"</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>rs_over_time_graph</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="14.ggplot_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>filmpermits_summer23 <span class="ot">&lt;-</span> filmpermits_clean_dates <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(end_date_time <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">'2023-06-01'</span>) <span class="sc">&amp;</span> start_date_time <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">'2023-08-31'</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now I can run the same analysis as above and see if the % breakdowns are any different. </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>filmpermits_summer23_grouped <span class="ot">&lt;-</span> filmpermits_summer23 <span class="sc">%&gt;%</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">num_permits =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share =</span> num_permits <span class="sc">/</span> <span class="fu">sum</span>(num_permits)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(share))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>filmpermits_summer23_grouped</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 x 3
+  type       num_permits  share
+  &lt;chr&gt;            &lt;int&gt;  &lt;dbl&gt;
+1 Other               16 0.667 
+2 Television           6 0.25  
+3 Film                 2 0.0833</code></pre>
 </div>
 </div>
-</section>
-<section id="sample-bar-chart-faceting" class="level2">
-<h2 class="anchored" data-anchor-id="sample-bar-chart-faceting">Sample Bar Chart + Faceting</h2>
-<p>Let’s make some bar charts out of the table of # of children by the languages they speak at home by borough.</p>
-<p>We’ll learn how we pulled this data in an upcoming lesson, but for now just install tidycensus and run this.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>langs_by_boro_for_graphing <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"langs_by_boro.csv"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="co"># Add a new column with neat category labels</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        variable <span class="sc">==</span> <span class="st">'englishkids'</span> <span class="sc">~</span> <span class="st">'English'</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        variable <span class="sc">==</span> <span class="st">'spanishkids'</span> <span class="sc">~</span> <span class="st">'Spanish'</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        variable <span class="sc">==</span> <span class="st">'indoeurkids'</span> <span class="sc">~</span> <span class="st">'Indo-European'</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        variable <span class="sc">==</span> <span class="st">'apikids'</span> <span class="sc">~</span> <span class="st">'Asian &amp; Pacific Islander'</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        variable <span class="sc">==</span> <span class="st">'otherkids'</span> <span class="sc">~</span> <span class="st">'Other Languages'</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">fct_reorder</span>(labels, estimate)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="co"># Overwrite the variable column of langs_by_boro with a function that tells R to order the variable column by the estimate column when it gets plotted (like a sort). If I wanted it ordered in the other direction I would put estimate inside of desc().</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable <span class="sc">!=</span> <span class="st">'totalkids'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Produce a horizontal bar chart</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note - this builds progressively; you can run all the code before any + sign as a step toward the final result.</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>barchart <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(langs_by_boro_for_graphing) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> estimate, <span class="at">y =</span> labels) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span> <span class="co"># format count labels with commas and thousands</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'What languages do NYC kids speak at home?'</span>,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">'Number of children ages 5-17 by the language spoken at home'</span>,</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Census American Community Survey 2020 5-Year Estimates, Table B16007"</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>barchart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="14.ggplot_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Now let’s facet it by borough</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>barchart <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> name, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="14.ggplot_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="additional-resources" class="level2">
-<h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
-<p>This <a href="https://urbaninstitute.github.io/r-at-urban/graphics-guide.html">guide from the Urban Institute</a> has a number of helpful tutorials for how to create a wide number of graphs with ggplot.</p>
 
 
 </section>

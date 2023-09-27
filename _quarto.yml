@@ -25,10 +25,10 @@ website:
       - section: "Intermediates"
         contents:
           - 10.joins.qmd
-          - 11.stringr.qmd
-          - 12.lubridate.qmd
-          - 13.pivoting.qmd
-          - 14.ggplot.qmd
+          - 11.pivoting.qmd
+          - 12.ggplot.qmd
+          - 13.stringr.qmd
+          - 14.lubridate.qmd
       - section: "Advanced"
         contents:
           - 15.apis.qmd
