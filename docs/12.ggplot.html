@@ -407,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sample-bar-chart-faceting" class="level2">
 <h2 class="anchored" data-anchor-id="sample-bar-chart-faceting">Sample Bar Chart + Faceting</h2>
 <p>Let’s make some bar charts out of the table of # of children by the languages they speak at home by borough.</p>
-<p>We’ll learn how we pulled this data in an upcoming lesson, but for now just install tidycensus and run this.</p>
+<p>We’ll learn how we pulled this data in an upcoming lesson, but for now just download <a href="https://github.com/pspauster/learning_R/blob/master/langs_by_boro.csv">this csv</a>. Or run <code>read_csv("https://raw.githubusercontent.com/pspauster/learning_R/master/langs_by_boro.csv")</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>langs_by_boro_for_graphing <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"langs_by_boro.csv"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>

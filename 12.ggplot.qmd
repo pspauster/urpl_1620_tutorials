@@ -95,7 +95,7 @@ rs_over_time_graph
 
 Let's make some bar charts out of the table of \# of children by the languages they speak at home by borough.
 
-We'll learn how we pulled this data in an upcoming lesson, but for now just install tidycensus and run this.
+We'll learn how we pulled this data in an upcoming lesson, but for now just download [this csv](https://github.com/pspauster/learning_R/blob/master/langs_by_boro.csv). Or run `read_csv("https://raw.githubusercontent.com/pspauster/learning_R/master/langs_by_boro.csv")`
 
 ```{r message=F, warning=F}
 
