@@ -33,7 +33,7 @@ library(sf)
 aff_hsg_sf <- aff_hsg %>% 
   clean_names() %>% 
   filter(!is.na(longitude)) %>%  #remove properties with missing coordinates
-  st_as_sf(coords = c("longitude", "latitude")) #be careful! x = longitude, y = latitude
+  st_as_sf(coords = c("longitude", "latitude"), crs = 2263) #be careful! x = longitude, y = latitude
 
 ```
 
@@ -184,6 +184,22 @@ I could write out this ggplot to edit in vector graphics
 
 ```{r}
 ggsave("output/aff_hsg_inc_nyc.svg")
+```
+
+What if I didn't have a crosswalk and needed to match points to the community district?
+
+```{r}
+
+
+
+```
+
+What if I wanted to find the proportion of affordable housing near the subway?
+
+```{r}
+
+
+
 ```
 
 Many more spatial operations available on the cheat sheets
