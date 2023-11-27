@@ -207,18 +207,18 @@ points_polygons_join %>%
 
 What if I wanted to find the proportion of affordable housing in the flood zone? I can do this with an intersects and mutate - I don't even need to join the two datasets!
 
-```{r}
-floodplain_2020s_100y <- read_sf("https://data.cityofnewyork.us/resource/inra-wqx3.geojson?$limit=10000") %>% 
-  st_make_valid() %>%  #this magic function repairs any invalid geometries
-  st_union() %>% #here I make the entire floodplain into one big shape
-  st_set_crs(st_crs(points_polygons_join)) #and set it to the same crs as my points
-
-points_polygons_join %>% 
-  mutate(fplain_2020s_100y = lengths(st_intersects(.,floodplain_2020s_100y))) %>%  #st_intersects returns a list of the shapes it intersects with - if its 0 it didn't intersect, if its 1 it did!
-  as.data.frame() %>% 
-  group_by(fplain_2020s_100y) %>% 
-  summarize(count = n(),
-            units = sum(all_counted_units, na.rm = T))
+```{r flood zones}
+# floodplain_2020s_100y <- read_sf("https://data.cityofnewyork.us/resource/inra-wqx3.geojson?$limit=10000") %>% 
+#   st_make_valid() %>%  #this magic function repairs any invalid geometries
+#   st_union() %>% #here I make the entire floodplain into one big shape
+#   st_set_crs(st_crs(points_polygons_join)) #and set it to the same crs as my points
+# 
+# points_polygons_join %>% 
+#   mutate(fplain_2020s_100y = lengths(st_intersects(.,floodplain_2020s_100y))) %>%  #st_intersects returns a list of the shapes it intersects with - if its 0 it didn't intersect, if its 1 it did!
+#   as.data.frame() %>% 
+#   group_by(fplain_2020s_100y) %>% 
+#   summarize(count = n(),
+#             units = sum(all_counted_units, na.rm = T))
  
 ```
 
