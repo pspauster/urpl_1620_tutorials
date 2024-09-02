@@ -1,0 +1,34 @@
+---
+title: "18. Setting up QGIS"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+---
+
+## Video Tutorial
+
+Here is template language for the page, for example I included a link to the [RStudio download](https://posit.co/download/rstudio-desktop/ "download R and R Studio") page previously.
+
+Here's how to imbed a youtube video
+
+{{< video https://www.youtube.com/watch?v=dQw4w9WgXcQ >}}
+
+## Header
+
+You can put more info here, like the example below
+
+To use R, we need R, the underlying language that runs our code, as well as R studio, an integrated development environment (IDE) that allows us to save files and edit and run code.
+
+To get started, we'll visit [RStudio's homepage](https://posit.co/download/rstudio-desktop/ "Download R and RStudio") to install R.
+
+First, Install R for your operating system from [CRAN](https://cran.rstudio.com/).
+
+Then download the [latest version](https://download1.rstudio.org/electron/macos/RStudio-2023.06.1-524.dmg) of RStudio and open it.
+
+## When you add new pages...
+
+Make sure to add them to the table of contents in the \_quarto.yml file so you can navigate to them.
+
+## 

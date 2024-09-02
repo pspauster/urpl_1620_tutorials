@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Patrick Spauster">
 
-<title>URPL 1620 Tutorials - 5. Data cleaning and the pipe</title>
+<title>URPL 1620 Tutorials - 18. Setting up QGIS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -114,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5.datacleaning_pipe.html">R Basics</a></li><li class="breadcrumb-item"><a href="./5.datacleaning_pipe.html">5. Data cleaning and the pipe</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.qgis_setup.html">QGIS Basics</a></li><li class="breadcrumb-item"><a href="./18.qgis_setup.html">18. Setting up QGIS</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -191,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./5.datacleaning_pipe.html" class="sidebar-item-text sidebar-link active">
+  <a href="./5.datacleaning_pipe.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5. Data cleaning and the pipe</span></a>
   </div>
 </li>
@@ -302,7 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./18.qgis_setup.html" class="sidebar-item-text sidebar-link">
+  <a href="./18.qgis_setup.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">18. Setting up QGIS</span></a>
   </div>
 </li>
@@ -314,35 +279,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#video-tutorial" id="toc-video-tutorial" class="nav-link active" data-scroll-target="#video-tutorial">Video Tutorial</a></li>
-  <li><a href="#cleaning-data" id="toc-cleaning-data" class="nav-link" data-scroll-target="#cleaning-data">Cleaning Data</a></li>
-  <li><a href="#the-pipe" id="toc-the-pipe" class="nav-link" data-scroll-target="#the-pipe">The Pipe</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5.datacleaning_pipe.html">R Basics</a></li><li class="breadcrumb-item"><a href="./5.datacleaning_pipe.html">5. Data cleaning and the pipe</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.qgis_setup.html">QGIS Basics</a></li><li class="breadcrumb-item"><a href="./18.qgis_setup.html">18. Setting up QGIS</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">5. Data cleaning and the pipe</h1>
+<h1 class="title">18. Setting up QGIS</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Patrick Spauster </p>
-          </div>
-  </div>
     
   
     
@@ -355,64 +305,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="video-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
-<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_4ucd4flb&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_irk4klc4" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="5. pipe and data cleaning" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
+<p>Here is template language for the page, for example I included a link to the <a href="https://posit.co/download/rstudio-desktop/" title="download R and R Studio">RStudio download</a> page previously.</p>
+<p>Here’s how to imbed a youtube video</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
-<section id="cleaning-data" class="level2">
-<h2 class="anchored" data-anchor-id="cleaning-data">Cleaning Data</h2>
-<p>Let’s read in data like we did last time. We’re going to “clean” it, which just means making it easier to use and getting it into tidy format.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fhv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"For_Hire_Vehicles__FHV__-_Active.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>When we read this in, we have some unfriendly names of variables with spaces in them. To access those variables we have to use <code>`backticks`</code> which are clunky. The <strong>janitor</strong> package has helpful data cleaning functions. Install it and take a look at the <code>clean_names()</code> function.</p>
-<p>For many functions, the first <strong>argument</strong> is always the name of a dataframe. In this case we want to clean the names of our <code>fhv</code> dataframe.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(fhv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now our names are clean - they are all lowercase, and have replaced all spaces with underscores. This will make it easier to refer to our column names as we transform data going forward.</p>
-<p>But instead of assigning a new dataframe each time we want to apply a function, we should apply more than one function at once.</p>
+<section id="header" class="level2">
+<h2 class="anchored" data-anchor-id="header">Header</h2>
+<p>You can put more info here, like the example below</p>
+<p>To use R, we need R, the underlying language that runs our code, as well as R studio, an integrated development environment (IDE) that allows us to save files and edit and run code.</p>
+<p>To get started, we’ll visit <a href="https://posit.co/download/rstudio-desktop/" title="Download R and RStudio">RStudio’s homepage</a> to install R.</p>
+<p>First, Install R for your operating system from <a href="https://cran.rstudio.com/">CRAN</a>.</p>
+<p>Then download the <a href="https://download1.rstudio.org/electron/macos/RStudio-2023.06.1-524.dmg">latest version</a> of RStudio and open it.</p>
 </section>
-<section id="the-pipe" class="level2">
-<h2 class="anchored" data-anchor-id="the-pipe">The Pipe</h2>
-<p>Let’s say we also wanted to change the name of a variable. Using the pipe <code>%&gt;%</code> we can apply multiple functions to the same dataframe. Use the shortcut <code>shift+command+m</code> on mac or <code>shift+ctrl+m on windows</code></p>
-<p>Let’s try <code>rename()</code> a function to change the names of columns. I don’t know what the “veh” column means so I’m going to look it up in the <a href="https://data.cityofnewyork.us/api/views/8wbx-tsch/files/a33b2ee3-d844-4add-9785-3cd89a61b6b6?download=true&amp;filename=MDTLCForHireVehiclesActive.xlsx">data dictionary</a> on the open data <a href="https://data.cityofnewyork.us/Transportation/For-Hire-Vehicles-FHV-Active/8wbx-tsch">page</a>.</p>
-<p>It’s an indicator for whether the vehicle is hybrid, so i’m going to rename it “hybrid”. Use the documentation for <code>rename()</code> to figure out the right syntax.</p>
-<p>To use the pipe, start with the name of the data frame you want to edit, and then chain the pipes after each function using some indenting to organize your code.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="ot">&lt;-</span> fhv <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">hybrid =</span> veh)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#clean_names() is empty because the first argument is just the name of the dataframe, which has been piped in for us</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now we have a dataset with clean names and a renamed column “hybrid”</p>
-<p>As we learn more and more functions, we’ll have longer chains of pipes to clean and construct datasets.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fhv_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 98,318 × 23
-   active vehicle_license_number name               license_type expiration_date
-   &lt;chr&gt;  &lt;chr&gt;                  &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;          
- 1 YES    5608977                AMERICAN,UNITED,T… FOR HIRE VE… 04/30/2025     
- 2 YES    5645622                RAMA,ILIR          FOR HIRE VE… 09/11/2023     
- 3 YES    5192507                ORDONEZ,ELIAS      FOR HIRE VE… 03/08/2025     
- 4 YES    5378856                RIVERA,ENMA        FOR HIRE VE… 11/12/2024     
- 5 YES    5852121                A/VA,SERVICE,CORP  FOR HIRE VE… 04/11/2024     
- 6 YES    5415237                REYES,JUAN,E       FOR HIRE VE… 10/31/2023     
- 7 YES    5643301                BEGUM,TAZMINUR     FOR HIRE VE… 09/30/2025     
- 8 YES    5701439                GONZALEZALVARADO,L FOR HIRE VE… 06/13/2024     
- 9 YES    5790931                GOMEZ,JOSE,A       FOR HIRE VE… 05/23/2025     
-10 YES    5743759                HOSSAIN,SM,KAMAL   FOR HIRE VE… 12/08/2024     
-# ℹ 98,308 more rows
-# ℹ 18 more variables: permit_license_number &lt;chr&gt;,
-#   dmv_license_plate_number &lt;chr&gt;, vehicle_vin_number &lt;chr&gt;,
-#   wheelchair_accessible &lt;chr&gt;, certification_date &lt;chr&gt;, hack_up_date &lt;chr&gt;,
-#   vehicle_year &lt;dbl&gt;, base_number &lt;chr&gt;, base_name &lt;chr&gt;, base_type &lt;chr&gt;,
-#   hybrid &lt;chr&gt;, base_telephone_number &lt;chr&gt;, website &lt;chr&gt;,
-#   base_address &lt;chr&gt;, reason &lt;chr&gt;, order_date &lt;lgl&gt;, …</code></pre>
-</div>
-</div>
+<section id="when-you-add-new-pages" class="level2">
+<h2 class="anchored" data-anchor-id="when-you-add-new-pages">When you add new pages…</h2>
+<p>Make sure to add them to the table of contents in the _quarto.yml file so you can navigate to them.</p>
 </section>
 <section id="section" class="level2">
 <h2 class="anchored" data-anchor-id="section"></h2>
