@@ -686,5 +686,56 @@
       "R Basics",
       "9. Arrange and Write Data"
     ]
+  },
+  {
+    "objectID": "18.qgis_setup.html#setting-up-your-first-qgis-project",
+    "href": "18.qgis_setup.html#setting-up-your-first-qgis-project",
+    "title": "18. Setting up your first QGIS project",
+    "section": "Setting up your first QGIS project",
+    "text": "Setting up your first QGIS project\nIn this tutorial: download shapefiles from the NYC Open Data Portal, open QGIS, save a QGIS project, and orient to the QGIS interface\nDownload the latest Long Term Version of QGIS here.\nThe most common issue with installing QGIS is for Mac users the first time you open up the program. You’ll often see an error message that says “QGIS” can’t be opened because Apple cannot check it for malicious software.\nYou don’t need to worry about this message; QGIS is trustworthy. If this happens, locate QGIS in Finder and right-click, then Open from that menu. That should resolve the problem.",
+    "crumbs": [
+      "QGIS",
+      "18. Setting up your first QGIS project"
+    ]
+  },
+  {
+    "objectID": "18.qgis_setup.html#data-downloads",
+    "href": "18.qgis_setup.html#data-downloads",
+    "title": "18. Setting up your first QGIS project",
+    "section": "Data downloads",
+    "text": "Data downloads\nBorough boundaries\nNYC subway stations (Note - the subways dataset appears to have been removed from the NYC Open Data Portal since I made this video, but you can download an old saved version using that link.)",
+    "crumbs": [
+      "QGIS",
+      "18. Setting up your first QGIS project"
+    ]
+  },
+  {
+    "objectID": "19.adding_spatial_layers.html#adding-and-exploring-spatial-layers",
+    "href": "19.adding_spatial_layers.html#adding-and-exploring-spatial-layers",
+    "title": "19. Adding and exploring spatial layers",
+    "section": "Adding and Exploring Spatial Layers",
+    "text": "Adding and Exploring Spatial Layers\nIn this tutorial: Add New York City boroughs and subway station shapefiles as layers to your QGIS project and explore the data that they contain using the attribute table and the Identify Features tool.",
+    "crumbs": [
+      "QGIS",
+      "19. Adding and exploring spatial layers"
+    ]
+  },
+  {
+    "objectID": "19.adding_spatial_layers.html#data-downloads",
+    "href": "19.adding_spatial_layers.html#data-downloads",
+    "title": "19. Adding and exploring spatial layers",
+    "section": "Data downloads",
+    "text": "Data downloads\nBorough boundaries\nNYC subway stations (Note - the subways dataset appears to have been removed from the NYC Open Data Portal since I made this video, but you can download an old saved version using that link.)",
+    "crumbs": [
+      "QGIS",
+      "19. Adding and exploring spatial layers"
+    ]
+  },
+  {
+    "objectID": "19.adding_spatial_layers.html#data-downloads-1",
+    "href": "19.adding_spatial_layers.html#data-downloads-1",
+    "title": "19. Adding and exploring spatial layers",
+    "section": "Data downloads",
+    "text": "Data downloads\nBorough boundaries\nNYC subway stations (Note - the subways dataset appears to have been removed from the NYC Open Data Portal since I made this video, but you can download an old saved version using that link.)"
   }
 ]

@@ -2,12 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Lucy Block">
 
-<title>URPL 1620 Tutorials - 18. Setting up QGIS</title>
+<title>URPL 1620 Tutorials - 18. Setting up your first QGIS project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.qgis_setup.html">QGIS Basics</a></li><li class="breadcrumb-item"><a href="./18.qgis_setup.html">18. Setting up QGIS</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.qgis_setup.html">QGIS</a></li><li class="breadcrumb-item"><a href="./18.qgis_setup.html">18. Setting up your first QGIS project</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -113,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Getting Started with R</span></a>
+ <span class="menu-text">Learning R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -143,17 +144,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">4. Reading Data and Data Types</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">R Basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./5.datacleaning_pipe.html" class="sidebar-item-text sidebar-link">
@@ -184,17 +174,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">9. Arrange and Write Data</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">R Intermediates</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.joins.html" class="sidebar-item-text sidebar-link">
@@ -225,17 +204,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">14. Working with Dates</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">R Advanced</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.apis.html" class="sidebar-item-text sidebar-link">
@@ -258,17 +226,23 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">QGIS Basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">QGIS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.qgis_setup.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">18. Setting up QGIS</span></a>
+ <span class="menu-text">18. Setting up your first QGIS project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19.adding_spatial_layers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">19. Adding and exploring spatial layers</span></a>
   </div>
 </li>
       </ul>
@@ -284,15 +258,21 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.qgis_setup.html">QGIS Basics</a></li><li class="breadcrumb-item"><a href="./18.qgis_setup.html">18. Setting up QGIS</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.qgis_setup.html">QGIS</a></li><li class="breadcrumb-item"><a href="./18.qgis_setup.html">18. Setting up your first QGIS project</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">18. Setting up QGIS</h1>
+<h1 class="title">18. Setting up your first QGIS project</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lucy Block </p>
+          </div>
+  </div>
     
   
     
@@ -303,26 +283,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="video-tutorial" class="level2">
-<h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
-<p>Here is template language for the page, for example I included a link to the <a href="https://posit.co/download/rstudio-desktop/" title="download R and R Studio">RStudio download</a> page previously.</p>
-<p>Here’s how to imbed a youtube video</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/VkACnYfFgLE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<section id="setting-up-your-first-qgis-project" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-your-first-qgis-project">Setting up your first QGIS project</h2>
+<p>In this tutorial: download shapefiles from the NYC Open Data Portal, open QGIS, save a QGIS project, and orient to the QGIS interface</p>
+<p>Download the latest <strong>Long Term Version</strong> of QGIS <a href="https://www.qgis.org/download/">here</a>.</p>
+<p>The most common issue with installing QGIS is for Mac users the first time you open up the program. You’ll often see an error message that says <em>“QGIS” can’t be opened because Apple cannot check it for malicious software.</em></p>
+<p><strong>You don’t need to worry about this message</strong>; QGIS is trustworthy. If this happens, locate QGIS in Finder and right-click, then Open from that menu. That should resolve the problem.</p>
+<p><img src="images/open QGIS.png" class="img-fluid" width="287"></p>
 </section>
-<section id="header" class="level2">
-<h2 class="anchored" data-anchor-id="header">Header</h2>
-<p>You can put more info here, like the example below</p>
-<p>To use R, we need R, the underlying language that runs our code, as well as R studio, an integrated development environment (IDE) that allows us to save files and edit and run code.</p>
-<p>To get started, we’ll visit <a href="https://posit.co/download/rstudio-desktop/" title="Download R and RStudio">RStudio’s homepage</a> to install R.</p>
-<p>First, Install R for your operating system from <a href="https://cran.rstudio.com/">CRAN</a>.</p>
-<p>Then download the <a href="https://download1.rstudio.org/electron/macos/RStudio-2023.06.1-524.dmg">latest version</a> of RStudio and open it.</p>
-</section>
-<section id="when-you-add-new-pages" class="level2">
-<h2 class="anchored" data-anchor-id="when-you-add-new-pages">When you add new pages…</h2>
-<p>Make sure to add them to the table of contents in the _quarto.yml file so you can navigate to them.</p>
-</section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="data-downloads" class="level2">
+<h2 class="anchored" data-anchor-id="data-downloads">Data downloads</h2>
+<p><a href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough boundaries</a></p>
+<p><a href="https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view">NYC subway stations</a> (Note - the subways dataset appears to have been removed from the NYC Open Data Portal since I made this video, but you can download an old saved version using that link.)</p>
 
 
 </section>

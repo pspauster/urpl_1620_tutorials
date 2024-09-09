@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Patrick Spauster and Lucy Block">
+<meta name="author" content="Lucy Block">
 
-<title>URPL 1620 Tutorials - URPL 1620</title>
+<title>URPL 1620 Tutorials - 19. Adding and exploring spatial layers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked fullcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">URPL 1620</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.qgis_setup.html">QGIS</a></li><li class="breadcrumb-item"><a href="./19.adding_spatial_layers.html">19. Adding and exploring spatial layers</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -107,14 +107,14 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">URPL 1620</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Getting Started with R</span></a>
+ <span class="menu-text">Learning R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -144,17 +144,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">4. Reading Data and Data Types</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">R Basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./5.datacleaning_pipe.html" class="sidebar-item-text sidebar-link">
@@ -185,17 +174,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">9. Arrange and Write Data</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">R Intermediates</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.joins.html" class="sidebar-item-text sidebar-link">
@@ -226,17 +204,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">14. Working with Dates</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">R Advanced</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.apis.html" class="sidebar-item-text sidebar-link">
@@ -259,17 +226,23 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">QGIS Basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">QGIS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.qgis_setup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">18. Setting up your first QGIS project</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19.adding_spatial_layers.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">19. Adding and exploring spatial layers</span></a>
   </div>
 </li>
       </ul>
@@ -279,13 +252,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.qgis_setup.html">QGIS</a></li><li class="breadcrumb-item"><a href="./19.adding_spatial_layers.html">19. Adding and exploring spatial layers</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">URPL 1620</h1>
+<h1 class="title">19. Adding and exploring spatial layers</h1>
 </div>
 
 
@@ -295,7 +270,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Patrick Spauster and Lucy Block </p>
+             <p>Lucy Block </p>
           </div>
   </div>
     
@@ -308,22 +283,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="urpl-1620" class="level2">
-<h2 class="anchored" data-anchor-id="urpl-1620">URPL-1620</h2>
-<p>This page was created as a guide to help students at NYU Wagner’s Data Analysis, Mapping, and Storytelling course.</p>
-<p>Here are links to the <a href="https://brightspace.nyu.edu/d2l/home/384497">Brightspace</a>, <a href="https://join.slack.com/t/dataanalysism-ld27014/shared_invite/zt-2pmpeblnr-FX4atGgQw3pJd_hczY2zDg">Slack</a>, and <a href="https://drive.google.com/drive/folders/1EWlOMm1BEv3dR8bh2z31kP_8mXB6nOth">Google Drive</a></p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/2m9RrS9BfNo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<section id="adding-and-exploring-spatial-layers" class="level2">
+<h2 class="anchored" data-anchor-id="adding-and-exploring-spatial-layers">Adding and Exploring Spatial Layers</h2>
+<p>In this tutorial: Add New York City boroughs and subway station shapefiles as layers to your QGIS project and explore the data that they contain using the attribute table and the Identify Features tool.</p>
 </section>
-<section id="welcome-to-r" class="level2">
-<h2 class="anchored" data-anchor-id="welcome-to-r">Welcome to R</h2>
-<p>In this directory, we’re going to learn the basics of R and how to use it to read in, analyze, and visualize data so you can use it in data stories.</p>
-</section>
-<section id="welcome-to-qgis" class="level2">
-<h2 class="anchored" data-anchor-id="welcome-to-qgis">Welcome to QGIS</h2>
-<p>In this directory, we’re going to learn the basics of QGIS and how to use it to read in, analyze, and visualize data so you can use it in data stories.</p>
-</section>
-<section id="acknowledgements" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
-<p>These tutorials are adapted from previous course materials assembled and edited by Sam Rabiyah, Maxwell Austensen, and Lucy Block.</p>
+<section id="data-downloads" class="level2">
+<h2 class="anchored" data-anchor-id="data-downloads">Data downloads</h2>
+<p><a href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough boundaries</a></p>
+<p><a href="https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view">NYC subway stations</a> (Note - the subways dataset appears to have been removed from the NYC Open Data Portal since I made this video, but you can download an old saved version using that link.)</p>
 
 
 </section>
