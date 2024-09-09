@@ -1,5 +1,6 @@
 ---
-title: "18. Setting up QGIS"
+title: "18. Setting up your first QGIS project"
+author: "Lucy Block"
 format:
   html:
     code-copy: true
@@ -7,28 +8,22 @@ format:
 editor: visual
 ---
 
-## Video Tutorial
+{{< video https://www.youtube.com/watch?v=VkACnYfFgLE >}}
 
-Here is template language for the page, for example I included a link to the [RStudio download](https://posit.co/download/rstudio-desktop/ "download R and R Studio") page previously.
+## Setting up your first QGIS project
 
-Here's how to imbed a youtube video
+In this tutorial: download shapefiles from the NYC Open Data Portal, open QGIS, save a QGIS project, and orient to the QGIS interface
 
-{{< video https://www.youtube.com/watch?v=dQw4w9WgXcQ >}}
+Download the latest **Long Term Version** of QGIS [here](https://www.qgis.org/download/).
 
-## Header
+The most common issue with installing QGIS is for Mac users the first time you open up the program. You’ll often see an error message that says *“QGIS” can’t be opened because Apple cannot check it for malicious software.*
 
-You can put more info here, like the example below
+**You don’t need to worry about this message**; QGIS is trustworthy. If this happens, locate QGIS in Finder and right-click, then Open from that menu. That should resolve the problem.
 
-To use R, we need R, the underlying language that runs our code, as well as R studio, an integrated development environment (IDE) that allows us to save files and edit and run code.
+![](images/open%20QGIS.png){width="287"}
 
-To get started, we'll visit [RStudio's homepage](https://posit.co/download/rstudio-desktop/ "Download R and RStudio") to install R.
+## Data downloads
 
-First, Install R for your operating system from [CRAN](https://cran.rstudio.com/).
+[Borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm)
 
-Then download the [latest version](https://download1.rstudio.org/electron/macos/RStudio-2023.06.1-524.dmg) of RStudio and open it.
-
-## When you add new pages...
-
-Make sure to add them to the table of contents in the \_quarto.yml file so you can navigate to them.
-
-## 
+[NYC subway stations](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view) (Note - the subways dataset appears to have been removed from the NYC Open Data Portal since I made this video, but you can download an old saved version using that link.)

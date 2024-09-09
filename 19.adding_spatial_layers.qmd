@@ -1,0 +1,21 @@
+---
+title: "19. Adding and exploring spatial layers"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+---
+
+{{< video https://www.youtube.com/watch?v=2m9RrS9BfNo >}}
+
+## Adding and Exploring Spatial Layers
+
+In this tutorial: Add New York City boroughs and subway station shapefiles as layers to your QGIS project and explore the data that they contain using the attribute table and the Identify Features tool.
+
+## Data downloads
+
+[Borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm)
+
+[NYC subway stations](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view) (Note - the subways dataset appears to have been removed from the NYC Open Data Portal since I made this video, but you can download an old saved version using that link.)
