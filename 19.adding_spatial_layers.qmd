@@ -18,4 +18,4 @@ In this tutorial: Add New York City boroughs and subway station shapefiles as la
 
 [Borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm)
 
-[NYC subway stations](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view) (Note - the subways dataset appears to have been removed from the NYC Open Data Portal since I made this video, but you can download an old saved version using that link.)
+[NYC subway stations](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view) (Saved copy)

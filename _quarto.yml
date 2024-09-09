@@ -32,3 +32,4 @@ website:
         contents: 
           - 18.qgis_setup.qmd
           - 19.adding_spatial_layers.qmd
+          - 20.intro_crs.qmd
