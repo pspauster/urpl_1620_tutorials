@@ -1,0 +1,25 @@
+---
+title: "20. Introduction to Coordinate Reference Systems"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+---
+
+{{< video https://youtu.be/3N3MjZQbCaw?feature=shared >}}
+
+## Introduction to Coordinate Reference Systems
+
+In this tutorial: Understand the basics of Coordinate Reference Systems (CRSs) and map projections. See how they function based on the layers you add and learn to adjust your project CRS.
+
+Learn more about troubleshooting CRS issues: [I Hate Coordinate Systems!](https://ihatecoordinatesystems.com/)
+
+## Data downloads
+
+[Borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm)
+
+[NYC subway stations](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view) (Saved copy)
+
+[Stormwater outflows](https://data.gis.ny.gov/datasets/9e038774ef034c7cae5374f3e23f7a67_0/explore?layer=0&location=41.849438%2C-74.909886%2C7.00)
