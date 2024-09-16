@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Lucy Block">
 
-<title>URPL 1620 Tutorials - 1. Installing R</title>
+<title>URPL 1620 Tutorials - 21. Geocoding addresses</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1.installing_r.html">Learning R</a></li><li class="breadcrumb-item"><a href="./1.installing_r.html">1. Installing R</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.qgis_setup.html">QGIS</a></li><li class="breadcrumb-item"><a href="./21.geocoding.html">21. Geocoding addresses</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -121,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1.installing_r.html" class="sidebar-item-text sidebar-link active">
+  <a href="./1.installing_r.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1. Installing R</span></a>
   </div>
 </li>
@@ -252,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./21.geocoding.html" class="sidebar-item-text sidebar-link">
+  <a href="./21.geocoding.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">21. Geocoding addresses</span></a>
   </div>
 </li>
@@ -293,15 +294,21 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1.installing_r.html">Learning R</a></li><li class="breadcrumb-item"><a href="./1.installing_r.html">1. Installing R</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.qgis_setup.html">QGIS</a></li><li class="breadcrumb-item"><a href="./21.geocoding.html">21. Geocoding addresses</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">1. Installing R</h1>
+<h1 class="title">21. Geocoding addresses</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lucy Block </p>
+          </div>
+  </div>
     
   
     
@@ -312,20 +319,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="video-tutorial" class="level2">
-<h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
-<p>To get started with this tutorial visit the <a href="https://posit.co/download/rstudio-desktop/" title="download R and R Studio">RStudio download</a> page</p>
-<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_d3tz0oci&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_k1fiqf3d" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="1_installing_R" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/GhuUnPmu5s0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<section id="geocoding-addresses" class="level2">
+<h2 class="anchored" data-anchor-id="geocoding-addresses">Geocoding addresses</h2>
+<p>In this tutorial: How to geocode, i.e.&nbsp;add latitude and longitude to a CSV/tabular dataset that only contains addresses, which will allow you to plot the CSV on a map.</p>
+<p>This tutorial uses <a href="https://geocod.io">Geocodio</a></p>
 </section>
-<section id="installing-r-and-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="installing-r-and-rstudio">Installing R and RStudio</h2>
-<p>To use R, we need R, the underlying language that runs our code, as well as R studio, an integrated development environment (IDE) that allows us to save files and edit and run code.</p>
-<p>To get started, we’ll visit <a href="https://posit.co/download/rstudio-desktop/" title="Download R and RStudio">RStudio’s homepage</a> to install R.</p>
-<p>First, Install R for your operating system from <a href="https://cran.rstudio.com/">CRAN</a>.</p>
-<p>Then download the <a href="https://download1.rstudio.org/electron/macos/RStudio-2023.06.1-524.dmg">latest version</a> of RStudio and open it.</p>
-</section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="data-downloads" class="level2">
+<h2 class="anchored" data-anchor-id="data-downloads">Data downloads</h2>
+<p><a href="https://drive.google.com/file/d/1SJbcNBIBlKuaPQJpg84D0APOFMLNIXNR/view">COVID meals dataset without latitude and longitude</a> to practice</p>
+<p><a href="https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data">Original COVID meals dataset</a></p>
 
 
 </section>
@@ -426,6 +429,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
