@@ -6,6 +6,8 @@ format:
     code-copy: true
     toc-location: right
 editor: visual
+link-external-newwindow: true
+link-external-icon: true
 ---
 
 {{< video https://youtu.be/3N3MjZQbCaw?feature=shared >}}
@@ -14,7 +16,7 @@ editor: visual
 
 In this tutorial: Understand the basics of Coordinate Reference Systems (CRSs) and map projections. See how they function based on the layers you add and learn to adjust your project CRS.
 
-Learn more about troubleshooting CRS issues: [I Hate Coordinate Systems!](https://ihatecoordinatesystems.com/)
+Learn more about troubleshooting CRS issues: [I Hate Coordinate Systems!](https://ihatecoordinatesystems.com/){target="_blank"}
 
 ## Data downloads
 

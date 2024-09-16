@@ -1,0 +1,21 @@
+---
+title: "24. Calculating a new field"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+{{< video https://www.youtube.com/watch?v=80UaOyNWbiU >}}
+
+## Calculating a new field
+
+In this tutorial: Calculate a new field (a.k.a. variable or column) of population per healthcare facility for each NYC community district using the Field Calculator tool
+
+## Data downloads
+
+Shapefile of [community districts with healthcare facilities and population](https://drive.google.com/file/d/1Te2iGna5nwIhhXS1Rx9A2j7gxLWPMUnx/view)

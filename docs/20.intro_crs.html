@@ -251,6 +251,36 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">20. Introduction to Coordinate Reference Systems</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21.geocoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">21. Geocoding addresses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22.spatial_csv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">22. Adding a spatial CSV layer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.tabular_joins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">23. Tabular joins</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24.calculate_field.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">24. Calculating a new field</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25.choropleth.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">25. Symbolizing data with a choropleth</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -293,7 +323,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="introduction-to-coordinate-reference-systems" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-coordinate-reference-systems">Introduction to Coordinate Reference Systems</h2>
 <p>In this tutorial: Understand the basics of Coordinate Reference Systems (CRSs) and map projections. See how they function based on the layers you add and learn to adjust your project CRS.</p>
-<p>Learn more about troubleshooting CRS issues: <a href="https://ihatecoordinatesystems.com/">I Hate Coordinate Systems!</a></p>
+<p>Learn more about troubleshooting CRS issues: <a href="https://ihatecoordinatesystems.com/" target="_blank">I Hate Coordinate Systems!</a></p>
 </section>
 <section id="data-downloads" class="level2">
 <h2 class="anchored" data-anchor-id="data-downloads">Data downloads</h2>
@@ -400,6 +430,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

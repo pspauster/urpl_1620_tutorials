@@ -6,6 +6,8 @@ format:
     code-copy: true
     toc-location: right
 editor: visual
+link-external-newwindow: true
+link-external-icon: true
 ---
 
 {{< video https://www.youtube.com/watch?v=2m9RrS9BfNo >}}

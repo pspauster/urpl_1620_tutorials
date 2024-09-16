@@ -1,0 +1,23 @@
+---
+title: "22. Adding a spatial CSV layer"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+{{< video https://www.youtube.com/watch?v=Y33pxxLKa4w >}}
+
+## Adding a spatial CSV layer to your project
+
+In this tutorial: How to add a CSV that contains latitude and longitude to your map project as a point layer
+
+## Data downloads
+
+CSV of [geocoded free lunch locations during COVID](https://drive.google.com/file/d/1SN6rf4weuCCMVLuT7O4TcDZB9bZk9BzT/view)
+
+[Borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm)

@@ -1,0 +1,25 @@
+---
+title: "21. Geocoding addresses"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+{{< video https://www.youtube.com/watch?v=GhuUnPmu5s0 >}}
+
+## Geocoding addresses
+
+In this tutorial: How to geocode, i.e. add latitude and longitude to a CSV/tabular dataset that only contains addresses, which will allow you to plot the CSV on a map.
+
+This tutorial uses [Geocodio](https://geocod.io)
+
+## Data downloads
+
+[COVID meals dataset without latitude and longitude](https://drive.google.com/file/d/1SJbcNBIBlKuaPQJpg84D0APOFMLNIXNR/view) to practice
+
+[Original COVID meals dataset](https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data)

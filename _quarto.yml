@@ -33,3 +33,8 @@ website:
           - 18.qgis_setup.qmd
           - 19.adding_spatial_layers.qmd
           - 20.intro_crs.qmd
+          - 21.geocoding.qmd
+          - 22.spatial_csv.qmd
+          - 23.tabular_joins.qmd
+          - 24.calculate_field.qmd
+          - 25.choropleth.qmd

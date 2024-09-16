@@ -1,0 +1,29 @@
+---
+title: "23. Tabular joins"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+{{< video https://www.youtube.com/watch?v=C0ZUZg_ZLcE >}}
+
+## Tabular joins
+
+In this tutorial: how to join tabular data from a CSV to a shapefile using a common identifier
+
+## Data downloads
+
+[Community Districts shapefile](https://data.cityofnewyork.us/City-Government/Community-Districts/yfnk-k7r4)
+
+[CSV](https://drive.google.com/file/d/1FuhNasPxICiK9QhYXCtfdVmGvorWedFY/view) containing healthcare facilities and population by community district
+
+### Sources to create CSV
+
+[NYC Facilities database](https://www.nyc.gov/site/planning/data-maps/open-data/dwn-selfac.page) filter: FACDOMAIN = HEALTH AND HUMAN SERVICES, then count by community district
+
+[Population by community district](https://www.nyc.gov/site/planning/planning-level/nyc-population/american-community-survey.page): 2021 ACS 5-Year, Demographic variable = Pop_1E
