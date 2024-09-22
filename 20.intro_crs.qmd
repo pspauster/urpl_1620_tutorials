@@ -10,11 +10,13 @@ link-external-newwindow: true
 link-external-icon: true
 ---
 
+## Video Tutorial
+
 {{< video https://youtu.be/3N3MjZQbCaw?feature=shared >}}
 
-## Introduction to Coordinate Reference Systems
+#### In this tutorial
 
-In this tutorial: Understand the basics of Coordinate Reference Systems (CRSs) and map projections. See how they function based on the layers you add and learn to adjust your project CRS.
+Understand the basics of Coordinate Reference Systems (CRSs) and map projections. See how they function based on the layers you add and learn to adjust your project CRS.
 
 Learn more about troubleshooting CRS issues: [I Hate Coordinate Systems!](https://ihatecoordinatesystems.com/){target="_blank"}
 

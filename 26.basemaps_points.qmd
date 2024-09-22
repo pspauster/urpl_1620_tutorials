@@ -1,0 +1,25 @@
+---
+title: "26. Basemaps and point symbology"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+## Video Tutorial
+
+{{< video https://www.youtube.com/watch?v=bmTP5WZgMz0 >}}
+
+#### In this tutorial
+
+Add a basemap from an external web server to show the full area surrounding your data, with various levels of detail. Symbolize points at different sizes and with transparency to have them show up clearly at different map scales.
+
+## Data downloads
+
+[CSV of geocoded free lunch locations during COVID](https://drive.google.com/file/d/1SN6rf4weuCCMVLuT7O4TcDZB9bZk9BzT/view)
+
+[NYC borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm)

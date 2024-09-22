@@ -38,3 +38,9 @@ website:
           - 23.tabular_joins.qmd
           - 24.calculate_field.qmd
           - 25.choropleth.qmd
+          - 26.basemaps_points.qmd
+          - 27.print_layout_export.qmd
+          - 28.select.qmd
+          - 29.geoprocessing.qmd
+          - 30.join_by_location.qmd
+          - 31.points_in_polygon.qmd

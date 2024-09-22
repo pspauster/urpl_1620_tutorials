@@ -10,11 +10,13 @@ link-external-newwindow: true
 link-external-icon: true
 ---
 
+## Video Tutorial
+
 {{< video https://www.youtube.com/watch?v=Y33pxxLKa4w >}}
 
-## Adding a spatial CSV layer to your project
+#### In this tutorial
 
-In this tutorial: How to add a CSV that contains latitude and longitude to your map project as a point layer
+How to add a CSV that contains latitude and longitude to your map project as a point layer
 
 ## Data downloads
 

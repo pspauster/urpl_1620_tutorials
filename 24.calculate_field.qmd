@@ -10,11 +10,13 @@ link-external-newwindow: true
 link-external-icon: true
 ---
 
+## Video Tutorial
+
 {{< video https://www.youtube.com/watch?v=80UaOyNWbiU >}}
 
-## Calculating a new field
+#### In this tutorial
 
-In this tutorial: Calculate a new field (a.k.a. variable or column) of population per healthcare facility for each NYC community district using the Field Calculator tool
+Calculate a new field (a.k.a. variable or column) of population per healthcare facility for each NYC community district using the Field Calculator tool
 
 ## Data downloads
 
