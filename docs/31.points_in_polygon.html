@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Lucy Block">
 
-<title>URPL 1620 Tutorials - 2. Creating R Projects</title>
+<title>URPL 1620 Tutorials - 31. Count Points in Polygon</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1.installing_r.html">Learning R</a></li><li class="breadcrumb-item"><a href="./2.r_projects.html">2. Creating R Projects</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.qgis_setup.html">QGIS</a></li><li class="breadcrumb-item"><a href="./31.points_in_polygon.html">31. Count Points in Polygon</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -127,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2.r_projects.html" class="sidebar-item-text sidebar-link active">
+  <a href="./2.r_projects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2. Creating R Projects</span></a>
   </div>
 </li>
@@ -312,7 +313,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./31.points_in_polygon.html" class="sidebar-item-text sidebar-link">
+  <a href="./31.points_in_polygon.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">31. Count Points in Polygon</span></a>
   </div>
 </li>
@@ -329,15 +330,21 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1.installing_r.html">Learning R</a></li><li class="breadcrumb-item"><a href="./2.r_projects.html">2. Creating R Projects</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.qgis_setup.html">QGIS</a></li><li class="breadcrumb-item"><a href="./31.points_in_polygon.html">31. Count Points in Polygon</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">2. Creating R Projects</h1>
+<h1 class="title">31. Count Points in Polygon</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lucy Block </p>
+          </div>
+  </div>
     
   
     
@@ -350,30 +357,16 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="video-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
-<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&amp;playerId=kaltura_player&amp;entry_id=1_c7ns14hu&amp;flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&amp;wid=1_6435uagw" width="608" height="402" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="2_r_projects" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/u5xDKAG-Bgg" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<section id="in-this-tutorial" class="level4">
+<h4 class="anchored" data-anchor-id="in-this-tutorial">In this tutorial</h4>
+<p>Count the number of points in one layer that fall within the polygon boundaries of another layer. In this case, count the number of COVID-19 free meal locations within each City Council district.</p>
 </section>
-<section id="opening-r-studio" class="level2">
-<h2 class="anchored" data-anchor-id="opening-r-studio">Opening R Studio</h2>
-<p>When you load RStudio, the screen will be split in three. This is some important vocabulary to direct yourself around RStudio and get help when you need it.</p>
-<p><img src="images/1.1 R Studio.png" class="img-fluid"></p>
-<p>The <strong>CONSOLE</strong> is where all your code is run. Here you will see the output from the code you run. The COMMAND LINE is where you can type in code and execute it to the console. Code you run in the console is not saved. Try typing <code>1+1</code> into the console, and you’ll see that R spits back 2.</p>
-<p>The <strong>ENVIRONMENT</strong> is where all your data will be stored. R is an object oriented programming language. Think of it like having a bunch of spreadsheets open at once. The environment shows you all the data you have loaded, and what each dataset, list, or other object is called.</p>
-<p>The <strong>DIRECTORY</strong> is in the bottom right. This links to all the files in your current folder, called your <strong>working directory</strong>. If you are ever in the wrong working directory, you can set it by running the <code>setwd()</code> function or going to “Session” -\&gt; “Set Working Directory.” We will keep files organized by using an R Project.</p>
 </section>
-<section id="creating-a-project" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-project">Creating a Project</h2>
-<p>An R Project is basically a folder that will hold all your files together in one place - including your code, raw data, and any output you may produce.</p>
-<p>Create your first R Project by clicking on the projects icon in the top right. You can create a project from a new or existing directory.</p>
-<p>When you return to RStudio to work on a saved project, open the project again by using the Project menu in RStudio, or double clicking the <code>.Rproj</code> file in the project directory.</p>
-</section>
-<section id="creating-your-first-script" class="level2">
-<h2 class="anchored" data-anchor-id="creating-your-first-script">Creating Your First Script</h2>
-<p>Go to File -&gt; New Script and save it to your project folder</p>
-<p>Use the assignment operator <code>&lt;-</code> to save values, dataframes, and other objects to the environment for future use.</p>
-<p>Use <code>command+enter</code> (Mac) or <code>ctrl + enter</code> (Windows) to run your code. Or select all and then run the shortcut to run the whole script at once.</p>
-</section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="data-downloads" class="level2">
+<h2 class="anchored" data-anchor-id="data-downloads">Data downloads</h2>
+<p><a href="https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data">COVID-19 Free Meals Locations</a></p>
+<p><a href="https://www.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page">NYC Council Districts</a></p>
 
 
 </section>
@@ -474,6 +467,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

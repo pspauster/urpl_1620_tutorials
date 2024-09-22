@@ -1,0 +1,25 @@
+---
+title: "30. Join by location"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+## Video Tutorial
+
+{{< video https://www.youtube.com/watch?v=ZLdTQzsXuEI >}}
+
+#### In this tutorial
+
+Join attributes of one layer to another based on their spatial relationship. In this case, join City Council district numbers to the layer of COVID-19 free meal locations.
+
+## Data downloads
+
+[COVID-19 Free Meals Locations](https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data)
+
+[NYC Council Districts](https://www.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page)

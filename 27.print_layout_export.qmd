@@ -1,0 +1,23 @@
+---
+title: "27. Print layout and exporting your map"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+## Video Tutorial
+
+{{< video https://www.youtube.com/watch?v=XfzlN9QV5Wc >}}
+
+#### In this tutorial
+
+Prepare your map to export with the print layout feature
+
+## Data downloads
+
+Shapefile of [community districts with healthcare facilities, population, and population per healthcare facility](https://drive.google.com/file/d/1Te2iGna5nwIhhXS1Rx9A2j7gxLWPMUnx/view)

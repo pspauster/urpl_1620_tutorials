@@ -10,11 +10,13 @@ link-external-newwindow: true
 link-external-icon: true
 ---
 
+## Video Tutorial
+
 {{< video https://www.youtube.com/watch?v=2m9RrS9BfNo >}}
 
-## Adding and Exploring Spatial Layers
+#### In this tutorial
 
-In this tutorial: Add New York City boroughs and subway station shapefiles as layers to your QGIS project and explore the data that they contain using the attribute table and the Identify Features tool.
+Add New York City boroughs and subway station shapefiles as layers to your QGIS project and explore the data that they contain using the Attribute Table and the Identify Features tool.
 
 ## Data downloads
 

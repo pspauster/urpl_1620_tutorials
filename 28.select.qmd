@@ -1,0 +1,25 @@
+---
+title: "28. Selecting features"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+## Video Tutorial
+
+{{< video https://www.youtube.com/watch?v=okgmaghP5Uc >}}
+
+#### In this tutorial
+
+Select features manually with the attribute table or directly on your map, as well as select features by value and with mathematic functions
+
+## Data downloads
+
+[Borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm)
+
+[NYC subway stations](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view) (Saved copy)

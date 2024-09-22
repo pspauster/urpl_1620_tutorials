@@ -10,11 +10,15 @@ link-external-newwindow: true
 link-external-icon: true
 ---
 
+## Video Tutorial
+
 {{< video https://www.youtube.com/watch?v=VkACnYfFgLE >}}
 
-## Setting up your first QGIS project
+#### In this tutorial
 
-In this tutorial: download shapefiles from the NYC Open Data Portal, open QGIS, save a QGIS project, and orient to the QGIS interface
+Download shapefiles from the NYC Open Data Portal, open QGIS, save a QGIS project, and orient to the QGIS interface
+
+## Installation
 
 Download the latest **Long Term Version** of QGIS [here](https://www.qgis.org/download/).
 

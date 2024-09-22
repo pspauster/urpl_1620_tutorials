@@ -1,0 +1,25 @@
+---
+title: "31. Count Points in Polygon"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+## Video Tutorial
+
+{{< video https://youtu.be/u5xDKAG-Bgg >}}
+
+#### In this tutorial
+
+Count the number of points in one layer that fall within the polygon boundaries of another layer. In this case, count the number of COVID-19 free meal locations within each City Council district.
+
+## Data downloads
+
+[COVID-19 Free Meals Locations](https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data)
+
+[NYC Council Districts](https://www.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page)

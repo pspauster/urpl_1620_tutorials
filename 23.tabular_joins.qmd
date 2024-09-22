@@ -10,11 +10,13 @@ link-external-newwindow: true
 link-external-icon: true
 ---
 
+## Video Tutorial
+
 {{< video https://www.youtube.com/watch?v=C0ZUZg_ZLcE >}}
 
-## Tabular joins
+#### In this tutorial
 
-In this tutorial: how to join tabular data from a CSV to a shapefile using a common identifier
+How to join tabular data from a CSV to a shapefile using a common identifier
 
 ## Data downloads
 

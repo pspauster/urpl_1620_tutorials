@@ -10,11 +10,13 @@ link-external-newwindow: true
 link-external-icon: true
 ---
 
+## Video Tutorial
+
 {{< video https://www.youtube.com/watch?v=GhuUnPmu5s0 >}}
 
-## Geocoding addresses
+#### In this tutorial
 
-In this tutorial: How to geocode, i.e. add latitude and longitude to a CSV/tabular dataset that only contains addresses, which will allow you to plot the CSV on a map.
+How to geocode, i.e. add latitude and longitude to a CSV/tabular dataset that only contains addresses, which will allow you to plot the CSV on a map.
 
 This tutorial uses [Geocodio](https://geocod.io)
 
