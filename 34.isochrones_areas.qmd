@@ -1,0 +1,39 @@
+---
+title: "34. Isochrones and Calculating Area"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+## Video Tutorial
+
+{{< video https://www.youtube.com/watch?v=7wkFdw6m4VM >}}
+
+#### In this tutorial
+
+Use the TravelTime plugin to create isochrone polygons, which show the area that is within a certain travel time to a point by a specified mode of transit (in this example, 5 minutes walking distance from a subway station). Apply merge, dissolve, and clip geoprocessing tools. Calculate and divide the area of the resulting isochrone by the area of the larger community district to obtain the percentage of the community district that is within a 5 minute walk to a subway station.
+
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00 - 2:57](https://youtu.be/7wkFdw6m4VM?feature=shared): Create a shapefile of a single community district and clip subways to that community district
+
+[2:58 - 12:19](https://youtu.be/7wkFdw6m4VM?feature=shared&t=178): Create an isochrone
+
+[12:20 - 13:32](https://youtu.be/7wkFdw6m4VM?feature=shared&t=740): Additional analysis possibilities
+
+[13:32 - 16:42](https://youtu.be/7wkFdw6m4VM?feature=shared&t=812): Calculate the area of the isochrone as a percentage of the community district
+
+## Data downloads
+
+[Community Districts](https://data.cityofnewyork.us/City-Government/Community-Districts/yfnk-k7r4)
+
+Subway stations:
+
+-   [MTA subway stations shapefile](https://www.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page) via NYS
+
+-   [Saved copy](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view)

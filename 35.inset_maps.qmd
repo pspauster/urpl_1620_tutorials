@@ -1,0 +1,19 @@
+---
+title: "35. Inset Maps and Labels"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+## Video Tutorial
+
+{{< video https://youtu.be/jLH-oGfXh08?feature=shared >}}
+
+#### In this tutorial
+
+Building off of the last tutorial of a subway walkability map, add labels of station names and an inset reference map to show the extent of the main map within all of New York City.

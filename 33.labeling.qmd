@@ -1,0 +1,18 @@
+---
+title: "33. Labeling with Multiple Attributes"
+format:
+  html:
+    code-copy: true
+toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+## Video Tutorial
+
+{{< video https://www.youtube.com/watch?v=8L7hEhVuB1M >}}
+
+#### In this tutorial
+
+Use an expression to create a label based on multiple columns. Via [KlasKarlsson](https://www.youtube.com/@KlasKarlsson) on Youtube.

@@ -28,4 +28,4 @@ How to join tabular data from a CSV to a shapefile using a common identifier
 
 [NYC Facilities database](https://www.nyc.gov/site/planning/data-maps/open-data/dwn-selfac.page) filter: FACDOMAIN = HEALTH AND HUMAN SERVICES, then count by community district
 
-[Population by community district](https://www.nyc.gov/site/planning/planning-level/nyc-population/american-community-survey.page): 2021 ACS 5-Year, Demographic variable = Pop_1E
+[Population by community district](https://www.nyc.gov/site/planning/planning-level/nyc-population/american-community-survey.page): Most recent ACS 5-Year, Demographic variable = Pop_1E

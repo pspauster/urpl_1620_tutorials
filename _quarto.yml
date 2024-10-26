@@ -40,7 +40,13 @@ website:
           - 25.choropleth.qmd
           - 26.basemaps_points.qmd
           - 27.print_layout_export.qmd
-          - 28.select.qmd
-          - 29.geoprocessing.qmd
-          - 30.join_by_location.qmd
-          - 31.points_in_polygon.qmd
+          - 28.symbols_by_size.qmd
+          - 29.select.qmd
+          - 30.geoprocessing.qmd
+          - 31.join_by_location.qmd
+          - 32.points_in_polygon.qmd
+          - 33.labeling.qmd
+          - 34.isochrones_areas.qmd
+          - 35.inset_maps.qmd
+          - 36.heatmaps.qmd
+          - 37.dot_density.qmd
