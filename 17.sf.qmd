@@ -11,8 +11,6 @@ editor: visual
 
 ## Video Tutorial
 
-```{=html}
-```
 ```{r include = F}
 library(tidyverse)
 library(janitor)

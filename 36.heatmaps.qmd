@@ -1,0 +1,24 @@
+---
+title: "36. Heatmaps"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+## Video Tutorial
+
+{{< video https://www.youtube.com/watch?v=iCxDnjye3gU >}}
+
+#### In this tutorial
+
+Via [GeoDelta Labs](https://www.youtube.com/@geodeltalabs) on Youtube.
+
+Heatmaps show the concentration of many points in close proximity.
+
+You can use this tutorial with your own point dataset or [NYC Crashes](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95) as an example. NYC Crashes has 2M+ rows, so I recommend filtering it in the Socrata portal or in R before importing to QGIS. [This filtered view](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95/explore/query/SELECT%0A%20%20%60crash_date%60%2C%0A%20%20%60crash_time%60%2C%0A%20%20%60borough%60%2C%0A%20%20%60zip_code%60%2C%0A%20%20%60latitude%60%2C%0A%20%20%60longitude%60%2C%0A%20%20%60location%60%2C%0A%20%20%60on_street_name%60%2C%0A%20%20%60off_street_name%60%2C%0A%20%20%60cross_street_name%60%2C%0A%20%20%60number_of_persons_injured%60%2C%0A%20%20%60number_of_persons_killed%60%2C%0A%20%20%60number_of_pedestrians_injured%60%2C%0A%20%20%60number_of_pedestrians_killed%60%2C%0A%20%20%60number_of_cyclist_injured%60%2C%0A%20%20%60number_of_cyclist_killed%60%2C%0A%20%20%60number_of_motorist_injured%60%2C%0A%20%20%60number_of_motorist_killed%60%2C%0A%20%20%60contributing_factor_vehicle_1%60%2C%0A%20%20%60contributing_factor_vehicle_2%60%2C%0A%20%20%60contributing_factor_vehicle_3%60%2C%0A%20%20%60contributing_factor_vehicle_4%60%2C%0A%20%20%60contributing_factor_vehicle_5%60%2C%0A%20%20%60collision_id%60%2C%0A%20%20%60vehicle_type_code1%60%2C%0A%20%20%60vehicle_type_code2%60%2C%0A%20%20%60vehicle_type_code_3%60%2C%0A%20%20%60vehicle_type_code_4%60%2C%0A%20%20%60vehicle_type_code_5%60%0AWHERE%0A%20%20%60crash_date%60%0A%20%20%20%20BETWEEN%20%222023-10-01T11%3A00%3A42%22%20%3A%3A%20floating_timestamp%0A%20%20%20%20AND%20%222023-10-31T11%3A00%3A42%22%20%3A%3A%20floating_timestamp/page/filter) has all crashes in October 2023.
+
+After adding your own basemap and bringing in the CSV as a spatial dataset, you can start at [9:20](https://www.youtube.com/watch?v=iCxDnjye3gU&t=560s) in the video.

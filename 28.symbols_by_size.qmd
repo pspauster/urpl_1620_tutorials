@@ -1,0 +1,18 @@
+---
+title: "28. Graduated Symbols by Size"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+## Video Tutorial
+
+{{< video https://youtu.be/yUNZya20hNo?feature=shared >}}
+
+#### In this tutorial
+
+A quick guide to making a map in QGIS with symbols graduated by size. Via [Easy Gisy](https://www.youtube.com/@easygisy) on Youtube.

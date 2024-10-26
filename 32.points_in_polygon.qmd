@@ -1,5 +1,5 @@
 ---
-title: "31. Count Points in Polygon"
+title: "32. Count Points in Polygon"
 author: "Lucy Block"
 format:
   html:

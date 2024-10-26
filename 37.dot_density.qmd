@@ -1,0 +1,26 @@
+---
+title: "37. Dot Density Maps"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+## Video Tutorial
+
+{{< video https://www.youtube.com/watch?v=TOY_7xKtTcU >}}
+
+#### In this tutorial
+
+Via [cornell-gis](https://www.youtube.com/@cornell-gis7116) on Youtube.
+
+This tutorial shows you how to make a racial dot density map like the ones we viewed in class
+
+Dot density is an alternative to choropleths to show concentration, especially when each dot represents a number of people, households, occurrences, etc.
+
+It is more common to display a single variable with dot density, as opposed to multiple as the racial dot maps do.
+
+More info: [Dot Density Maps](https://www.axismaps.com/guide/dot-density)
