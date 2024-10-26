@@ -763,11 +763,7 @@
     "href": "32.points_in_polygon.html#data-downloads",
     "title": "32. Count Points in Polygon",
     "section": "Data downloads",
-<<<<<<< Updated upstream
-    "text": "Data downloads\nBorough boundaries\nNYC subway stations (Saved copy)\nStormwater outflows",
-=======
     "text": "Data downloads\nCOVID-19 Free Meals Locations\nNYC Council Districts",
->>>>>>> Stashed changes
     "crumbs": [
       "QGIS",
       "32. Count Points in Polygon"
