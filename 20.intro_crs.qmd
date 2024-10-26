@@ -26,4 +26,8 @@ Learn more about troubleshooting CRS issues: [I Hate Coordinate Systems!](https:
 
 [NYC subway stations](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view) (Saved copy)
 
-[Stormwater outflows](https://data.gis.ny.gov/datasets/9e038774ef034c7cae5374f3e23f7a67_0/explore?layer=0&location=41.849438%2C-74.909886%2C7.00)
+Stormwater outfalls:
+
+-   via [NYS GIS Clearinghouse](https://data.gis.ny.gov/datasets/94a7b7a3c5cc4f409622523b04ee06bf_0/explore?location=42.242572%2C-75.466961%2C7.24) - download GeoJSON format for clearest difference in CRS
+
+-   [Saved copy](https://drive.google.com/open?id=10z5v3ZQ2LrKg363FYahnwTfxUBZzOXZ1&usp=drive_fs)
