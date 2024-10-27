@@ -18,6 +18,8 @@ link-external-icon: true
 
 Add a basemap from an external web server to show the full area surrounding your data, with various levels of detail. Symbolize points at different sizes and with transparency to have them show up clearly at different map scales.
 
+**Note**: I misused the terms "small scale" and "large scale" in this tutorial; (in my opinion) counter-intuitively, "small scale" is a map that shows a larger area, e.g. all of NYC, and "large scale" is a map that shows a smaller area, e.g. a single neighborhood.
+
 ## Data downloads
 
 [CSV of geocoded free lunch locations during COVID](https://drive.google.com/file/d/1SN6rf4weuCCMVLuT7O4TcDZB9bZk9BzT/view)
