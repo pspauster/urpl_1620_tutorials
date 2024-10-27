@@ -4,7 +4,7 @@
     "href": "26.basemaps_points.html",
     "title": "26. Basemaps and point symbology",
     "section": "",
-    "text": "Add a basemap from an external web server to show the full area surrounding your data, with various levels of detail. Symbolize points at different sizes and with transparency to have them show up clearly at different map scales.",
+    "text": "Add a basemap from an external web server to show the full area surrounding your data, with various levels of detail. Symbolize points at different sizes and with transparency to have them show up clearly at different map scales.\nNote: I misused the terms “small scale” and “large scale” in this tutorial; (in my opinion) counter-intuitively, “small scale” is a map that shows a larger area, e.g. all of NYC, and “large scale” is a map that shows a smaller area, e.g. a single neighborhood.",
     "crumbs": [
       "QGIS",
       "26. Basemaps and point symbology"
@@ -15,7 +15,7 @@
     "href": "26.basemaps_points.html#video-tutorial",
     "title": "26. Basemaps and point symbology",
     "section": "",
-    "text": "Add a basemap from an external web server to show the full area surrounding your data, with various levels of detail. Symbolize points at different sizes and with transparency to have them show up clearly at different map scales.",
+    "text": "Add a basemap from an external web server to show the full area surrounding your data, with various levels of detail. Symbolize points at different sizes and with transparency to have them show up clearly at different map scales.\nNote: I misused the terms “small scale” and “large scale” in this tutorial; (in my opinion) counter-intuitively, “small scale” is a map that shows a larger area, e.g. all of NYC, and “large scale” is a map that shows a smaller area, e.g. a single neighborhood.",
     "crumbs": [
       "QGIS",
       "26. Basemaps and point symbology"
