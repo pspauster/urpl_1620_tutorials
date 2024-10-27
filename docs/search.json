@@ -59,7 +59,7 @@
     "href": "20.intro_crs.html#data-downloads",
     "title": "20. Introduction to Coordinate Reference Systems",
     "section": "Data downloads",
-    "text": "Data downloads\nBorough boundaries\nNYC subway stations (Saved copy)\nStormwater outflows",
+    "text": "Data downloads\nBorough boundaries\nNYC subway stations (Saved copy)\nStormwater outfalls:\n\nvia NYS GIS Clearinghouse - download GeoJSON format for clearest difference in CRS\nSaved copy",
     "crumbs": [
       "QGIS",
       "20. Introduction to Coordinate Reference Systems"
