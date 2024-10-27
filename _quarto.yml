@@ -50,8 +50,3 @@ website:
           - 35.inset_maps.qmd
           - 36.heatmaps.qmd
           - 37.dot_density.qmd
-
-format:
-  html:
-    resources:
-      - redirect.js
