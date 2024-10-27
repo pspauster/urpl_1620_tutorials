@@ -18,6 +18,10 @@ link-external-icon: true
 
 Create a buffer of 1/2 mile around a point layer of subway stations, select all NYC tax lots that intersect with that buffer, and calculate the total residential units inside the buffer as a share of all residential units in NYC. Also, Clip the MapPLUTO layer of tax lots by the buffer for a neater visualization.
 
+#### Read
+
+[7 Geoprocessing Tools Every GIS Analyst Should Know](https://gisgeography.com/geoprocessing-tools/)
+
 ## Data downloads
 
 [MapPLUTO](https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page)

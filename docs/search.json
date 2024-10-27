@@ -1198,7 +1198,7 @@
     "href": "30.geoprocessing.html",
     "title": "30. Geoprocessing: buffers, select by location, and clipping",
     "section": "",
-    "text": "Create a buffer of 1/2 mile around a point layer of subway stations, select all NYC tax lots that intersect with that buffer, and calculate the total residential units inside the buffer as a share of all residential units in NYC. Also, Clip the MapPLUTO layer of tax lots by the buffer for a neater visualization.",
+    "text": "Create a buffer of 1/2 mile around a point layer of subway stations, select all NYC tax lots that intersect with that buffer, and calculate the total residential units inside the buffer as a share of all residential units in NYC. Also, Clip the MapPLUTO layer of tax lots by the buffer for a neater visualization.\n\n\n\n7 Geoprocessing Tools Every GIS Analyst Should Know",
     "crumbs": [
       "QGIS",
       "30. Geoprocessing: buffers, select by location, and clipping"
@@ -1209,7 +1209,7 @@
     "href": "30.geoprocessing.html#video-tutorial",
     "title": "30. Geoprocessing: buffers, select by location, and clipping",
     "section": "",
-    "text": "Create a buffer of 1/2 mile around a point layer of subway stations, select all NYC tax lots that intersect with that buffer, and calculate the total residential units inside the buffer as a share of all residential units in NYC. Also, Clip the MapPLUTO layer of tax lots by the buffer for a neater visualization.",
+    "text": "Create a buffer of 1/2 mile around a point layer of subway stations, select all NYC tax lots that intersect with that buffer, and calculate the total residential units inside the buffer as a share of all residential units in NYC. Also, Clip the MapPLUTO layer of tax lots by the buffer for a neater visualization.\n\n\n\n7 Geoprocessing Tools Every GIS Analyst Should Know",
     "crumbs": [
       "QGIS",
       "30. Geoprocessing: buffers, select by location, and clipping"
