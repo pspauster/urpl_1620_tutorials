@@ -1,5 +1,5 @@
 ---
-title: "28. Graduated Symbols by Size"
+title: "28. Graduated symbols by size"
 format:
   html:
     code-copy: true

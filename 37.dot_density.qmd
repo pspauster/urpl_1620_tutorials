@@ -1,5 +1,5 @@
 ---
-title: "37. Dot Density Maps"
+title: "37. Dot density maps"
 format:
   html:
     code-copy: true

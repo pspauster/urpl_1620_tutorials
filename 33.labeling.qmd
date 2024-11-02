@@ -1,5 +1,5 @@
 ---
-title: "33. Labeling with Multiple Attributes"
+title: "33. Labeling with multiple attributes"
 format:
   html:
     code-copy: true

@@ -1,5 +1,5 @@
 ---
-title: "34. Isochrones and Calculating Area"
+title: "34. Isochrones and calculating area"
 author: "Lucy Block"
 format:
   html:

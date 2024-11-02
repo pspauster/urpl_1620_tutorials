@@ -50,3 +50,4 @@ website:
           - 35.inset_maps.qmd
           - 36.heatmaps.qmd
           - 37.dot_density.qmd
+          - 38.points_size_color.qmd
