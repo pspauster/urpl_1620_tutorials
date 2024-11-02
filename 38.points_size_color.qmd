@@ -1,0 +1,20 @@
+---
+title: "38. Symbolizing points by color and size"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+  
+  ## Video Tutorial
+  
+  {{< video https://www.youtube.com/watch?v=Dl46An05538 >}}
+
+#### In this tutorial
+
+Via [Map Academy](https://www.youtube.com/@automaticknowledge) on Youtube.
+
+This tutorial shows you how to symbolize points with color based on one attribute and size based on another attribute. In this case, the color is sized using a categorical variable.

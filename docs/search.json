@@ -145,45 +145,45 @@
   {
     "objectID": "37.dot_density.html",
     "href": "37.dot_density.html",
-    "title": "37. Dot Density Maps",
+    "title": "37. Dot density maps",
     "section": "",
     "text": "Via cornell-gis on Youtube.\nThis tutorial shows you how to make a racial dot density map like the ones we viewed in class\nDot density is an alternative to choropleths to show concentration, especially when each dot represents a number of people, households, occurrences, etc.\nIt is more common to display a single variable with dot density, as opposed to multiple as the racial dot maps do.\nMore info: Dot Density Maps",
     "crumbs": [
       "QGIS",
-      "37. Dot Density Maps"
+      "37. Dot density maps"
     ]
   },
   {
     "objectID": "37.dot_density.html#video-tutorial",
     "href": "37.dot_density.html#video-tutorial",
-    "title": "37. Dot Density Maps",
+    "title": "37. Dot density maps",
     "section": "",
     "text": "Via cornell-gis on Youtube.\nThis tutorial shows you how to make a racial dot density map like the ones we viewed in class\nDot density is an alternative to choropleths to show concentration, especially when each dot represents a number of people, households, occurrences, etc.\nIt is more common to display a single variable with dot density, as opposed to multiple as the racial dot maps do.\nMore info: Dot Density Maps",
     "crumbs": [
       "QGIS",
-      "37. Dot Density Maps"
+      "37. Dot density maps"
     ]
   },
   {
     "objectID": "35.inset_maps.html",
     "href": "35.inset_maps.html",
-    "title": "35. Inset Maps and Labels",
+    "title": "35. Inset maps and labels",
     "section": "",
     "text": "Building off of the last tutorial of a subway walkability map, add labels of station names and an inset reference map to show the extent of the main map within all of New York City.",
     "crumbs": [
       "QGIS",
-      "35. Inset Maps and Labels"
+      "35. Inset maps and labels"
     ]
   },
   {
     "objectID": "35.inset_maps.html#video-tutorial",
     "href": "35.inset_maps.html#video-tutorial",
-    "title": "35. Inset Maps and Labels",
+    "title": "35. Inset maps and labels",
     "section": "",
     "text": "Building off of the last tutorial of a subway walkability map, add labels of station names and an inset reference map to show the extent of the main map within all of New York City.",
     "crumbs": [
       "QGIS",
-      "35. Inset Maps and Labels"
+      "35. Inset maps and labels"
     ]
   },
   {
@@ -266,23 +266,23 @@
   {
     "objectID": "33.labeling.html",
     "href": "33.labeling.html",
-    "title": "33. Labeling with Multiple Attributes",
+    "title": "33. Labeling with multiple attributes",
     "section": "",
     "text": "Use an expression to create a label based on multiple columns. Via KlasKarlsson on Youtube.",
     "crumbs": [
       "QGIS",
-      "33. Labeling with Multiple Attributes"
+      "33. Labeling with multiple attributes"
     ]
   },
   {
     "objectID": "33.labeling.html#video-tutorial",
     "href": "33.labeling.html#video-tutorial",
-    "title": "33. Labeling with Multiple Attributes",
+    "title": "33. Labeling with multiple attributes",
     "section": "",
     "text": "Use an expression to create a label based on multiple columns. Via KlasKarlsson on Youtube.",
     "crumbs": [
       "QGIS",
-      "33. Labeling with Multiple Attributes"
+      "33. Labeling with multiple attributes"
     ]
   },
   {
@@ -767,23 +767,23 @@
   {
     "objectID": "28.symbols_by_size.html",
     "href": "28.symbols_by_size.html",
-    "title": "28. Graduated Symbols by Size",
+    "title": "28. Graduated symbols by size",
     "section": "",
     "text": "A quick guide to making a map in QGIS with symbols graduated by size. Via Easy Gisy on Youtube.",
     "crumbs": [
       "QGIS",
-      "28. Graduated Symbols by Size"
+      "28. Graduated symbols by size"
     ]
   },
   {
     "objectID": "28.symbols_by_size.html#video-tutorial",
     "href": "28.symbols_by_size.html#video-tutorial",
-    "title": "28. Graduated Symbols by Size",
+    "title": "28. Graduated symbols by size",
     "section": "",
     "text": "A quick guide to making a map in QGIS with symbols graduated by size. Via Easy Gisy on Youtube.",
     "crumbs": [
       "QGIS",
-      "28. Graduated Symbols by Size"
+      "28. Graduated symbols by size"
     ]
   },
   {
@@ -822,34 +822,34 @@
   {
     "objectID": "34.isochrones_areas.html",
     "href": "34.isochrones_areas.html",
-    "title": "34. Isochrones and Calculating Area",
+    "title": "34. Isochrones and calculating area",
     "section": "",
     "text": "Use the TravelTime plugin to create isochrone polygons, which show the area that is within a certain travel time to a point by a specified mode of transit (in this example, 5 minutes walking distance from a subway station). Apply merge, dissolve, and clip geoprocessing tools. Calculate and divide the area of the resulting isochrone by the area of the larger community district to obtain the percentage of the community district that is within a 5 minute walk to a subway station.\nTimestamps (Click a link to start that segment in a new window)\n0:00 - 2:57: Create a shapefile of a single community district and clip subways to that community district\n2:58 - 12:19: Create an isochrone\n12:20 - 13:32: Additional analysis possibilities\n13:32 - 16:42: Calculate the area of the isochrone as a percentage of the community district",
     "crumbs": [
       "QGIS",
-      "34. Isochrones and Calculating Area"
+      "34. Isochrones and calculating area"
     ]
   },
   {
     "objectID": "34.isochrones_areas.html#video-tutorial",
     "href": "34.isochrones_areas.html#video-tutorial",
-    "title": "34. Isochrones and Calculating Area",
+    "title": "34. Isochrones and calculating area",
     "section": "",
     "text": "Use the TravelTime plugin to create isochrone polygons, which show the area that is within a certain travel time to a point by a specified mode of transit (in this example, 5 minutes walking distance from a subway station). Apply merge, dissolve, and clip geoprocessing tools. Calculate and divide the area of the resulting isochrone by the area of the larger community district to obtain the percentage of the community district that is within a 5 minute walk to a subway station.\nTimestamps (Click a link to start that segment in a new window)\n0:00 - 2:57: Create a shapefile of a single community district and clip subways to that community district\n2:58 - 12:19: Create an isochrone\n12:20 - 13:32: Additional analysis possibilities\n13:32 - 16:42: Calculate the area of the isochrone as a percentage of the community district",
     "crumbs": [
       "QGIS",
-      "34. Isochrones and Calculating Area"
+      "34. Isochrones and calculating area"
     ]
   },
   {
     "objectID": "34.isochrones_areas.html#data-downloads",
     "href": "34.isochrones_areas.html#data-downloads",
-    "title": "34. Isochrones and Calculating Area",
+    "title": "34. Isochrones and calculating area",
     "section": "Data downloads",
     "text": "Data downloads\nCommunity Districts\nSubway stations:\n\nMTA subway stations shapefile via NYS\nSaved copy",
     "crumbs": [
       "QGIS",
-      "34. Isochrones and Calculating Area"
+      "34. Isochrones and calculating area"
     ]
   },
   {
@@ -1163,34 +1163,34 @@
   {
     "objectID": "32.points_in_polygon.html",
     "href": "32.points_in_polygon.html",
-    "title": "32. Count Points in Polygon",
+    "title": "32. Count points in polygon",
     "section": "",
     "text": "Count the number of points in one layer that fall within the polygon boundaries of another layer. In this case, count the number of COVID-19 free meal locations within each City Council district.",
     "crumbs": [
       "QGIS",
-      "32. Count Points in Polygon"
+      "32. Count points in polygon"
     ]
   },
   {
     "objectID": "32.points_in_polygon.html#video-tutorial",
     "href": "32.points_in_polygon.html#video-tutorial",
-    "title": "32. Count Points in Polygon",
+    "title": "32. Count points in polygon",
     "section": "",
     "text": "Count the number of points in one layer that fall within the polygon boundaries of another layer. In this case, count the number of COVID-19 free meal locations within each City Council district.",
     "crumbs": [
       "QGIS",
-      "32. Count Points in Polygon"
+      "32. Count points in polygon"
     ]
   },
   {
     "objectID": "32.points_in_polygon.html#data-downloads",
     "href": "32.points_in_polygon.html#data-downloads",
-    "title": "32. Count Points in Polygon",
+    "title": "32. Count points in polygon",
     "section": "Data downloads",
     "text": "Data downloads\nCOVID-19 Free Meals Locations\nNYC Council Districts",
     "crumbs": [
       "QGIS",
-      "32. Count Points in Polygon"
+      "32. Count points in polygon"
     ]
   },
   {
@@ -1257,6 +1257,17 @@
     "crumbs": [
       "QGIS",
       "31. Join by location"
+    ]
+  },
+  {
+    "objectID": "38.points_size_color.html",
+    "href": "38.points_size_color.html",
+    "title": "38. Symbolizing points by color and size",
+    "section": "",
+    "text": "## Video Tutorial\n\n\nIn this tutorial\nVia Map Academy on Youtube.\nThis tutorial shows you how to symbolize points with color based on one attribute and size based on another attribute. In this case, the color is sized using a categorical variable.",
+    "crumbs": [
+      "QGIS",
+      "38. Symbolizing points by color and size"
     ]
   }
 ]
