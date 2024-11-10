@@ -88,7 +88,7 @@ fhv <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv",
 
 Be careful with numeric data types that aren't actually numbers that will drop **leading zeroes** (think of a zip code like "06810" which starts with a 0 would get read in as an integer 6,810). If you wanted to match to another dataset with a zipcode you wouldn't be able to! Another helpful note: you can change the default col_type using `col_type = cols(.default = col_character())`. You can always change the types of columns back to numbers later.
 
-## More data types
+## Data types
 
 Here's a brief look at some other object types you might find in R.
 
