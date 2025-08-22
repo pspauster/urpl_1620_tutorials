@@ -13,6 +13,7 @@ editor: visual
 ```{=html}
 <div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&playerId=kaltura_player&entry_id=1_ut93df3h&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_4f4mpqys" width="608" height="402" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="4. reading data data types" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 ```
+
 ## Reading Data
 
 We can use R to read in a number of different types of data, manipulate it, and output it in different ways.
@@ -29,13 +30,17 @@ If we open a csv in a text editor it looks like this, but R will read it into so
 
 To read data into R, we are going to need the function `read_csv()` and need to learn about **file paths**.
 
-In order for R to read in the file, we need to tell R where the file is. We can do that with an **absolute** or a **local** path. An **absolute** path is the exact location of the file on your computer. For me, when I downloaded this file it went to my downloads folder - a path that looks something like this: `/Users/patrickspauster/Downloads/For_Hire_Vehicles__FHV__-_Active.csv`. You can look up the path to a file by navigating to the file in finder or windows explorer and right clicking to "Get Info". I could read it in by using `read_csv("/Users/patrickspauster/Downloads/For_Hire_Vehicles__FHV__-_Active.csv")`.
+In order for R to read in the file, we need to tell R where the file is. We can do that with an **absolute** or a **local** path. An **absolute** path is the exact location of the file on your computer.
 
-But, not everyone who views my work or wants to run my code will have the same file structure on their computer. If i sent this code to someone and they tried to run it, they would get an error. That's where the R project and a local path comes in handy.
+⚠️ **Note: when Patrick recorded this video, only the RStudio screen was shared and the recording didn't capture his Finder windows. You can read the description of what happened below.**
+
+For me, when I downloaded this file it went to my downloads folder - a path that looks something like this: `/Users/patrickspauster/Downloads/For_Hire_Vehicles__FHV__-_Active.csv`. You can look up the path to a file by navigating to the file in Finder or Windows Explorer and right clicking to "Get Info". I could read it in by using `read_csv("/Users/patrickspauster/Downloads/For_Hire_Vehicles__FHV__-_Active.csv")`.
+
+But, not everyone who views my work or wants to run my code will have the same file structure on their computer. If I sent this code to someone and they tried to run it, they would get an error. That's where the R project and a local path comes in handy.
 
 Now, save a copy of `For_Hire_Vehicles__FHV__-_Active.csv` to your project folder. When you do, you should see it appear in the file explorer in the bottom right of your R Studio window. Now we can access the `.csv` using a **local** path. Because we have the R project open, R will start looking in the project folder. Now we can run read_csv on our file without having to look up the path.
 
-(remember to load the tidyverse first! If you get an error like "the function `function_name` can't be found", you probably forgot to load the proper package with `library()`!)
+(Remember to load the tidyverse first! If you get an error like "the function `function_name` can't be found", you probably forgot to load the proper package with `library()`!)
 
 ```{r message = F, warning = F}
 library(tidyverse)
@@ -77,6 +82,8 @@ is.data.frame(fhv)
 
 When you start getting long arguments, and nested functions, it can be helpful to enter between each argument.
 
+Here is the syntax to read in `Expiration Date` as a date instead of a character data type.
+
 ```{r message = F}
 fhv <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv",
                 col_types = cols(`Expiration Date` = col_datetime(format = '%m/%d/%Y'))
@@ -86,7 +93,36 @@ fhv <- read_csv(file = "For_Hire_Vehicles__FHV__-_Active.csv",
 #we'll learn more about how to parse dates and date data types in lesson 12
 ```
 
-Be careful with numeric data types that aren't actually numbers that will drop **leading zeroes** (think of a zip code like "06810" which starts with a 0 would get read in as an integer 6,810). If you wanted to match to another dataset with a zipcode you wouldn't be able to! Another helpful note: you can change the default col_type using `col_type = cols(.default = col_character())`. You can always change the types of columns back to numbers later.
+Note: Be careful with R defining data as numeric when it should really be a character. For example the zip code "06810," if read in as a number, will turn into the 6,810. So it needs to be defined as a character to retain that leading zero. You can change the default col_type using `col_type = cols(.default = col_character())`. You can always change the types of columns back to numbers later.
+
+### The Import Dataset tool
+
+RStudio also has a tool that can help you define data types called Import Dataset. You can find it in the Environment window. Click **Import Dataset** and then **From Text (readr)**.
+
+![](images/clipboard-115945543.png){width="236"}
+
+When the window opens up, click **Browse** and select your CSV to open (it should appear immediately because you should already have brought it into your project folder).
+
+You'll then see your data previewed. Each column has an assigned data type that R has guessed. You can see that it has assigned **`Expiration Date`** the type **character**. You can click on that column header and select **Date** instead.
+
+![](images/clipboard-3965218078.png){width="134"}
+
+Another window will pop up with a format of **%m/%d/%Y**, which is correct (more on date formats [here](https://www.statology.org/r-date-format/)). Click OK.
+
+You will then see that the data type now shows date and the values are formatted differently. That means it worked.
+
+![](images/clipboard-3836050203.png){width="133"}
+
+The Import Text Data window will display code in the lower left-hand side that you can copy (don't simply click **Import**, as the code will run but the window will disappear and you'll lost the code it produced).
+
+![](images/clipboard-365410651.png){width="310"}
+
+Paste the code into your script. You can delete `library(readr)`, edit the automatically generated object name, and delete `View(For_Hire_Vehicles_FHV_Active_20250822).`
+
+```{r}
+fhv <- read_csv("For_Hire_Vehicles__FHV__-_Active_20250822.csv", 
+                col_types = cols(Expiration Date = col_date(format = "%m/%d/%Y"))) 
+```
 
 ## More data types
 

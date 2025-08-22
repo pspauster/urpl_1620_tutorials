@@ -10,8 +10,6 @@ editor: visual
 
 This page was created as a guide to help students at NYU Wagner's Data Analysis, Mapping, and Storytelling course.
 
-Here are links to the [Brightspace](https://brightspace.nyu.edu/d2l/home/384497), [Slack](https://join.slack.com/t/dataanalysism-ld27014/shared_invite/zt-2pmpeblnr-FX4atGgQw3pJd_hczY2zDg), and [Google Drive](https://drive.google.com/drive/folders/1EWlOMm1BEv3dR8bh2z31kP_8mXB6nOth)
-
 ## Welcome to R
 
 In this directory, we're going to learn the basics of R and how to use it to read in, analyze, and visualize data so you can use it in data stories.
