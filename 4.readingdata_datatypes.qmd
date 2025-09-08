@@ -120,7 +120,7 @@ The Import Text Data window will display code in the lower left-hand side that y
 Paste the code into your script. You can delete `library(readr)`, edit the automatically generated object name, and delete `View(For_Hire_Vehicles_FHV_Active_20250822).`
 
 ```{r}
-fhv <- read_csv("For_Hire_Vehicles__FHV__-_Active_20250822.csv", 
+fhv <- read_csv("For_Hire_Vehicles__FHV__-_Active.csv", 
                 col_types = cols(`Expiration Date` = col_date(format = "%m/%d/%Y"))) 
 ```
 

@@ -56,7 +56,7 @@ But that doesn't look very good, let's add some other layers. I can read in CDs 
 
 ```{r}
 
-cd_sf <- read_sf("https://data.cityofnewyork.us/resource/jp9i-3b7y.geojson") %>% 
+cd_sf <- read_sf("https://data.cityofnewyork.us/resource/5crt-au7u.geojson") %>% 
   st_set_crs(st_crs(aff_hsg_sf)) # here I am setting the crs of the new data to the crs of the point data I already have
 
 ggplot()+

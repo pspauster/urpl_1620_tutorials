@@ -463,122 +463,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let’s try just keeping <code>active</code>, <code>vehicle_lisence_number</code>, <code>name</code>, <code>license_type</code>, <code>vehicle_year</code>, <code>base_name</code>, and <code>base_type</code>. Select’s first argument is the dataframe, and the following arguments are all the names of columns. In R documentation, an ellipses argument <code>...</code> means that the function takes a list of arguments. In this case, a list of variables to select</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(active, vehicle_license_number, name, license_type, vehicle_year, base_name, base_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 98,318 × 7
-   active vehicle_license_number name        license_type vehicle_year base_name
-   &lt;chr&gt;  &lt;chr&gt;                  &lt;chr&gt;       &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;    
- 1 YES    5608977                AMERICAN,U… FOR HIRE VE…         2015 UBER USA…
- 2 YES    5645622                RAMA,ILIR   FOR HIRE VE…         2022 UBER USA…
- 3 YES    5192507                ORDONEZ,EL… FOR HIRE VE…         2016 UBER USA…
- 4 YES    5378856                RIVERA,ENMA FOR HIRE VE…         2018 BELL LX …
- 5 YES    5852121                A/VA,SERVI… FOR HIRE VE…         2019 BAYRIDGE…
- 6 YES    5415237                REYES,JUAN… FOR HIRE VE…         2012 FIRST CL…
- 7 YES    5643301                BEGUM,TAZM… FOR HIRE VE…         2015 UBER USA…
- 8 YES    5701439                GONZALEZAL… FOR HIRE VE…         2016 UBER USA…
- 9 YES    5790931                GOMEZ,JOSE… FOR HIRE VE…         2017 UBER USA…
-10 YES    5743759                HOSSAIN,SM… FOR HIRE VE…         2021 TRI-CITY…
-# ℹ 98,308 more rows
-# ℹ 1 more variable: base_type &lt;chr&gt;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#this dataframe has all our observations, but only 6 variables (columns)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(active, vehicle_license_number, name, license_type, vehicle_year, base_name, base_type)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#this dataframe has all our observations, but only 6 variables (columns)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For more advanced selection, check out the logical operations using the <code>tidy-select</code> expressions. Check what <code>-</code> does, for instance.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>active)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 98,318 × 22
-   vehicle_license_number name                      license_type expiration_date
-   &lt;chr&gt;                  &lt;chr&gt;                     &lt;chr&gt;        &lt;chr&gt;          
- 1 5608977                AMERICAN,UNITED,TRANSPOR… FOR HIRE VE… 04/30/2025     
- 2 5645622                RAMA,ILIR                 FOR HIRE VE… 09/11/2023     
- 3 5192507                ORDONEZ,ELIAS             FOR HIRE VE… 03/08/2025     
- 4 5378856                RIVERA,ENMA               FOR HIRE VE… 11/12/2024     
- 5 5852121                A/VA,SERVICE,CORP         FOR HIRE VE… 04/11/2024     
- 6 5415237                REYES,JUAN,E              FOR HIRE VE… 10/31/2023     
- 7 5643301                BEGUM,TAZMINUR            FOR HIRE VE… 09/30/2025     
- 8 5701439                GONZALEZALVARADO,L        FOR HIRE VE… 06/13/2024     
- 9 5790931                GOMEZ,JOSE,A              FOR HIRE VE… 05/23/2025     
-10 5743759                HOSSAIN,SM,KAMAL          FOR HIRE VE… 12/08/2024     
-# ℹ 98,308 more rows
-# ℹ 18 more variables: permit_license_number &lt;chr&gt;,
-#   dmv_license_plate_number &lt;chr&gt;, vehicle_vin_number &lt;chr&gt;,
-#   wheelchair_accessible &lt;chr&gt;, certification_date &lt;chr&gt;, hack_up_date &lt;chr&gt;,
-#   vehicle_year &lt;dbl&gt;, base_number &lt;chr&gt;, base_name &lt;chr&gt;, base_type &lt;chr&gt;,
-#   hybrid &lt;chr&gt;, base_telephone_number &lt;chr&gt;, website &lt;chr&gt;,
-#   base_address &lt;chr&gt;, reason &lt;chr&gt;, order_date &lt;lgl&gt;, …</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>active)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="filter" class="level2">
 <h2 class="anchored" data-anchor-id="filter">Filter</h2>
 <p>Filter does the same thing as select, but for rows that meet certain logical conditions. Let’s get all the uber vehicles. The first argument of filter is the dataframe. The second is a <strong>logical expression</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(base_name <span class="sc">==</span> <span class="st">"UBER USA, LLC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 76,710 × 23
-   active vehicle_license_number name               license_type expiration_date
-   &lt;chr&gt;  &lt;chr&gt;                  &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;          
- 1 YES    5608977                AMERICAN,UNITED,T… FOR HIRE VE… 04/30/2025     
- 2 YES    5645622                RAMA,ILIR          FOR HIRE VE… 09/11/2023     
- 3 YES    5192507                ORDONEZ,ELIAS      FOR HIRE VE… 03/08/2025     
- 4 YES    5643301                BEGUM,TAZMINUR     FOR HIRE VE… 09/30/2025     
- 5 YES    5701439                GONZALEZALVARADO,L FOR HIRE VE… 06/13/2024     
- 6 YES    5790931                GOMEZ,JOSE,A       FOR HIRE VE… 05/23/2025     
- 7 YES    5867611                HUSSAIN, TARIQ     FOR HIRE VE… 05/08/2024     
- 8 YES    5869802                LU,GUI,ZHAO        FOR HIRE VE… 05/12/2024     
- 9 YES    5715034                LI,PEI             FOR HIRE VE… 08/15/2024     
-10 YES    5725892                HAILE,TEMESGEN,K   FOR HIRE VE… 09/23/2024     
-# ℹ 76,700 more rows
-# ℹ 18 more variables: permit_license_number &lt;chr&gt;,
-#   dmv_license_plate_number &lt;chr&gt;, vehicle_vin_number &lt;chr&gt;,
-#   wheelchair_accessible &lt;chr&gt;, certification_date &lt;chr&gt;, hack_up_date &lt;chr&gt;,
-#   vehicle_year &lt;dbl&gt;, base_number &lt;chr&gt;, base_name &lt;chr&gt;, base_type &lt;chr&gt;,
-#   hybrid &lt;chr&gt;, base_telephone_number &lt;chr&gt;, website &lt;chr&gt;,
-#   base_address &lt;chr&gt;, reason &lt;chr&gt;, order_date &lt;lgl&gt;, …</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#this dataframe has fewer rows because we have only kept the registered Ubers.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(base_name <span class="sc">==</span> <span class="st">"UBER USA, LLC"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#this dataframe has fewer rows because we have only kept the registered Ubers.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You use R’s logical operators to return the rows that you care about. Here I’ve <strong>returned</strong> all the rows where the <code>base_name</code> column exactly matches the <strong>string</strong> “UBER USA, LLC.” Always use <code>==</code> for logical expressions. The single equals sign <code>=</code> is just for defining the names of arguments and other list items, and will confuse R.</p>
 <p>Here’s some other helpful logical operators you may find yourself using, to return certain strings, numbers, or lists.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(base_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"UBER USA, LLC"</span>, <span class="st">"Take Me 2 Inc"</span>), <span class="co">#name is in the list</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         vehicle_year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="co">#year is greater than or equal to</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         hybrid <span class="sc">!=</span> <span class="st">"HYB"</span> <span class="co">#no hybrids</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6,433 × 23
-   active vehicle_license_number name               license_type expiration_date
-   &lt;chr&gt;  &lt;chr&gt;                  &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;          
- 1 YES    6025256                ALSAHYBI, SUHAIB   FOR HIRE VE… 04/17/2025     
- 2 YES    5707125                CITY,QUEENS,INC    FOR HIRE VE… 07/12/2024     
- 3 YES    5278357                LI,LIN             FOR HIRE VE… 11/01/2023     
- 4 YES    6015005                GULATI,SONU        FOR HIRE VE… 01/23/2025     
- 5 YES    5839092                WILSON',SONS,INC   FOR HIRE VE… 12/28/2023     
- 6 YES    5837702                AMERICAN,UNITED,T… FOR HIRE VE… 12/18/2023     
- 7 YES    6036945                CCM NY LLC         FOR HIRE VE… 08/02/2025     
- 8 YES    6002683                WU, JINXIANG       FOR HIRE VE… 08/23/2024     
- 9 YES    5999878                ALL GREEN HAMSAF … FOR HIRE VE… 08/08/2024     
-10 YES    5661911                SINGH,SANDEEP      FOR HIRE VE… 12/16/2023     
-# ℹ 6,423 more rows
-# ℹ 18 more variables: permit_license_number &lt;chr&gt;,
-#   dmv_license_plate_number &lt;chr&gt;, vehicle_vin_number &lt;chr&gt;,
-#   wheelchair_accessible &lt;chr&gt;, certification_date &lt;chr&gt;, hack_up_date &lt;chr&gt;,
-#   vehicle_year &lt;dbl&gt;, base_number &lt;chr&gt;, base_name &lt;chr&gt;, base_type &lt;chr&gt;,
-#   hybrid &lt;chr&gt;, base_telephone_number &lt;chr&gt;, website &lt;chr&gt;,
-#   base_address &lt;chr&gt;, reason &lt;chr&gt;, order_date &lt;lgl&gt;, …</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(base_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"UBER USA, LLC"</span>, <span class="st">"Take Me 2 Inc"</span>), <span class="co">#name is in the list</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>         vehicle_year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="co">#year is greater than or equal to</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         hybrid <span class="sc">!=</span> <span class="st">"HYB"</span> <span class="co">#no hybrids</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s combine it to get a subsample of columns and rows based on the criteria specified and assign it for further analysis</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ubers_thiscentury <span class="ot">&lt;-</span> fhv_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(active, vehicle_license_number, name, license_type, vehicle_year, base_name, base_type) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(base_name <span class="sc">==</span> <span class="st">"UBER USA, LLC"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>         vehicle_year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="co">#year is greater than or equal to</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ubers_thiscentury <span class="ot">&lt;-</span> fhv_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(active, vehicle_license_number, name, license_type, vehicle_year, base_name, base_type) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(base_name <span class="sc">==</span> <span class="st">"UBER USA, LLC"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         vehicle_year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="co">#year is greater than or equal to</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

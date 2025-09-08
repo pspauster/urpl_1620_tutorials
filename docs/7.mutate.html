@@ -462,131 +462,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">city =</span> <span class="st">"New York City"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 98,318 × 24
-   active vehicle_license_number name               license_type expiration_date
-   &lt;chr&gt;  &lt;chr&gt;                  &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;          
- 1 YES    5608977                AMERICAN,UNITED,T… FOR HIRE VE… 04/30/2025     
- 2 YES    5645622                RAMA,ILIR          FOR HIRE VE… 09/11/2023     
- 3 YES    5192507                ORDONEZ,ELIAS      FOR HIRE VE… 03/08/2025     
- 4 YES    5378856                RIVERA,ENMA        FOR HIRE VE… 11/12/2024     
- 5 YES    5852121                A/VA,SERVICE,CORP  FOR HIRE VE… 04/11/2024     
- 6 YES    5415237                REYES,JUAN,E       FOR HIRE VE… 10/31/2023     
- 7 YES    5643301                BEGUM,TAZMINUR     FOR HIRE VE… 09/30/2025     
- 8 YES    5701439                GONZALEZALVARADO,L FOR HIRE VE… 06/13/2024     
- 9 YES    5790931                GOMEZ,JOSE,A       FOR HIRE VE… 05/23/2025     
-10 YES    5743759                HOSSAIN,SM,KAMAL   FOR HIRE VE… 12/08/2024     
-# ℹ 98,308 more rows
-# ℹ 19 more variables: permit_license_number &lt;chr&gt;,
-#   dmv_license_plate_number &lt;chr&gt;, vehicle_vin_number &lt;chr&gt;,
-#   wheelchair_accessible &lt;chr&gt;, certification_date &lt;chr&gt;, hack_up_date &lt;chr&gt;,
-#   vehicle_year &lt;dbl&gt;, base_number &lt;chr&gt;, base_name &lt;chr&gt;, base_type &lt;chr&gt;,
-#   hybrid &lt;chr&gt;, base_telephone_number &lt;chr&gt;, website &lt;chr&gt;,
-#   base_address &lt;chr&gt;, reason &lt;chr&gt;, order_date &lt;lgl&gt;, …</code></pre>
-</div>
 </div>
 <p>You can create multiple new columns (<code>...)</code> at once</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">city =</span> <span class="st">"New York City"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">active =</span> <span class="cn">TRUE</span>) <span class="co">#I can overwrite column names too. I've made this active column boolean (true or false)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 98,318 × 24
-   active vehicle_license_number name               license_type expiration_date
-   &lt;lgl&gt;  &lt;chr&gt;                  &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;          
- 1 TRUE   5608977                AMERICAN,UNITED,T… FOR HIRE VE… 04/30/2025     
- 2 TRUE   5645622                RAMA,ILIR          FOR HIRE VE… 09/11/2023     
- 3 TRUE   5192507                ORDONEZ,ELIAS      FOR HIRE VE… 03/08/2025     
- 4 TRUE   5378856                RIVERA,ENMA        FOR HIRE VE… 11/12/2024     
- 5 TRUE   5852121                A/VA,SERVICE,CORP  FOR HIRE VE… 04/11/2024     
- 6 TRUE   5415237                REYES,JUAN,E       FOR HIRE VE… 10/31/2023     
- 7 TRUE   5643301                BEGUM,TAZMINUR     FOR HIRE VE… 09/30/2025     
- 8 TRUE   5701439                GONZALEZALVARADO,L FOR HIRE VE… 06/13/2024     
- 9 TRUE   5790931                GOMEZ,JOSE,A       FOR HIRE VE… 05/23/2025     
-10 TRUE   5743759                HOSSAIN,SM,KAMAL   FOR HIRE VE… 12/08/2024     
-# ℹ 98,308 more rows
-# ℹ 19 more variables: permit_license_number &lt;chr&gt;,
-#   dmv_license_plate_number &lt;chr&gt;, vehicle_vin_number &lt;chr&gt;,
-#   wheelchair_accessible &lt;chr&gt;, certification_date &lt;chr&gt;, hack_up_date &lt;chr&gt;,
-#   vehicle_year &lt;dbl&gt;, base_number &lt;chr&gt;, base_name &lt;chr&gt;, base_type &lt;chr&gt;,
-#   hybrid &lt;chr&gt;, base_telephone_number &lt;chr&gt;, website &lt;chr&gt;,
-#   base_address &lt;chr&gt;, reason &lt;chr&gt;, order_date &lt;lgl&gt;, …</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">city =</span> <span class="st">"New York City"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">active =</span> <span class="cn">TRUE</span>) <span class="co">#I can overwrite column names too. I've made this active column boolean (true or false)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="mutate-with-logical-expressions" class="level2">
 <h2 class="anchored" data-anchor-id="mutate-with-logical-expressions">Mutate with logical expressions</h2>
 <p>Where mutate gets powerful is when you use it with logical expressions. Here we use <code>if_else()</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fhv_rideshare <span class="ot">&lt;-</span> fhv_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rideshare =</span> <span class="fu">if_else</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">condition =</span> base_name <span class="sc">==</span> <span class="st">"UBER USA, LLC"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">true =</span> <span class="st">"rideshare"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">false =</span> <span class="st">"limo"</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  )) <span class="co">#if it's an uber call it rideshare, if its a limo call it something else</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#notice I named the arguments here! A good practice when the argument is not ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fhv_rideshare <span class="ot">&lt;-</span> fhv_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rideshare =</span> <span class="fu">if_else</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">condition =</span> base_name <span class="sc">==</span> <span class="st">"UBER USA, LLC"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">true =</span> <span class="st">"rideshare"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">false =</span> <span class="st">"limo"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  )) <span class="co">#if it's an uber call it rideshare, if its a limo call it something else</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#notice I named the arguments here! A good practice when the argument is not ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Tabulate the variable we made with the <code>count</code>() funtion</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fhv_rideshare <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(rideshare)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  rideshare     n
-  &lt;chr&gt;     &lt;int&gt;
-1 limo      21608
-2 rideshare 76710</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fhv_rideshare <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(rideshare)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What if we have more than one logical expression we care about? Check out <code>case_when</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fhv_blackcar <span class="ot">&lt;-</span> fhv_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ride_type =</span> <span class="fu">case_when</span>(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      base_name <span class="sc">==</span> <span class="st">"UBER USA, LLC"</span> <span class="sc">&amp;</span> base_type <span class="sc">==</span> <span class="st">"BLACK-CAR"</span> <span class="sc">~</span> <span class="st">"BLACK CAR RIDESHARE"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      base_name <span class="sc">!=</span> <span class="st">"UBER USA, LLC"</span> <span class="sc">&amp;</span> base_type <span class="sc">==</span> <span class="st">"BLACK-CAR"</span> <span class="sc">~</span> <span class="st">"BLACK CAR NON-RIDESHARE"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> base_type <span class="co">#if it doesn't meet either condition, return the base_type</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fhv_blackcar <span class="ot">&lt;-</span> fhv_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ride_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>      base_name <span class="sc">==</span> <span class="st">"UBER USA, LLC"</span> <span class="sc">&amp;</span> base_type <span class="sc">==</span> <span class="st">"BLACK-CAR"</span> <span class="sc">~</span> <span class="st">"BLACK CAR RIDESHARE"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      base_name <span class="sc">!=</span> <span class="st">"UBER USA, LLC"</span> <span class="sc">&amp;</span> base_type <span class="sc">==</span> <span class="st">"BLACK-CAR"</span> <span class="sc">~</span> <span class="st">"BLACK CAR NON-RIDESHARE"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> base_type <span class="co">#if it doesn't meet either condition, return the base_type</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use <code>&amp;</code> and <code>|</code> for <strong>and</strong> and <strong>or</strong> logical expressions with multiple conditions</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fhv_blackcar <span class="sc">%&gt;%</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(ride_type)<span class="co">#now we have four categories!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-  ride_type                   n
-  &lt;chr&gt;                   &lt;int&gt;
-1 BLACK CAR NON-RIDESHARE 16225
-2 BLACK CAR RIDESHARE     76710
-3 LIVERY                   3652
-4 LUXURY                   1731</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fhv_blackcar <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(ride_type)<span class="co">#now we have four categories!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="normalizing-with-mutate" class="level2">
 <h2 class="anchored" data-anchor-id="normalizing-with-mutate">Normalizing with Mutate</h2>
 <p>You can use statistical functions like mean to normalize data with mutate. mean will return the average of all the vehicle years. You can use mutate to generate a new variable that takes the distance from each observation to the mean.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year_norm =</span> vehicle_year<span class="sc">/</span><span class="fu">mean</span>(vehicle_year, <span class="at">na.rm =</span> T),</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">year_pct =</span> <span class="fu">percent_rank</span>(vehicle_year)) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(vehicle_license_number, vehicle_year, year_norm, year_pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 98,318 × 4
-   vehicle_license_number vehicle_year year_norm year_pct
-   &lt;chr&gt;                         &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
- 1 5608977                        2015     0.998   0.120 
- 2 5645622                        2022     1.00    0.797 
- 3 5192507                        2016     0.999   0.212 
- 4 5378856                        2018     1.00    0.440 
- 5 5852121                        2019     1.00    0.552 
- 6 5415237                        2012     0.997   0.0225
- 7 5643301                        2015     0.998   0.120 
- 8 5701439                        2016     0.999   0.212 
- 9 5790931                        2017     0.999   0.313 
-10 5743759                        2021     1.00    0.714 
-# ℹ 98,308 more rows</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fhv_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year_norm =</span> vehicle_year<span class="sc">/</span><span class="fu">mean</span>(vehicle_year, <span class="at">na.rm =</span> T),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">year_pct =</span> <span class="fu">percent_rank</span>(vehicle_year)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(vehicle_license_number, vehicle_year, year_norm, year_pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
