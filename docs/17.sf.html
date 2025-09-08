@@ -399,6 +399,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#video-tutorial" id="toc-video-tutorial" class="nav-link active" data-scroll-target="#video-tutorial">Video Tutorial</a></li>
+  <li><a href="#intro-to-sf" id="toc-intro-to-sf" class="nav-link" data-scroll-target="#intro-to-sf">Intro to SF</a></li>
+  <li><a href="#plotting-sf-objects" id="toc-plotting-sf-objects" class="nav-link" data-scroll-target="#plotting-sf-objects">Plotting SF Objects</a></li>
+  <li><a href="#matching-and-crosswalks" id="toc-matching-and-crosswalks" class="nav-link" data-scroll-target="#matching-and-crosswalks">Matching and Crosswalks</a></li>
+  <li><a href="#spatial-operations" id="toc-spatial-operations" class="nav-link" data-scroll-target="#spatial-operations">Spatial Operations</a></li>
+  <li><a href="#spatial-joins" id="toc-spatial-joins" class="nav-link" data-scroll-target="#spatial-joins">Spatial Joins</a></li>
+  <li><a href="#cheat-sheet" id="toc-cheat-sheet" class="nav-link" data-scroll-target="#cheat-sheet">Cheat Sheet</a></li>
   </ul>
 </nav>
     </div>
@@ -430,7 +436,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="video-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
-<p>The Spatial features package allows us to read in spatial data into R and transform it. Let’s get a spatial dataset on affordable housing from the NYC open data portal.</p>
+<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/embedPlaykitJs/uiconf_id/54887362?iframeembed=true&amp;entry_id=1_plejsmgu&amp;config%5Bprovider%5D=%7B%22widgetId%22%3A%221_f9957b0r%22%7D&amp;config%5Bplayback%5D=%7B%22startTime%22%3A0%7D" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" title="17. SF" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe></div></div>
+</section>
+<section id="intro-to-sf" class="level2">
+<h2 class="anchored" data-anchor-id="intro-to-sf">Intro to SF</h2>
+<p>The Spatial features package allows us to read in spatial data into R and transform it. Let’s get a dataset on [affordable housing production](<a href="https://data.cityofnewyork.us/resource/hg8x-zxpr.">https://data.cityofnewyork.us/resource/hg8x-zxpr</a>) from the NYC open data portal.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>aff_hsg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://data.cityofnewyork.us/resource/hg8x-zxpr.csv?$limit=10000"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -443,6 +453,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(longitude)) <span class="sc">%&gt;%</span>  <span class="co">#remove properties with missing coordinates</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">2263</span>) <span class="co">#be careful! x = longitude, y = latitude</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="plotting-sf-objects" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-sf-objects">Plotting SF Objects</h2>
 <p>Now that this is spatial, I can map it! geom_sf is the ggplot function that maps spatial objects. It works much like any other ggplot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
@@ -456,7 +469,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> all_counted_units),</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">alpha =</span> <span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>But that doesn’t look very good, let’s add some other layers. I can read in CDs directly as a shapefile using the geojson version from the Open data portal. This map is a long way from done, but now it has a semblance of a basemap.</p>
+<p>But that doesn’t look very good, let’s add some other layers. I can read in (CDs)[<a href="https://data.cityofnewyork.us/resource/jp9i-3b7y" class="uri">https://data.cityofnewyork.us/resource/</a>5crt-au7u] directly as a shapefile using the geojson version from the Open data portal. This map is a long way from done, but now it has a semblance of a basemap.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cd_sf <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"https://data.cityofnewyork.us/resource/5crt-au7u.geojson"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_crs</span>(<span class="fu">st_crs</span>(aff_hsg_sf)) <span class="co"># here I am setting the crs of the new data to the crs of the point data I already have</span></span>
@@ -494,6 +507,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(cd_aff_sum,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> total_affordable_units))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="matching-and-crosswalks" class="level2">
+<h2 class="anchored" data-anchor-id="matching-and-crosswalks">Matching and Crosswalks</h2>
 <p>I could also match it to other data, and write it out to a shapefile to use in GIS</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidycensus)</span>
@@ -509,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>I need a crosswalk to go from census tracts to community districts. Open data has one!</p>
+<p>I need a [crosswalk](<a href="https://data.cityofnewyork.us/resource/hm78-6dwm" class="uri">https://data.cityofnewyork.us/resource/hm78-6dwm</a>) to go from census tracts to community districts. Open data has one!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cdtas_tracts <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://data.cityofnewyork.us/resource/hm78-6dwm.csv?$limit=10000"</span>,</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">geoid =</span> <span class="fu">col_character</span>()))</span>
@@ -539,6 +555,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(cd_aff_stats,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> aff_units_person))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="spatial-operations" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-operations">Spatial Operations</h2>
 <p>What if I wanted to map both both the # of units per cd and the median income?</p>
 <p>I can use one of sf’s spatial operators and to take a centroid and map points</p>
 <div class="cell">
@@ -560,6 +579,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"output/aff_hsg_inc_nyc.svg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="spatial-joins" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-joins">Spatial Joins</h2>
 <p>What if I didn’t have a crosswalk and needed to match points to the community district? I can do a spatial join to find what cd all the points fall into.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>points_polygons_join <span class="ot">&lt;-</span> <span class="fu">st_intersection</span>(aff_hsg_sf, cd_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -586,6 +608,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   summarize(count = n(),</span></span>
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#             units = sum(all_counted_units, na.rm = T))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="cheat-sheet" class="level2">
+<h2 class="anchored" data-anchor-id="cheat-sheet">Cheat Sheet</h2>
 <p>Many more spatial operations available on the cheat sheets</p>
 <p><img src="images/sf1.png" class="img-fluid"></p>
 <p><img src="images/sf2.png" class="img-fluid"><br>
