@@ -75,4 +75,6 @@ Next time we'll learn how to read in data, keep it tidy, and get our observation
 
 Take a second look at `iris` to see an example of a tidy dataset. There's one row (**observation**) for each flower in the sample, a column for each **variable** (measurements and species) and one value in each cell, the **value** of that variable for that observation.
 
-## 
+## Syntax
+
+Coming soon

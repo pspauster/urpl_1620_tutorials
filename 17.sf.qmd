@@ -11,13 +11,19 @@ editor: visual
 
 ## Video Tutorial
 
+```{=html}
+<div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src='https://cdnapisec.kaltura.com/p/1674401/embedPlaykitJs/uiconf_id/54887362?iframeembed=true&amp;entry_id=1_plejsmgu&amp;config%5Bprovider%5D=%7B%22widgetId%22%3A%221_f9957b0r%22%7D&amp;config%5Bplayback%5D=%7B%22startTime%22%3A0%7D'  allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" title="17. SF" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe></div></div>
+```
+
+## Intro to SF
+
 ```{r include = F}
 library(tidyverse)
 library(janitor)
 
 ```
 
-The Spatial features package allows us to read in spatial data into R and transform it. Let's get a spatial dataset on affordable housing from the NYC open data portal.
+The Spatial features package allows us to read in spatial data into R and transform it. Let's get a dataset on \[affordable housing production\]([https://data.cityofnewyork.us/resource/hg8x-zxpr](https://data.cityofnewyork.us/resource/hg8x-zxpr.)) from the NYC open data portal.
 
 ```{r}
 aff_hsg <- read_csv("https://data.cityofnewyork.us/resource/hg8x-zxpr.csv?$limit=10000")
@@ -34,6 +40,8 @@ aff_hsg_sf <- aff_hsg %>%
   st_as_sf(coords = c("longitude", "latitude"), crs = 2263) #be careful! x = longitude, y = latitude
 
 ```
+
+## Plotting SF Objects
 
 Now that this is spatial, I can map it! geom_sf is the ggplot function that maps spatial objects. It works much like any other ggplot.
 
@@ -52,7 +60,7 @@ ggplot()+
           alpha = 0.25)
 ```
 
-But that doesn't look very good, let's add some other layers. I can read in CDs directly as a shapefile using the geojson version from the Open data portal. This map is a long way from done, but now it has a semblance of a basemap.
+But that doesn't look very good, let's add some other layers. I can read in (CDs)\[[https://data.cityofnewyork.us/resource/](https://data.cityofnewyork.us/resource/jp9i-3b7y){.uri}5crt-au7u\] directly as a shapefile using the geojson version from the Open data portal. This map is a long way from done, but now it has a semblance of a basemap.
 
 ```{r}
 
@@ -102,6 +110,8 @@ ggplot()+
 
 ```
 
+## Matching and Crosswalks
+
 I could also match it to other data, and write it out to a shapefile to use in GIS
 
 ```{r}
@@ -119,7 +129,7 @@ census_stats <- get_acs(
   clean_names()
 ```
 
-I need a crosswalk to go from census tracts to community districts. Open data has one!
+I need a \[crosswalk\](<https://data.cityofnewyork.us/resource/hm78-6dwm>) to go from census tracts to community districts. Open data has one!
 
 ```{r}
 cdtas_tracts <- read_csv("https://data.cityofnewyork.us/resource/hm78-6dwm.csv?$limit=10000",
@@ -156,6 +166,8 @@ ggplot()+
           mapping = aes(fill = aff_units_person))
 ```
 
+## Spatial Operations
+
 What if I wanted to map both both the \# of units per cd and the median income?
 
 I can use one of sf's spatial operators and to take a centroid and map points
@@ -183,6 +195,8 @@ I could write out this ggplot to edit in vector graphics
 ```{r}
 ggsave("output/aff_hsg_inc_nyc.svg")
 ```
+
+## Spatial Joins
 
 What if I didn't have a crosswalk and needed to match points to the community district? I can do a spatial join to find what cd all the points fall into.
 
@@ -219,6 +233,8 @@ What if I wanted to find the proportion of affordable housing in the flood zone?
 #             units = sum(all_counted_units, na.rm = T))
  
 ```
+
+## Cheat Sheet
 
 Many more spatial operations available on the cheat sheets
 

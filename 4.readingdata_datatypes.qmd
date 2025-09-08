@@ -124,7 +124,7 @@ fhv <- read_csv("For_Hire_Vehicles__FHV__-_Active.csv",
                 col_types = cols(`Expiration Date` = col_date(format = "%m/%d/%Y"))) 
 ```
 
-## More data types
+## Data types
 
 Here's a brief look at some other object types you might find in R.
 
