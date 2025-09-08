@@ -496,13 +496,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-import-dataset-tool" class="level3">
 <h3 class="anchored" data-anchor-id="the-import-dataset-tool">The Import Dataset tool</h3>
 <p>RStudio also has a tool that can help you define data types called Import Dataset. You can find it in the Environment window. Click <strong>Import Dataset</strong> and then <strong>From Text (readr)</strong>.</p>
-<p><img src="images/clipboard-115945543.png" class="img-fluid" width="236"></p>
+<p><img src="images/clipboard-115945543.png" class="img-fluid" width="386"></p>
 <p>When the window opens up, click <strong>Browse</strong> and select your CSV to open (it should appear immediately because you should already have brought it into your project folder).</p>
 <p>You’ll then see your data previewed. Each column has an assigned data type that R has guessed. You can see that it has assigned <strong><code>Expiration Date</code></strong> the type <strong>character</strong>. You can click on that column header and select <strong>Date</strong> instead.</p>
-<p><img src="images/clipboard-3965218078.png" class="img-fluid" width="134"></p>
+<p><img src="images/clipboard-3965218078.png" class="img-fluid" width="268"></p>
 <p>Another window will pop up with a format of <strong>%m/%d/%Y</strong>, which is correct (more on date formats <a href="https://www.statology.org/r-date-format/">here</a>). Click OK.</p>
 <p>You will then see that the data type now shows date and the values are formatted differently. That means it worked.</p>
-<p><img src="images/clipboard-3836050203.png" class="img-fluid" width="133"></p>
+<p><img src="images/clipboard-3836050203.png" class="img-fluid" width="241"></p>
 <p>The Import Text Data window will display code in the lower left-hand side that you can copy (don’t simply click <strong>Import</strong>, as the code will run but the window will disappear and you’ll lost the code it produced).</p>
 <p><img src="images/clipboard-365410651.png" class="img-fluid" width="310"></p>
 <p>Paste the code into your script. You can delete <code>library(readr)</code>, edit the automatically generated object name, and delete <code>View(For_Hire_Vehicles_FHV_Active_20250822).</code></p>
