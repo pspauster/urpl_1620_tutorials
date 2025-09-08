@@ -14,6 +14,7 @@ editor: visual
 ```{=html}
 <div style="max-width:608px"><div style="position:relative;padding-bottom:66.118421052632%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/1674401/sp/167440100/embedIframeJs/uiconf_id/23435151/partner_id/1674401?iframeembed=true&playerId=kaltura_player&entry_id=1_csrnp2qh&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[LeadWithHLSOnFlash]=true&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_g8pwrokb" width="608" height="402" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="16. Tidycensus" style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe></div></div>
 ```
+
 ## Intro to TidyCensus
 
 Tidycensus is incredible powerful and gives you access to a ton of census data. Once you get it down you'll be able to use it to quickly grab a bunch of data.
@@ -46,7 +47,7 @@ Use `load variables` to browse and find the variables of interest
 
 ```{r}
 
-v20 <- load_variables(2020, "acs5", cache = TRUE)
+v20 <- load_variables(2023, "acs5", cache = TRUE)
 
 ```
 
@@ -80,7 +81,7 @@ langs_by_puma <- get_acs(
                    apikids = "B16007_006",
                    otherkids = "B16007_007" ), 
     state = "New York", 
-    year = 2020, survey = "acs5" ) %>% 
+    year = 2023, survey = "acs5" ) %>% 
   filter(str_detect(NAME, "NYC")) %>% 
   mutate(moeshare = moe / estimate)
 ```
@@ -98,7 +99,7 @@ langs_by_boro <- get_acs(
     otherkids = "B16007_007"
   ),
   state =  "New York",
-  year = 2020,
+  year = 2023,
   survey = "acs5"
 ) %>%
   filter(
@@ -132,7 +133,7 @@ get_acs(
     otherkids = "B16007_007"
   ),
   state =  "New York",
-  year = 2020,
+  year = 2023,
   survey = "acs5",
   output = "wide" #look here!
 ) %>%
@@ -173,7 +174,7 @@ pop_data <- get_acs(
                 race_eth_denom = "B03002_001",
                 white_nonhsp = "B03002_003"
   ),
-  year = 2021,
+  year = 2023,
   state = "New York",
   county = "Kings"
 )
