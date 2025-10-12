@@ -522,12 +522,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The below example illustrates this problem and shows how to diagnose. For the example, imagine that we didn’t include a <code>LIMIT</code> clause in our API Call query:</p>
 <p><code>https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000'</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>url_viol_no_limit <span class="ot">=</span> <span class="fu">URLencode</span>(<span class="st">"https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000'"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>summer_violations_cut_off <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_viol_no_limit)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the head() function won't actually reveal the cut-off problem:</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(summer_violations_cut_off)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>url_viol_no_limit <span class="ot">=</span> <span class="fu">URLencode</span>(<span class="st">"https://data.cityofnewyork.us/resource/wvxf-dwi5.csv?$query=SELECT * WHERE inspectiondate&gt;='2021-06-01T00:00:01.000' AND inspectiondate&lt;'2021-09-01T00:00:01.000'"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>summer_violations_cut_off <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url_viol_no_limit)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the head() function won't actually reveal the cut-off problem:</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(summer_violations_cut_off)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 41
+  violationid buildingid registrationid boroid boro   housenumber lowhousenumber
+        &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;         
+1    14368264     382460         360973      3 BROOK… 231         231           
+2    14368268     382460         360973      3 BROOK… 231         231           
+3    14368271     382460         360973      3 BROOK… 231         231           
+4    14367843      82022         211106      2 BRONX  1067        1067          
+5    14367845      82022         211106      2 BRONX  1067        1067          
+6    14367790      12608         108915      1 MANHA… 143         143           
+# ℹ 34 more variables: highhousenumber &lt;chr&gt;, streetname &lt;chr&gt;,
+#   streetcode &lt;dbl&gt;, zip &lt;dbl&gt;, apartment &lt;chr&gt;, …</code></pre>
+</div>
 </div>
 <p>By looking at the head of your dataset, things appear to be fine. However, let’s use the <code>nrow()</code> function to get a sense of how many rows we have:</p>
 <div class="cell">

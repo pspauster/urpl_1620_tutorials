@@ -14,10 +14,6 @@ link-external-icon: true
 
 {{< video https://www.youtube.com/watch?v=VkACnYfFgLE >}}
 
-#### In this tutorial
-
-Download shapefiles from the NYC Open Data Portal, open QGIS, save a QGIS project, and orient to the QGIS interface
-
 ## Installation
 
 Download the latest **Long Term Version** of QGIS [here](https://www.qgis.org/download/).
@@ -28,9 +24,20 @@ The most common issue with installing QGIS is for Mac users the first time you o
 
 ![](images/open%20QGIS.png){width="287"}
 
+## In this tutorial
+
+Download shapefiles from the NYC Open Data Portal, open QGIS, save a QGIS project, and orient to the QGIS interface
+
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00 - 1:17](https://youtu.be/VkACnYfFgLE?si=mGyUXktawbrOCFmT&t=24): Find and download subway stations (no longer available on NYC Open Data but you can download it [here](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view)) and [borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm) shapefiles
+
+[1:17 - 3:34](https://youtu.be/VkACnYfFgLE?si=5sUnKectiwphdf29&t=77): Set up QGIS project folder with shapefiles and .QGZ file
+
+[3:34 - 4:56](https://youtu.be/VkACnYfFgLE?si=b0_8ZzPdrLkFean9&t=214): QGIS user interface
+
 ## Data downloads
 
 [Borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm)
 
 [NYC subway stations](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view) (Note - the subways dataset appears to have been removed from the NYC Open Data Portal since I made this video, but you can download an old saved version using that link.)
-
