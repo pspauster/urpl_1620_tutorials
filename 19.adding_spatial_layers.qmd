@@ -14,9 +14,15 @@ link-external-icon: true
 
 {{< video https://www.youtube.com/watch?v=2m9RrS9BfNo >}}
 
-#### In this tutorial
+## In this tutorial
 
 Add New York City boroughs and subway station shapefiles as layers to your QGIS project and explore the data that they contain using the Attribute Table and the Identify Features tool.
+
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00 - 3:34](https://youtu.be/2m9RrS9BfNo?si=tsCa62QI2mPfxKPg): Different ways to add shapefiles to your project via the Data Source Manager tool and dragging files directly into your project
+
+[3:44 - 7:40](https://youtu.be/2m9RrS9BfNo?si=CQpIZL9FkuKQKK6j&t=224): Understand your data by examining Layer Properties, viewing the Attribute Table, and using the Identify Features tool
 
 ## Data downloads
 
