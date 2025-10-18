@@ -14,9 +14,23 @@ link-external-icon: true
 
 {{< video https://www.youtube.com/watch?v=XfzlN9QV5Wc >}}
 
-#### In this tutorial
+## In this tutorial
 
 Prepare your map to export with the print layout feature
+
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00-1:16](https://www.youtube.com/watch?v=XfzlN9QV5Wc): Start with what you produced in [tutorial 25](https://pspauster.github.io/urpl_1620_tutorials/25.choropleth.html): a symbolized [shapefile](https://drive.google.com/file/d/1Te2iGna5nwIhhXS1Rx9A2j7gxLWPMUnx/view) of community districts with population per healthcare facility with the same layer (using Simple Symbol) underneath it as a basemap.
+
+[1:16-3:42](https://youtu.be/XfzlN9QV5Wc?si=szcRQNW5oyzNN9JV&t=76): Open up Layer Properties and click Source to rename your layers. Adjust the symbology of the layers to refine your visualization (adjust basemap color, increase width of the outline of the Pop per Healthcare Facility layer, match outline color to basemap color, change Color Ramp to Reds).
+
+[3:42-4:52](https://youtu.be/XfzlN9QV5Wc?si=0XYy9pl6Fo5EK3GH&t=222): Select New Print Layout from the Project menu. Use the Add Map tool to draw a rectangle on the layout. Size it as you'd like. If the extent isn't correct, go back to your main map window. Right click on the first layer and click Zoom to Layer(s). Go back to your Print Layout and click the button with the arrow pointing down which displays Set Map to Match Main Canvas Extent when you hover over it.
+
+[4:52-6:27](https://youtu.be/XfzlN9QV5Wc?si=Ok_xysS_gV6ykf9r&t=292): Click Add Legend button in the Print Layout. In the Items window click on the Legend item and select Item Properties. Deselect Auto update. Select the Basemap legend item and click the minus button to delete it. To edit the legend labels, go back to the main map window and double click the symbolized layer. In the symbology menu, double click each row in the Legend column and edit the text to add commas.
+
+[6:27-7:50](https://youtu.be/XfzlN9QV5Wc?si=AHkOROQf0pzYpHhX&t=387): Click the text book tool and draw a rectangle to add a title. Type in and then edit the text in the Main Properties window. Format the text in the Appearance section. Add another text box for your data sources and format that text if needed.
+
+[7:50-8:39](https://youtu.be/XfzlN9QV5Wc?si=cBJqzP82Fyi7LkAH&t=470): In the Layout menu click on Export as PDF... and save the file with the default settings.
 
 ## Data downloads
 

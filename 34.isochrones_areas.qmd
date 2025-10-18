@@ -30,7 +30,7 @@ Use the TravelTime plugin to create isochrone polygons, which show the area that
 
 ## Data downloads
 
-[Community Districts](https://data.cityofnewyork.us/City-Government/Community-Districts/yfnk-k7r4)
+[Community Districts](https://data.cityofnewyork.us/City-Government/Community-Districts/5crt-au7u)
 
 Subway stations:
 

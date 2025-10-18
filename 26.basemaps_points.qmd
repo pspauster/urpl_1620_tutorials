@@ -14,11 +14,17 @@ link-external-icon: true
 
 {{< video https://www.youtube.com/watch?v=bmTP5WZgMz0 >}}
 
-#### In this tutorial
+## In this tutorial
 
 Add a basemap from an external web server to show the full area surrounding your data, with various levels of detail. Symbolize points at different sizes and with transparency to have them show up clearly at different map scales.
 
 **Note**: I misused the terms "small scale" and "large scale" in this tutorial; (in my opinion) counter-intuitively, "small scale" is a map that shows a larger area, e.g. all of NYC, and "large scale" is a map that shows a smaller area, e.g. a single neighborhood.
+
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00-2:34](https://www.youtube.com/watch?v=bmTP5WZgMz0): See what your [points](https://drive.google.com/file/d/1SN6rf4weuCCMVLuT7O4TcDZB9bZk9BzT/view) look like on a simple basemap made up of NYC [borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/gthc-hcne). Explore basemaps with more geographic detail and context. Download and set up the QuickMapServices plugin.
+
+[2:34-6:44](https://youtu.be/bmTP5WZgMz0?si=27IIb6daJSGFF2Lp&t=154): Try different combinations of basemaps and point symbology. Google Hybrid is very crowded with information and Positron is much simpler with less detail. Different point symbology (size, color, opacity) works better on some basemaps versus others and at a small scale versus a large scale. Try different options to see what works best when you're designing your map as a visualization for an external audience. You can also use
 
 ## Data downloads
 

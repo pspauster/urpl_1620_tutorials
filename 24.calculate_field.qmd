@@ -14,9 +14,17 @@ link-external-icon: true
 
 {{< video https://www.youtube.com/watch?v=80UaOyNWbiU >}}
 
-#### In this tutorial
+## In this tutorial
 
 Calculate a new field (a.k.a. variable or column) of population per healthcare facility for each NYC community district using the Field Calculator tool
+
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00-3:16](https://www.youtube.com/watch?v=80UaOyNWbiU): View the [shapefile](https://drive.google.com/file/d/1Te2iGna5nwIhhXS1Rx9A2j7gxLWPMUnx/view) you created in the last tutorial using the Attribute Table. Open up field calculator, and define a new field named `popperfac` as a decimal data type of field length 10 and precision 1, calculated as `population / healthfac` to produce the number of people per healthcare facility.
+
+[3:16-5:14](https://youtu.be/80UaOyNWbiU?si=jNew3RKOdKg_r5bS&t=196): Browse the results visually in the Attribute Table and by using the Statistical Summary tool to look at descriptive statistics of the new field.
+
+[5:14-5:58](https://youtu.be/80UaOyNWbiU?si=c16a6sS60sxFNFG_&t=314): Save the new field that you calculated permanently to the layer.
 
 ## Data downloads
 

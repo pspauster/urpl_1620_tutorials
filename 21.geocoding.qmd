@@ -14,11 +14,15 @@ link-external-icon: true
 
 {{< video https://www.youtube.com/watch?v=GhuUnPmu5s0 >}}
 
-#### In this tutorial
+## In this tutorial
 
 How to geocode, i.e. add latitude and longitude to a CSV/tabular dataset that only contains addresses, which will allow you to plot the CSV on a map.
 
-This tutorial uses [Geocodio](https://geocod.io)
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00 - 1:22](https://youtu.be/GhuUnPmu5s0?si=cJ-pC2hajWmknT2B): Looking at the dataset ([original](https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data) and [modified version](https://drive.google.com/file/d/1SJbcNBIBlKuaPQJpg84D0APOFMLNIXNR/view) without lat and lon)
+
+[1:22-6:01](https://youtu.be/GhuUnPmu5s0?si=0tZzw0tqhudOnDcH&t=82): Using the [Geocodio](https://geocod.io) tool to find lat/lon based on addresses in the dataset
 
 ## Data downloads
 
