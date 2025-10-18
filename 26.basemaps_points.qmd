@@ -24,4 +24,4 @@ Add a basemap from an external web server to show the full area surrounding your
 
 [CSV of geocoded free lunch locations during COVID](https://drive.google.com/file/d/1SN6rf4weuCCMVLuT7O4TcDZB9bZk9BzT/view)
 
-[NYC borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm)
+[NYC borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/gthc-hcne)

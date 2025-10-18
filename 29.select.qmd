@@ -20,6 +20,6 @@ Select features manually with the attribute table or directly on your map, as we
 
 ## Data downloads
 
-[Borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm)
+[Borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/gthc-hcne)
 
 [NYC subway stations](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view) (Saved copy)
