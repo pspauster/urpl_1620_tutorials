@@ -14,9 +14,17 @@ link-external-icon: true
 
 {{< video https://www.youtube.com/watch?v=Y33pxxLKa4w >}}
 
-#### In this tutorial
+## In this tutorial
 
 How to add a CSV that contains latitude and longitude to your map project as a point layer
+
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00-0:36](Timestamps (Click a link to start that segment in a new window)  0:): Add [borough boundaries](https://data.cityofnewyork.us/City-Government/Borough-Boundaries/gthc-hcne) shapefile to project
+
+[0:36-3:16](https://youtu.be/Y33pxxLKa4w?si=qEzEWvrtOBPvfZ19&t=36): Using the Data Source Manager to add our [geocoded CSV](https://drive.google.com/file/d/1SN6rf4weuCCMVLuT7O4TcDZB9bZk9BzT/view) as a delimited text layer, which will plot it as points on our map.
+
+[3:16-4:21](https://youtu.be/Y33pxxLKa4w?si=pldMe8lQDLl7AJld&t=196): Exploring the point layer you just imported from a CSV
 
 ## Data downloads
 

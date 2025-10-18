@@ -22,4 +22,4 @@ Count the number of points in one layer that fall within the polygon boundaries 
 
 [COVID-19 Free Meals Locations](https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data)
 
-[NYC Council Districts](https://www.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page)
+[NYC Council Districts](https://www.nyc.gov/content/planning/pages/resources/datasets/city-council)

@@ -14,13 +14,21 @@ link-external-icon: true
 
 {{< video https://www.youtube.com/watch?v=C0ZUZg_ZLcE >}}
 
-#### In this tutorial
+## In this tutorial
 
 How to join tabular data from a CSV to a shapefile using a common identifier
 
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00-2:37](https://youtu.be/C0ZUZg_ZLcE?si=ol343Ng6La2eb86c): Add [community districts](https://data.cityofnewyork.us/City-Government/Community-Districts/5crt-au7u) shapefile. Add a [table](https://drive.google.com/file/d/1FuhNasPxICiK9QhYXCtfdVmGvorWedFY/view) of healthcare facilities and population by community district as a delimited text layer with no geometry.
+
+[2:37-5:11](https://drive.google.com/file/d/1FuhNasPxICiK9QhYXCtfdVmGvorWedFY/view): Conduct the tabular join
+
+[5:11-8:01](https://youtu.be/C0ZUZg_ZLcE?si=SQUmTf4P_Ib5u3m0&t=311): View the data and export the temporary layer as a permanent shapefile with the joined data
+
 ## Data downloads
 
-[Community Districts shapefile](https://data.cityofnewyork.us/City-Government/Community-Districts/yfnk-k7r4)
+[Community Districts shapefile](https://data.cityofnewyork.us/City-Government/Community-Districts/5crt-au7u)
 
 [CSV](https://drive.google.com/file/d/1FuhNasPxICiK9QhYXCtfdVmGvorWedFY/view) containing healthcare facilities and population by community district
 

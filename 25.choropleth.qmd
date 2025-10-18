@@ -14,9 +14,17 @@ link-external-icon: true
 
 {{< video https://www.youtube.com/watch?v=REkYiSkYUdo >}}
 
-#### In this tutorial
+## In this tutorial
 
 Calculate a new field (a.k.a. variable or column) of population per healthcare facility for each NYC community district using the Field Calculator tool
+
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00-2:46](https://www.youtube.com/watch?v=REkYiSkYUdo): Open up Layer Properties and click Symbology, then Graduated, then select `popperfac` as the numeric variable to symbolize. Select the color ramp of your choice. Click Classify.
+
+[2:46-5:11](https://youtu.be/REkYiSkYUdo?si=xYBhQLgTiqbSSPS1&t=166): Explore different modes of classification and how they change the spatial visualization.
+
+[5:11-5:57](https://youtu.be/REkYiSkYUdo?si=Mh6PbtTwIplr8ksc&t=311): Add the community districts layer again to use as a basemap behind your symbolized data so that areas with null values display as a neutral background.
 
 ## Data downloads
 
