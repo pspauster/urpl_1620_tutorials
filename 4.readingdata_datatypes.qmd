@@ -99,19 +99,19 @@ Note: Be careful with R defining data as numeric when it should really be a char
 
 RStudio also has a tool that can help you define data types called Import Dataset. You can find it in the Environment window. Click **Import Dataset** and then **From Text (readr)**.
 
-![](images/clipboard-115945543.png){width="236"}
+![](images/clipboard-115945543.png){width="386"}
 
 When the window opens up, click **Browse** and select your CSV to open (it should appear immediately because you should already have brought it into your project folder).
 
 You'll then see your data previewed. Each column has an assigned data type that R has guessed. You can see that it has assigned **`Expiration Date`** the type **character**. You can click on that column header and select **Date** instead.
 
-![](images/clipboard-3965218078.png){width="134"}
+![](images/clipboard-3965218078.png){width="268"}
 
 Another window will pop up with a format of **%m/%d/%Y**, which is correct (more on date formats [here](https://www.statology.org/r-date-format/)). Click OK.
 
 You will then see that the data type now shows date and the values are formatted differently. That means it worked.
 
-![](images/clipboard-3836050203.png){width="133"}
+![](images/clipboard-3836050203.png){width="241"}
 
 The Import Text Data window will display code in the lower left-hand side that you can copy (don't simply click **Import**, as the code will run but the window will disappear and you'll lost the code it produced).
 

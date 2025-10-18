@@ -2,6 +2,9 @@ project:
   type: website
   output-dir: docs
 
+execute:
+  eval: false  
+
 website:
   title: "URPL 1620 Tutorials"
   sidebar:
