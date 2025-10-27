@@ -14,11 +14,67 @@ link-external-icon: true
 
 {{< video https://www.youtube.com/watch?v=hY7eqZwz63Q >}}
 
-#### In this tutorial
+## In this tutorial
 
 Create a buffer of 1/2 mile around a point layer of subway stations, select all NYC tax lots that intersect with that buffer, and calculate the total residential units inside the buffer as a share of all residential units in NYC. Also, Clip the MapPLUTO layer of tax lots by the buffer for a neater visualization.
 
-#### Read
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00-2:15](https://www.youtube.com/watch?v=hY7eqZwz63Q):
+
+-   Download MapPLUTO (note the DCP website has changed, but you can still download it from [their resources portal](https://www.nyc.gov/content/planning/pages/resources/datasets/mappluto-pluto-change) *or* from [NYC Open Data](https://data.cityofnewyork.us/City-Government/Primary-Land-Use-Tax-Lot-Output-Map-MapPLUTO-/f888-ni5f/about_data)). It's a very big dataset and you may want to delete the full file after you're done using it.
+
+<!-- -->
+
+-   Drag the zip file into your project and select only the shapefile to load. You can unclick Render at the bottom of the screen to pause rendering and speed things up. The dataset will still be there; it just won't be displayed in all its detail.
+
+-   Add [subway stations](https://data.ny.gov/Transportation/MTA-Subway-Stations/39hk-dx4f/about_data) and drag it to the top of your map layers if it's not already there.
+
+[2:15-4:28](https://youtu.be/hY7eqZwz63Q?si=AdRE_8yBzc3UeufR&t=135):
+
+-   Select the subway station layer and in the "Vector" menu (outside of my screen extent in the video) click "Geoprocessing Tools" and then "Buffer."
+
+-   Make sure subways is selected as the input layer. Type .5 and select miles for the distance. Select round end cap style. To merge all the buffer outputs together, check "Dissolve result." By default, your results will be temporary layers and you can remove any of them that you don't need from your Layers menu.
+
+-   When you have the output you do want to keep, right click it in the Layers menu and select Export, then Save Features As, then save it in your project folder. Then you can remove the temporary layer. Drag the buffer layer below the subway stations layer so you can see the stations on top of the buffer.
+
+[4:28-7:23](https://youtu.be/hY7eqZwz63Q?si=K1E2XhSLXWtpGrt6&t=268):
+
+-   Click the Zoom button (magnifying glass with a plus sign) and drag a rectangle to zoom in to a smaller area and see things in more detail.
+
+-   Double click the buffer layer, go to symbology, and reduce the opacity to make the buffer slightly transparent.
+
+-   In the Vector menu, select Research Tools and then Select by Location.
+
+-   Set the settings to select features from MapPLUTO where the features 'intersect' or 'are within' by comparing to the features from the buffer. Click Run. Now any tax lot that falls inside of or overlaps with the buffer is selected and shown in yellow.
+
+-   Export the selected features as a new layer. In the save menu, click "Deselect All" to deselect all the fields (columns) in MapPLUTO from being saved in the new layer. That's to reduce its size and make it more manageable. Re-click `UnitsRes`. Name it `pluto_.5mi_subway` to keep track of what it includes.
+
+-   Deselect the full MapPLUTO and buffer layers in the Layer menu
+
+-   Edit the subway stations symbology by increasing station size and giving them a color that contrasts with the lots underneath them to make the stations more visible.
+
+[7:23-9:57](https://youtu.be/hY7eqZwz63Q?si=Kp7fw7kTcuDLIH2N&t=443):
+
+-   I'm trying to figure out how many residential units (aka homes) fall within a half-mile radius of a subway station.
+
+-   Click the Processing Toolbox at the bottom left hand side of the screen. If you don't see it, click View, Panels, Processing Toolbox Panel. Type statistics and under "Vector analysis" click "Basic statistics for fields."
+
+-   Select `pluto_.5mi_subway` as the input layer and `UnitsRes` as the field to calculate statistics on. Click Run. The Log will show the results. The sum is 2,769,741 residential units. Copy the number and paste it somewhere on your computer, like a text file, to keep track of it.
+
+-   Do the same analysis for the MapPLUTO layer. The sum is 3,641,524 units.
+
+-   Divide 2,769,741 / 3,641,524 to get 0.7606, or 76%, meaning 76% of residential units in NYC are within a half mile of a subway station.
+
+[9:57-12:46](https://youtu.be/hY7eqZwz63Q?si=c-o8frL2YtEH3Xyp&t=597):
+
+-   Zoom out (you can right click any layer and select "Zoom to layer" to do this quickly). You can see the tax lots that intersect with the buffer but fall partially outside of it, which looks a bit messy. Zoom in to a smaller area again. Turn off the `pluto_.5mi_subway` layer and turn MapPLUTO back on.
+
+-   Click Vector, Geoprocessing Tools, and click Clip. Select MapPLUTO (`pluto_.5mi_subway` would also work) as the input layer and your buffer layer as the overlay layer. Turn off MapPLUTO.
+
+-   The clip tool is like a "cookie cutter" to cut a layer to the shape of another layer (like clipping all of New York State to just New York City).
+
+## Read
 
 [7 Geoprocessing Tools Every GIS Analyst Should Know](https://gisgeography.com/geoprocessing-tools/)
 
@@ -26,4 +82,4 @@ Create a buffer of 1/2 mile around a point layer of subway stations, select all 
 
 [MapPLUTO](https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page)
 
-[NYC subway stations](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view) (Saved copy)
+[NYC subway stations](https://data.ny.gov/Transportation/MTA-Subway-Stations/39hk-dx4f/about_data)

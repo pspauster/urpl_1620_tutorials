@@ -400,10 +400,25 @@ ul.task-list li input[type="checkbox"] {
 <section id="video-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/ZLdTQzsXuEI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<section id="in-this-tutorial" class="level4">
-<h4 class="anchored" data-anchor-id="in-this-tutorial">In this tutorial</h4>
-<p>Join attributes of one layer to another based on their spatial relationship. In this case, join City Council district numbers to the layer of COVID-19 free meal locations.</p>
 </section>
+<section id="in-this-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="in-this-tutorial">In this tutorial</h2>
+<p>Join attributes of one layer to another based on their spatial relationship. In this case, join City Council district numbers to the layer of COVID-19 free meal locations.</p>
+<p><strong>Timestamps (Click a link to start that segment in a new window)</strong></p>
+<p><a href="https://www.youtube.com/watch?v=ZLdTQzsXuEI&amp;t=21s">0:00-1:50</a>:</p>
+<ul>
+<li><p>Download <a href="https://www.nyc.gov/content/planning/pages/resources/datasets/city-council">city council districts</a> (clipped to shoreline), put it in your project folder, and add the layer to your map.</p></li>
+<li><p>Add <a href="https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data">COVID-19 free meal locations</a> as a delimited text layer.</p></li>
+</ul>
+<p><a href="https://youtu.be/ZLdTQzsXuEI?si=o6GcEVaecWZ0LSDY&amp;t=110">1:50-4:04</a>:</p>
+<ul>
+<li><p>I’m trying to find out which council district each free meal location is in. Currently the dataset has a field called District, but that’s its school district, not its council district.</p></li>
+<li><p>Click Vector, Data Management Tools, Join Attributes by Location.</p></li>
+<li><p>In “Join to features in,” select free meal locations. In “By comparing to,” select council districts. In “Features they,” select “are within.”</p></li>
+<li><p>Click the three buttons to the right of the “Fields to add” field and select only <code>CounDist</code> . Click Run. It will create a temporary layer that now contains the council district for each free meal location.</p></li>
+<li><p>I can test it by selecting all rows with a <code>CounDist</code> value of 1 and seeing that those points are at the bottom of Manhattan.</p></li>
+<li><p>Export the temporary output layer as a new shapefile.</p></li>
+</ul>
 </section>
 <section id="data-downloads" class="level2">
 <h2 class="anchored" data-anchor-id="data-downloads">Data downloads</h2>

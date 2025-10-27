@@ -14,9 +14,31 @@ link-external-icon: true
 
 {{< video https://www.youtube.com/watch?v=ZLdTQzsXuEI >}}
 
-#### In this tutorial
+## In this tutorial
 
 Join attributes of one layer to another based on their spatial relationship. In this case, join City Council district numbers to the layer of COVID-19 free meal locations.
+
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00-1:50](https://www.youtube.com/watch?v=ZLdTQzsXuEI&t=21s):
+
+-   Download [city council districts](https://www.nyc.gov/content/planning/pages/resources/datasets/city-council) (clipped to shoreline), put it in your project folder, and add the layer to your map.
+
+-   Add [COVID-19 free meal locations](https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data) as a delimited text layer.
+
+[1:50-4:04](https://youtu.be/ZLdTQzsXuEI?si=o6GcEVaecWZ0LSDY&t=110):
+
+-   I'm trying to find out which council district each free meal location is in. Currently the dataset has a field called District, but that's its school district, not its council district.
+
+-   Click Vector, Data Management Tools, Join Attributes by Location.
+
+-   In "Join to features in," select free meal locations. In "By comparing to," select council districts. In "Features they," select "are within."
+
+-   Click the three buttons to the right of the "Fields to add" field and select only `CounDist` . Click Run. It will create a temporary layer that now contains the council district for each free meal location.
+
+-   I can test it by selecting all rows with a `CounDist` value of 1 and seeing that those points are at the bottom of Manhattan.
+
+-   Export the temporary output layer as a new shapefile.
 
 ## Data downloads
 
