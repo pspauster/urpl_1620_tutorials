@@ -14,12 +14,34 @@ link-external-icon: true
 
 {{< video https://youtu.be/u5xDKAG-Bgg >}}
 
-#### In this tutorial
+## In this tutorial
 
 Count the number of points in one layer that fall within the polygon boundaries of another layer. In this case, count the number of COVID-19 free meal locations within each City Council district.
 
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00--](https://www.youtube.com/watch?v=u5xDKAG-Bgg): Load the [council districts](https://www.nyc.gov/content/planning/pages/resources/datasets/city-council) and [free meal locations](https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data) layers.
+
+-   Click Vector, Analysis Tools, Count Points in Polygons.
+
+-   Select council districts for the Polygons and free meal locations for the Points.
+
+-   The "Count field name" can be called `locations`. Click Run.
+
+-   The output will be a temporary file called `Count`. It will have a new field called `locations` that has the sum of all free meal locations within each council district.
+
+-   Test it by highlighting District 8 and dragging the count layer below the free meal location points so you can see them again, and then zooming in to the selected district. If you count all the points within the selected polygon, you'll find 12.
+
+[2:18-3:50](https://youtu.be/u5xDKAG-Bgg?si=o0GJIILGTtvtg249&t=138):
+
+-   Right click the layer to export it. In the Save Vector Layer As menu, select CSV as the file type. Click Run.
+
+-   Now the layer is saved as a CSV, which I can open up in a spreadsheet or bring into R for additional analysis.
+
+-   You can also symbolize the polygons by the locations field to create a choropleth of the number of free meal locations per council district. Note that this is not normalized!
+
 ## Data downloads
 
-[COVID-19 Free Meals Locations](https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data)
-
 [NYC Council Districts](https://www.nyc.gov/content/planning/pages/resources/datasets/city-council)
+
+[COVID-19 Free Meals Locations](https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data)

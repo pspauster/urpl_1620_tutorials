@@ -48,7 +48,7 @@
     "href": "20.intro_crs.html#data-downloads",
     "title": "20. Introduction to Coordinate Reference Systems",
     "section": "Data downloads",
-    "text": "Data downloads\nBorough boundaries\nNYC subway stations (Saved copy)\nStormwater outfalls:\n\nvia NYS GIS Clearinghouse - download GeoJSON format for clearest difference in CRS\nSaved copy",
+    "text": "Data downloads\nBorough boundaries\nNYC subway stations\nStormwater outfalls:\n\nvia NYS GIS Clearinghouse - download GeoJSON format for clearest difference in CRS\nSaved copy",
     "crumbs": [
       "QGIS",
       "20. Introduction to Coordinate Reference Systems"
@@ -158,7 +158,7 @@
     "href": "19.adding_spatial_layers.html#data-downloads",
     "title": "19. Adding and exploring spatial layers",
     "section": "Data downloads",
-    "text": "Data downloads\nBorough boundaries\nNYC subway stations (Saved copy)",
+    "text": "Data downloads\nBorough boundaries\nNYC subway stations",
     "crumbs": [
       "QGIS",
       "19. Adding and exploring spatial layers"
@@ -363,22 +363,11 @@
     ]
   },
   {
-    "objectID": "29.select.html",
-    "href": "29.select.html",
+    "objectID": "29.select.html#in-this-tutorial",
+    "href": "29.select.html#in-this-tutorial",
     "title": "29. Selecting features",
-    "section": "",
-    "text": "Select features manually with the attribute table or directly on your map, as well as select features by value and with mathematic functions",
-    "crumbs": [
-      "QGIS",
-      "29. Selecting features"
-    ]
-  },
-  {
-    "objectID": "29.select.html#video-tutorial",
-    "href": "29.select.html#video-tutorial",
-    "title": "29. Selecting features",
-    "section": "",
-    "text": "Select features manually with the attribute table or directly on your map, as well as select features by value and with mathematic functions",
+    "section": "In this tutorial",
+    "text": "In this tutorial\nSelect features manually with the attribute table or directly on your map, as well as select features by value and with mathematical functions\nTimestamps (Click a link to start that segment in a new window)\n0:00-1:26: Open the Attribute Table to browse the borough boundaries shapefile. Manually select row(s) in the Attribute Table and view them in yellow in the main map extent. Click the “Deselect all features from the layer” button (yellow square with a cancel symbol) to deselect everything.\n1:26-2:35:\n\nClick the dropdown arrow of the “Select Features by Area or Single Click” button (gray square, smaller yellow square, and cursor).\nClick “Select Feature(s)” and draw a rectangle to select the features you want.\nUse “Select Features by Polygon” to draw a custom selection by clicking points on your map that encompass the features you want to select, then right clicking to close the selection polygon.\nIf you hold the shift button, you can add features to your selection or remove them by clicking features that have already been selected.\n\n2:35-4:31:\n\nClick “Select Features by Value” button (gray square with white rows in front of a yellow square). Type Bronx in the BoroName field and click “Select Features.” Type 3 in BoroCode and click Select Features to select Brooklyn.\nTo add to your selection instead of replacing the current selection, use the dropdown arrow next to Select Features and choose “Add to Current Selection.” Deselect all features.\nClick the button that shows “Exclude Field” to the right of the BoroCode field and select “Greater than (&gt;).” Type 1 in the BoroCode field.\nClick the “Invert Selection” button (one yellow triangle and one gray triangle) to swap which features are selected.\n\n4:31-5:22: When you have the selection that you want, right click your layer, click Export, then “Save Selected Features As.” Select or keep ESRI Shapefile as the format, (important!) select the three dots to the right of the File name field to save the new shapefile to your project folder, and make sure “Save only selected features” is clicked. Click OK.",
     "crumbs": [
       "QGIS",
       "29. Selecting features"
@@ -389,7 +378,7 @@
     "href": "29.select.html#data-downloads",
     "title": "29. Selecting features",
     "section": "Data downloads",
-    "text": "Data downloads\nBorough boundaries\nNYC subway stations (Saved copy)",
+    "text": "Data downloads\nBorough boundaries",
     "crumbs": [
       "QGIS",
       "29. Selecting features"
@@ -462,22 +451,11 @@
     ]
   },
   {
-    "objectID": "28.symbols_by_size.html",
-    "href": "28.symbols_by_size.html",
+    "objectID": "28.symbols_by_size.html#in-this-tutorial",
+    "href": "28.symbols_by_size.html#in-this-tutorial",
     "title": "28. Graduated symbols by size",
-    "section": "",
-    "text": "A quick guide to making a map in QGIS with symbols graduated by size. Via Easy Gisy on Youtube.",
-    "crumbs": [
-      "QGIS",
-      "28. Graduated symbols by size"
-    ]
-  },
-  {
-    "objectID": "28.symbols_by_size.html#video-tutorial",
-    "href": "28.symbols_by_size.html#video-tutorial",
-    "title": "28. Graduated symbols by size",
-    "section": "",
-    "text": "A quick guide to making a map in QGIS with symbols graduated by size. Via Easy Gisy on Youtube.",
+    "section": "In this tutorial",
+    "text": "In this tutorial\nA quick guide to making a map in QGIS with symbols graduated by size. Via Easy Gisy on Youtube.\nTimestamps (Click a link to start that segment in a new window)\n0:00-1:11: Open up Attribute Table to view your data\n1:11-2:15: Double click on the layer you want to symbolize to open up Properties, click Symbology, then Graduated, select the column you want to visualize, and select “Size” for the method.\n2:15-4:53: Options to change the size range of your points, the number of classes, the color, opacity, outlines, and number of decimals in the legend.",
     "crumbs": [
       "QGIS",
       "28. Graduated symbols by size"
@@ -1128,22 +1106,11 @@
     ]
   },
   {
-    "objectID": "32.points_in_polygon.html",
-    "href": "32.points_in_polygon.html",
+    "objectID": "32.points_in_polygon.html#in-this-tutorial",
+    "href": "32.points_in_polygon.html#in-this-tutorial",
     "title": "32. Count points in polygon",
-    "section": "",
-    "text": "Count the number of points in one layer that fall within the polygon boundaries of another layer. In this case, count the number of COVID-19 free meal locations within each City Council district.",
-    "crumbs": [
-      "QGIS",
-      "32. Count points in polygon"
-    ]
-  },
-  {
-    "objectID": "32.points_in_polygon.html#video-tutorial",
-    "href": "32.points_in_polygon.html#video-tutorial",
-    "title": "32. Count points in polygon",
-    "section": "",
-    "text": "Count the number of points in one layer that fall within the polygon boundaries of another layer. In this case, count the number of COVID-19 free meal locations within each City Council district.",
+    "section": "In this tutorial",
+    "text": "In this tutorial\nCount the number of points in one layer that fall within the polygon boundaries of another layer. In this case, count the number of COVID-19 free meal locations within each City Council district.\nTimestamps (Click a link to start that segment in a new window)\n0:00–: Load the council districts and free meal locations layers.\n\nClick Vector, Analysis Tools, Count Points in Polygons.\nSelect council districts for the Polygons and free meal locations for the Points.\nThe “Count field name” can be called locations. Click Run.\nThe output will be a temporary file called Count. It will have a new field called locations that has the sum of all free meal locations within each council district.\nTest it by highlighting District 8 and dragging the count layer below the free meal location points so you can see them again, and then zooming in to the selected district. If you count all the points within the selected polygon, you’ll find 12.\n\n2:18-3:50:\n\nRight click the layer to export it. In the Save Vector Layer As menu, select CSV as the file type. Click Run.\nNow the layer is saved as a CSV, which I can open up in a spreadsheet or bring into R for additional analysis.\nYou can also symbolize the polygons by the locations field to create a choropleth of the number of free meal locations per council district. Note that this is not normalized!",
     "crumbs": [
       "QGIS",
       "32. Count points in polygon"
@@ -1154,29 +1121,29 @@
     "href": "32.points_in_polygon.html#data-downloads",
     "title": "32. Count points in polygon",
     "section": "Data downloads",
-    "text": "Data downloads\nCOVID-19 Free Meals Locations\nNYC Council Districts",
+    "text": "Data downloads\nNYC Council Districts\nCOVID-19 Free Meals Locations",
     "crumbs": [
       "QGIS",
       "32. Count points in polygon"
     ]
   },
   {
-    "objectID": "30.geoprocessing.html",
-    "href": "30.geoprocessing.html",
+    "objectID": "30.geoprocessing.html#in-this-tutorial",
+    "href": "30.geoprocessing.html#in-this-tutorial",
     "title": "30. Geoprocessing: buffers, select by location, and clipping",
-    "section": "",
-    "text": "Create a buffer of 1/2 mile around a point layer of subway stations, select all NYC tax lots that intersect with that buffer, and calculate the total residential units inside the buffer as a share of all residential units in NYC. Also, Clip the MapPLUTO layer of tax lots by the buffer for a neater visualization.\n\n\n\n7 Geoprocessing Tools Every GIS Analyst Should Know",
+    "section": "In this tutorial",
+    "text": "In this tutorial\nCreate a buffer of 1/2 mile around a point layer of subway stations, select all NYC tax lots that intersect with that buffer, and calculate the total residential units inside the buffer as a share of all residential units in NYC. Also, Clip the MapPLUTO layer of tax lots by the buffer for a neater visualization.\nTimestamps (Click a link to start that segment in a new window)\n0:00-2:15:\n\nDownload MapPLUTO (note the DCP website has changed, but you can still download it from their resources portal or from NYC Open Data). It’s a very big dataset and you may want to delete the full file after you’re done using it.\n\n\n\nDrag the zip file into your project and select only the shapefile to load. You can unclick Render at the bottom of the screen to pause rendering and speed things up. The dataset will still be there; it just won’t be displayed in all its detail.\nAdd subway stations and drag it to the top of your map layers if it’s not already there.\n\n2:15-4:28:\n\nSelect the subway station layer and in the “Vector” menu (outside of my screen extent in the video) click “Geoprocessing Tools” and then “Buffer.”\nMake sure subways is selected as the input layer. Type .5 and select miles for the distance. Select round end cap style. To merge all the buffer outputs together, check “Dissolve result.” By default, your results will be temporary layers and you can remove any of them that you don’t need from your Layers menu.\nWhen you have the output you do want to keep, right click it in the Layers menu and select Export, then Save Features As, then save it in your project folder. Then you can remove the temporary layer. Drag the buffer layer below the subway stations layer so you can see the stations on top of the buffer.\n\n4:28-7:23:\n\nClick the Zoom button (magnifying glass with a plus sign) and drag a rectangle to zoom in to a smaller area and see things in more detail.\nDouble click the buffer layer, go to symbology, and reduce the opacity to make the buffer slightly transparent.\nIn the Vector menu, select Research Tools and then Select by Location.\nSet the settings to select features from MapPLUTO where the features ‘intersect’ or ‘are within’ by comparing to the features from the buffer. Click Run. Now any tax lot that falls inside of or overlaps with the buffer is selected and shown in yellow.\nExport the selected features as a new layer. In the save menu, click “Deselect All” to deselect all the fields (columns) in MapPLUTO from being saved in the new layer. That’s to reduce its size and make it more manageable. Re-click UnitsRes. Name it pluto_.5mi_subway to keep track of what it includes.\nDeselect the full MapPLUTO and buffer layers in the Layer menu\nEdit the subway stations symbology by increasing station size and giving them a color that contrasts with the lots underneath them to make the stations more visible.\n\n7:23-9:57:\n\nI’m trying to figure out how many residential units (aka homes) fall within a half-mile radius of a subway station.\nClick the Processing Toolbox at the bottom left hand side of the screen. If you don’t see it, click View, Panels, Processing Toolbox Panel. Type statistics and under “Vector analysis” click “Basic statistics for fields.”\nSelect pluto_.5mi_subway as the input layer and UnitsRes as the field to calculate statistics on. Click Run. The Log will show the results. The sum is 2,769,741 residential units. Copy the number and paste it somewhere on your computer, like a text file, to keep track of it.\nDo the same analysis for the MapPLUTO layer. The sum is 3,641,524 units.\nDivide 2,769,741 / 3,641,524 to get 0.7606, or 76%, meaning 76% of residential units in NYC are within a half mile of a subway station.\n\n9:57-12:46:\n\nZoom out (you can right click any layer and select “Zoom to layer” to do this quickly). You can see the tax lots that intersect with the buffer but fall partially outside of it, which looks a bit messy. Zoom in to a smaller area again. Turn off the pluto_.5mi_subway layer and turn MapPLUTO back on.\nClick Vector, Geoprocessing Tools, and click Clip. Select MapPLUTO (pluto_.5mi_subway would also work) as the input layer and your buffer layer as the overlay layer. Turn off MapPLUTO.\nThe clip tool is like a “cookie cutter” to cut a layer to the shape of another layer (like clipping all of New York State to just New York City).",
     "crumbs": [
       "QGIS",
       "30. Geoprocessing: buffers, select by location, and clipping"
     ]
   },
   {
-    "objectID": "30.geoprocessing.html#video-tutorial",
-    "href": "30.geoprocessing.html#video-tutorial",
+    "objectID": "30.geoprocessing.html#read",
+    "href": "30.geoprocessing.html#read",
     "title": "30. Geoprocessing: buffers, select by location, and clipping",
-    "section": "",
-    "text": "Create a buffer of 1/2 mile around a point layer of subway stations, select all NYC tax lots that intersect with that buffer, and calculate the total residential units inside the buffer as a share of all residential units in NYC. Also, Clip the MapPLUTO layer of tax lots by the buffer for a neater visualization.\n\n\n\n7 Geoprocessing Tools Every GIS Analyst Should Know",
+    "section": "Read",
+    "text": "Read\n7 Geoprocessing Tools Every GIS Analyst Should Know",
     "crumbs": [
       "QGIS",
       "30. Geoprocessing: buffers, select by location, and clipping"
@@ -1187,29 +1154,18 @@
     "href": "30.geoprocessing.html#data-downloads",
     "title": "30. Geoprocessing: buffers, select by location, and clipping",
     "section": "Data downloads",
-    "text": "Data downloads\nMapPLUTO\nNYC subway stations (Saved copy)",
+    "text": "Data downloads\nMapPLUTO\nNYC subway stations",
     "crumbs": [
       "QGIS",
       "30. Geoprocessing: buffers, select by location, and clipping"
     ]
   },
   {
-    "objectID": "31.join_by_location.html",
-    "href": "31.join_by_location.html",
+    "objectID": "31.join_by_location.html#in-this-tutorial",
+    "href": "31.join_by_location.html#in-this-tutorial",
     "title": "31. Join by location",
-    "section": "",
-    "text": "Join attributes of one layer to another based on their spatial relationship. In this case, join City Council district numbers to the layer of COVID-19 free meal locations.",
-    "crumbs": [
-      "QGIS",
-      "31. Join by location"
-    ]
-  },
-  {
-    "objectID": "31.join_by_location.html#video-tutorial",
-    "href": "31.join_by_location.html#video-tutorial",
-    "title": "31. Join by location",
-    "section": "",
-    "text": "Join attributes of one layer to another based on their spatial relationship. In this case, join City Council district numbers to the layer of COVID-19 free meal locations.",
+    "section": "In this tutorial",
+    "text": "In this tutorial\nJoin attributes of one layer to another based on their spatial relationship. In this case, join City Council district numbers to the layer of COVID-19 free meal locations.\nTimestamps (Click a link to start that segment in a new window)\n0:00-1:50:\n\nDownload city council districts (clipped to shoreline), put it in your project folder, and add the layer to your map.\nAdd COVID-19 free meal locations as a delimited text layer.\n\n1:50-4:04:\n\nI’m trying to find out which council district each free meal location is in. Currently the dataset has a field called District, but that’s its school district, not its council district.\nClick Vector, Data Management Tools, Join Attributes by Location.\nIn “Join to features in,” select free meal locations. In “By comparing to,” select council districts. In “Features they,” select “are within.”\nClick the three buttons to the right of the “Fields to add” field and select only CounDist . Click Run. It will create a temporary layer that now contains the council district for each free meal location.\nI can test it by selecting all rows with a CounDist value of 1 and seeing that those points are at the bottom of Manhattan.\nExport the temporary output layer as a new shapefile.",
     "crumbs": [
       "QGIS",
       "31. Join by location"

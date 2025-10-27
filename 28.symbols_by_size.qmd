@@ -13,6 +13,14 @@ link-external-icon: true
 
 {{< video https://youtu.be/yUNZya20hNo?feature=shared >}}
 
-#### In this tutorial
+## In this tutorial
 
 A quick guide to making a map in QGIS with symbols graduated by size. Via [Easy Gisy](https://www.youtube.com/@easygisy) on Youtube.
+
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00-1:11](https://www.youtube.com/watch?v=yUNZya20hNo): Open up Attribute Table to view your data
+
+[1:11-2:15](https://youtu.be/yUNZya20hNo?si=kLb7zpBay8IGmy1t&t=71): Double click on the layer you want to symbolize to open up Properties, click Symbology, then Graduated, select the column you want to visualize, and select "Size" for the method.
+
+[2:15-4:53](https://youtu.be/yUNZya20hNo?si=RScmFRmtrgBI41El): Options to change the size range of your points, the number of classes, the color, opacity, outlines, and number of decimals in the legend.

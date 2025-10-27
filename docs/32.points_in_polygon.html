@@ -400,15 +400,30 @@ ul.task-list li input[type="checkbox"] {
 <section id="video-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/u5xDKAG-Bgg" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<section id="in-this-tutorial" class="level4">
-<h4 class="anchored" data-anchor-id="in-this-tutorial">In this tutorial</h4>
-<p>Count the number of points in one layer that fall within the polygon boundaries of another layer. In this case, count the number of COVID-19 free meal locations within each City Council district.</p>
 </section>
+<section id="in-this-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="in-this-tutorial">In this tutorial</h2>
+<p>Count the number of points in one layer that fall within the polygon boundaries of another layer. In this case, count the number of COVID-19 free meal locations within each City Council district.</p>
+<p><strong>Timestamps (Click a link to start that segment in a new window)</strong></p>
+<p><a href="https://www.youtube.com/watch?v=u5xDKAG-Bgg">0:00–</a>: Load the <a href="https://www.nyc.gov/content/planning/pages/resources/datasets/city-council">council districts</a> and <a href="https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data">free meal locations</a> layers.</p>
+<ul>
+<li><p>Click Vector, Analysis Tools, Count Points in Polygons.</p></li>
+<li><p>Select council districts for the Polygons and free meal locations for the Points.</p></li>
+<li><p>The “Count field name” can be called <code>locations</code>. Click Run.</p></li>
+<li><p>The output will be a temporary file called <code>Count</code>. It will have a new field called <code>locations</code> that has the sum of all free meal locations within each council district.</p></li>
+<li><p>Test it by highlighting District 8 and dragging the count layer below the free meal location points so you can see them again, and then zooming in to the selected district. If you count all the points within the selected polygon, you’ll find 12.</p></li>
+</ul>
+<p><a href="https://youtu.be/u5xDKAG-Bgg?si=o0GJIILGTtvtg249&amp;t=138">2:18-3:50</a>:</p>
+<ul>
+<li><p>Right click the layer to export it. In the Save Vector Layer As menu, select CSV as the file type. Click Run.</p></li>
+<li><p>Now the layer is saved as a CSV, which I can open up in a spreadsheet or bring into R for additional analysis.</p></li>
+<li><p>You can also symbolize the polygons by the locations field to create a choropleth of the number of free meal locations per council district. Note that this is not normalized!</p></li>
+</ul>
 </section>
 <section id="data-downloads" class="level2">
 <h2 class="anchored" data-anchor-id="data-downloads">Data downloads</h2>
-<p><a href="https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data">COVID-19 Free Meals Locations</a></p>
 <p><a href="https://www.nyc.gov/content/planning/pages/resources/datasets/city-council">NYC Council Districts</a></p>
+<p><a href="https://data.cityofnewyork.us/Education/COVID-19-Free-Meals-Locations/sp4a-vevi/about_data">COVID-19 Free Meals Locations</a></p>
 
 
 </section>
