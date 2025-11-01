@@ -1,5 +1,5 @@
 ---
-title: "33. Labeling with multiple attributes"
+title: "35. Labeling with multiple attributes"
 format:
   html:
     code-copy: true
@@ -13,6 +13,6 @@ link-external-icon: true
 
 {{< video https://www.youtube.com/watch?v=8L7hEhVuB1M >}}
 
-#### In this tutorial
+## In this tutorial
 
 Use an expression to create a label based on multiple columns. Via [KlasKarlsson](https://www.youtube.com/@KlasKarlsson) on Youtube.
