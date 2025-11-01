@@ -1,0 +1,35 @@
+---
+title: "34. Inset maps and labels"
+author: "Lucy Block"
+format:
+  html:
+    code-copy: true
+    toc-location: right
+editor: visual
+link-external-newwindow: true
+link-external-icon: true
+---
+
+## Video Tutorial
+
+{{< video https://youtu.be/jLH-oGfXh08?feature=shared >}}
+
+## In this tutorial
+
+Building off of the last tutorial of a subway walkability map, add labels of station names and an inset reference map to show the extent of the main map within all of New York City.
+
+**Timestamps (Click a link to start that segment in a new window)**
+
+[0:00-1:40](https://www.youtube.com/watch?v=jLH-oGfXh08): Set up labels of subway station names. Define their color, font, and placement.
+
+[1:40-3:06](https://youtu.be/jLH-oGfXh08?si=Wt7GyCZZWj-3Tion&t=100): Open the print layout, draw the map, and set the map extent. Add a scale bar by clicking the Add Scale Bar button and drawing a rectangle in the print layout. Set the scalebar units to miles in the scalebar item properties and set the fixed width to 1.
+
+[3:06--](https://youtu.be/jLH-oGfXh08?si=pAIFzWdJf61wJ4Eh&t=186): Click Map 1 in the Items menu and then check Lock layers and Lock styles for layers in the properties menu. Click the lock icon next to Map 1 in the items menu. Navigate back to the main map. Go to View \> Panels \> Spatial Bookmark Manager. Press the Add Bookmark button and call the new bookmark CD 404-1. Turn off subway stations and isochrone layers. Create a new bookmark and name it NYC-1.
+
+[4:21-6:24](https://youtu.be/jLH-oGfXh08?si=ZiB-LWN4U9TeNb1g&t=261): Go back to the print layout and draw another, smaller map. Scroll down in the item properties for Map 2, expand Overviews, and click the plus button to add an overview. Select Map 1 as the Map frame. Edit the style (color, outline, opacity) as you like. Move and resize elements in the print layout as you'd like (e.g. reference map in lower right hand side of main map and scale bar beneath it). Export the print layout as a PDF.
+
+## Data downloads
+
+[Community Districts](https://data.cityofnewyork.us/City-Government/Community-Districts/5crt-au7u)
+
+[MTA subway stations](https://www.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page)

@@ -1,5 +1,5 @@
 ---
-title: "34. Isochrones and calculating area"
+title: "33. Isochrones and calculating area"
 author: "Lucy Block"
 format:
   html:
@@ -32,8 +32,4 @@ Use the TravelTime plugin to create isochrone polygons, which show the area that
 
 [Community Districts](https://data.cityofnewyork.us/City-Government/Community-Districts/5crt-au7u)
 
-Subway stations:
-
--   [MTA subway stations shapefile](https://www.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page) via NYS
-
--   [Saved copy](https://drive.google.com/file/d/13kz4Ud11KQSGTi3H2PVC7Uw3sxsAch-6/view)
+[MTA subway stations](https://www.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page)
