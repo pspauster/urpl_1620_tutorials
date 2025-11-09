@@ -400,14 +400,26 @@ ul.task-list li input[type="checkbox"] {
 <section id="video-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="video-tutorial">Video Tutorial</h2>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/3N3MjZQbCaw?feature=shared" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<section id="in-this-tutorial" class="level4">
-<h4 class="anchored" data-anchor-id="in-this-tutorial">In this tutorial</h4>
+</section>
+<section id="in-this-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="in-this-tutorial">In this tutorial</h2>
 <p>Understand the basics of Coordinate Reference Systems (CRSs) and map projections. See how they function based on the layers you add and learn to adjust your project CRS.</p>
 <p>Learn more about troubleshooting CRS issues: <a href="https://ihatecoordinatesystems.com/" target="_blank">I Hate Coordinate Systems!</a></p>
 <p><strong>Timestamps (Click a link to start that segment in a new window)</strong></p>
 <p><a href="https://youtu.be/3N3MjZQbCaw?si=kA8Pfp4KwkXNTgfc">0:00 - 5:25</a>: Define a project CRS by first loading the <a href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/gthc-hcne">borough boundaries</a> shapefile, which is defined in the NYC-appropriate CRS 2263.</p>
 <p><a href="https://youtu.be/3N3MjZQbCaw?si=QT8DQ_7eMdZtEyD_&amp;t=322">5:22 - 8:34</a>: Load a shapefile first containing stormwater outflow features across all of NYS in with a CRS of 4326, which looks distorted for NYC. Change the whole project CRS to 2263 to get NYC back to a familiar shape.</p>
 </section>
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
+<p>One of the <em>most</em> common issues that arises with CRSs is that your data is not showing up in the location it should be. This is likely because a dataset is <a href="https://ihatecoordinatesystems.com/#wrong-crs">defined in the wrong CRS</a>. Here’s one <a href="https://ihatecoordinatesystems.com/#redefine">solution</a>.</p>
+<ul>
+<li><p>First, right click your layer the layer that’s not displaying where you expect it and select “Zoom to layer(s)” to locate it. It will appear that one of your datasets is ‘far away’ from the other. If you don’t see anything at all, there’s a different issue with your data displaying.</p></li>
+<li><p>To change this layer’s CRS, click the icon that looks like a gear in your toolbar to open the Processing Toolbox (or find it by typing it in the search bar). Type “Assign projection” and click the tool that has the same icon, rather than one that looks like a globe (this is the tool for vector data, versus raster data).</p>
+<p><img src="images/clipboard-1357052100.png" class="img-fluid" width="277"></p></li>
+<li><p>Select the input layer of the dataset with the projection you want to change and the CRS you want to change it to.</p></li>
+<li><p>The output will be a temporary later; right click it and select Export &gt; Save Features As… to save it to your project folder (make sure to click the three dots to the right of ‘Browse’ to locate the right location on your computer).</p></li>
+<li><p>For additional CRS problems, see <a href="https://ihatecoordinatesystems.com/" target="_blank">I Hate Coordinate Systems!</a>. You can also try Googling the problem, asking us on Slack, or asking AI.</p></li>
+</ul>
 </section>
 <section id="data-downloads" class="level2">
 <h2 class="anchored" data-anchor-id="data-downloads">Data downloads</h2>
