@@ -460,7 +460,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>aff_hsg_sf <span class="ot">&lt;-</span> aff_hsg <span class="sc">%&gt;%</span> </span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(longitude)) <span class="sc">%&gt;%</span>  <span class="co">#remove properties with missing coordinates</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">2263</span>) <span class="co">#be careful! x = longitude, y = latitude</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="dv">2263</span>)<span class="co">#be careful! x = longitude, y = latitude</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="plotting-sf-objects" class="level2">
@@ -481,7 +482,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>But that doesn’t look very good, let’s add some other layers. I can read in (CDs)[<a href="https://data.cityofnewyork.us/resource/jp9i-3b7y" class="uri">https://data.cityofnewyork.us/resource/</a>5crt-au7u] directly as a shapefile using the geojson version from the Open data portal. This map is a long way from done, but now it has a semblance of a basemap.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cd_sf <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"https://data.cityofnewyork.us/resource/5crt-au7u.geojson"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_set_crs</span>(<span class="fu">st_crs</span>(aff_hsg_sf)) <span class="co"># here I am setting the crs of the new data to the crs of the point data I already have</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="fu">st_crs</span>(aff_hsg_sf)) <span class="co"># here I am setting the crs of the new data to the crs of the point data I already have</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(cd_sf,</span>

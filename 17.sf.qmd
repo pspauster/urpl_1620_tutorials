@@ -37,7 +37,8 @@ library(sf)
 aff_hsg_sf <- aff_hsg %>% 
   clean_names() %>% 
   filter(!is.na(longitude)) %>%  #remove properties with missing coordinates
-  st_as_sf(coords = c("longitude", "latitude"), crs = 2263) #be careful! x = longitude, y = latitude
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>% 
+  st_transform(crs = 2263)#be careful! x = longitude, y = latitude
 
 ```
 
@@ -65,7 +66,7 @@ But that doesn't look very good, let's add some other layers. I can read in (CDs
 ```{r}
 
 cd_sf <- read_sf("https://data.cityofnewyork.us/resource/5crt-au7u.geojson") %>% 
-  st_set_crs(st_crs(aff_hsg_sf)) # here I am setting the crs of the new data to the crs of the point data I already have
+  st_transform(st_crs(aff_hsg_sf)) # here I am setting the crs of the new data to the crs of the point data I already have
 
 ggplot()+
   geom_sf(cd_sf,
