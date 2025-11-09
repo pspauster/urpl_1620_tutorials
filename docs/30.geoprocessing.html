@@ -404,6 +404,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="in-this-tutorial" class="level2">
 <h2 class="anchored" data-anchor-id="in-this-tutorial">In this tutorial</h2>
 <p>Create a buffer of 1/2 mile around a point layer of subway stations, select all NYC tax lots that intersect with that buffer, and calculate the total residential units inside the buffer as a share of all residential units in NYC. Also, Clip the MapPLUTO layer of tax lots by the buffer for a neater visualization.</p>
+<p>⚠️ <strong>Warning!</strong> The subway stations dataset source changed since I created this tutorial. Its CRS is defined as WGS 84 (lat/lon), so you will not be able to define a buffer in miles without changing its CRS. You can use the “Assign projection” tool to change its projection to 2263. See instructions <a href="https://pspauster.github.io/urpl_1620_tutorials/20.intro_crs.html#troubleshooting">here</a>.</p>
 <p><strong>Timestamps (Click a link to start that segment in a new window)</strong></p>
 <p><a href="https://www.youtube.com/watch?v=hY7eqZwz63Q">0:00-2:15</a>:</p>
 <ul>
@@ -417,6 +418,7 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://youtu.be/hY7eqZwz63Q?si=AdRE_8yBzc3UeufR&amp;t=135">2:15-4:28</a>:</p>
 <ul>
 <li><p>Select the subway station layer and in the “Vector” menu (outside of my screen extent in the video) click “Geoprocessing Tools” and then “Buffer.”</p></li>
+<li><p>⚠️ <strong>See the warning message above about changing the subway stations CRS to 2263 before proceeding with the next step.</strong></p></li>
 <li><p>Make sure subways is selected as the input layer. Type .5 and select miles for the distance. Select round end cap style. To merge all the buffer outputs together, check “Dissolve result.” By default, your results will be temporary layers and you can remove any of them that you don’t need from your Layers menu.</p></li>
 <li><p>When you have the output you do want to keep, right click it in the Layers menu and select Export, then Save Features As, then save it in your project folder. Then you can remove the temporary layer. Drag the buffer layer below the subway stations layer so you can see the stations on top of the buffer.</p></li>
 </ul>
